@@ -17,7 +17,7 @@
   display: inline-block;
   border: 0;
   text-align: left;
-  padding: 10px 20px;
+  padding: 8px 20px;
   border:2px solid rgba(69, 123, 157,0.5);
   border-radius: 10px; 
 }
@@ -126,4 +126,112 @@ input[type="radio"]:checked ~ .option span {
   border-radius: 10px; 
   box-shadow: 2px 2px 20px #457B9D;
 }
+}
+
+/* Landing Page */
+.landing-page{
+  padding:40px 0;
+  background:url("./bg.png");
+  height:100vh;
+  background-size:cover;
+  background-position:center;
+  font-family: 'Quicksand', sans-serif;
+}
+.landing-page h3{
+  text-align:center;
+  color:#06d6a0;
+  margin-bottom:20px;
+  position:relative;
+}
+.landing-page input{
+  display:block;
+  background:none;
+  border:2px solid rgba(69, 123, 157,0.7);
+  border-bottom:0;
+  padding:10px 20px;
+  caret-color:#06d6a0;
+  color:#f1faee;
+  text-align:center;
+  width:500px;
+}
+.landing-page input:first-child{
+  border-radius:8px 8px 0 0;
+}
+.landing-page input:last-child{
+  border-bottom:2px solid rgba(69, 123, 157,0.7);
+}
+.landing-page ::placeholder{
+  color: rgba(69, 123, 157,0.7);
+}
+.landing-page input:focus{
+  outline:none;
+  border:2px solid #06d6a0;
+}
+.landing-page button{
+  border:0;
+  background-color: #06d6a0;
+  width:500px;
+  padding:10px 20px;
+  border-radius:0 0 8px 8px;
+}
+.landing-page button:focus{
+  outline:none;
+}
+.landing-page select{
+  width:500px;
+  background-color: #1d3557;
+  border:2px solid rgba(69, 123, 157,0.7);
+  border-bottom:0;
+  padding:10px 20px;
+  color:#f1faee;
+  text-align-last:center;
+}
+
+.landing-page select:focus{
+  outline:none;
+  border:2px solid #06d6a0;
+}
+
+.brand{
+  position:absolute;
+  bottom:0;
+  height:120px;
+  width:100%;
+  background-color: #06d6a0;
+  color:#fff;
+  text-align:center;
+  font-weight:bold;
+  font-size:1.8rem;
+  padding:15px 0;
+  border-radius: 10px 10px 0 0;
+}
+@media(max-width:600px){
+  .landing-page{
+  background-position:right;
+  }
+  .landing-page input{
+    width:300px;
+  }
+  .landing-page button{
+    width:300px;
+  }
+  .landing-page select{
+  width:300px;
+  }
+}
+/* Remove increment decrement in input type number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Otp Page */
+.otp-page{
+  padding:40px 0;
+  background:url("./bg.png");
+  height:100vh;
+  background-size:cover;
+  background-position:center;
+  font-family: 'Quicksand', sans-serif;
 }
