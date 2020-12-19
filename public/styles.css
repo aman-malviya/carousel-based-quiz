@@ -131,7 +131,7 @@ input[type="radio"]:checked ~ .option span {
 /* Landing Page */
 .landing-page{
   padding:40px 0;
-  background:url("./bg.png");
+  background:url("./bg-landing.png");
   height:100vh;
   background-size:cover;
   background-position:center;
@@ -141,7 +141,6 @@ input[type="radio"]:checked ~ .option span {
   text-align:center;
   color:#06d6a0;
   margin-bottom:20px;
-  position:relative;
 }
 .landing-page input{
   display:block;
@@ -193,7 +192,7 @@ input[type="radio"]:checked ~ .option span {
 }
 
 .brand{
-  position:absolute;
+  position:fixed;
   bottom:0;
   height:120px;
   width:100%;
@@ -207,7 +206,7 @@ input[type="radio"]:checked ~ .option span {
 }
 @media(max-width:600px){
   .landing-page{
-  background-position:right;
+  background-position-x:90%;
   }
   .landing-page input{
     width:300px;
@@ -217,6 +216,11 @@ input[type="radio"]:checked ~ .option span {
   }
   .landing-page select{
   width:300px;
+  }
+}
+@media(max-height:500px){
+  .brand{
+    display:none;
   }
 }
 /* Remove increment decrement in input type number */
