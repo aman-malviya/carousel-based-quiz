@@ -1,6 +1,6 @@
 import {React, useState} from 'react';
 import questions from './Questions'
-
+import Timer from './Timer';
 
 export default function App() {
 const numbers=[1,2,3,4,5,6,7,8];
@@ -18,6 +18,7 @@ const numbers=[1,2,3,4,5,6,7,8];
           <div class="question-container">
           <button style={{'left':'0', 'color':'#E63946'}} className="submit-btn">ABORT</button>
           <button className="submit-btn">SUBMIT</button>
+          <Timer/>
             <div
               id="carouselExampleIndicators"
               class="carousel"

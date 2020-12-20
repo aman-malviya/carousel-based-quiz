@@ -131,8 +131,8 @@ input[type="radio"]:checked ~ .option span {
 /* Landing Page */
 .landing-page{
   padding:40px 0;
-  background:url("./bg-landing.png");
-  min-height:100vh;
+  background:url("./bg.png");
+  height:100vh;
   background-size:cover;
   background-position:center;
   font-family: 'Quicksand', sans-serif;
@@ -206,7 +206,7 @@ input[type="radio"]:checked ~ .option span {
 }
 @media(max-width:600px){
   .landing-page{
-  background-position-x:90%;
+  background-position:right;
   }
   .landing-page input{
     width:300px;

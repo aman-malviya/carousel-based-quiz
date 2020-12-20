@@ -1,22 +1,54 @@
-import {React, useState} from 'react';
-
-export default function Timer(){
+import React,{ useEffect, useState }  from 'react'
+import './styles.css'
+function Timer() {
+    const calculateTimeLeft = () => {
+        const countdownDate= new Date('December 20, 2020 15:00:00').getTime();
+        //curent timer +30 minutes  
+        let year = new Date().getFullYear();
+        const difference = countdownDate - +new Date();
+        let timeLeft = {};
     
-    let startingMinutes=30;
-    let timeDuration=startingMinutes*60;
-    let [minutes, setMinutes] = useState();
-    let [seconds, setSeconds] = useState();
+        if (difference > 0) {
+          timeLeft = {
+            days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+            hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+            minutes: Math.floor((difference / 1000 / 60) % 60),
+            seconds: Math.floor((difference / 1000) % 60),
+          };
+        }
+    
+        return timeLeft;
+      };
 
+      const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+      const [year] = useState(new Date().getFullYear());
+    
+      useEffect(() => {
+        setTimeout(() => {
+          setTimeLeft(calculateTimeLeft());
+        }, 1000);
+      });
+    
+      const timerComponents = [];
+    
+      Object.keys(timeLeft).forEach((interval) => {
+        if (!timeLeft[interval]) {
+          return;
+        }
+    
+        timerComponents.push(
+          <span>
+            {timeLeft[interval]} {interval}{" "}
+          </span>
+        );
+      });
+    
+    return (
+        <div className="Timer">
+                  {timerComponents.length ? timerComponents : <span>Time's up!</span>}
 
-    function UpdateCountdown(){
-        timeDuration--;
-        setMinutes(Math.floor(timeDuration/60));
-        setSeconds(timeDuration % 60);
-    }
-    setInterval(UpdateCountdown, 1000);
-
-
-return(<div>
-    {minutes}:{seconds}
-    </div>)
+        </div>
+    )
 }
+
+export default Timer
