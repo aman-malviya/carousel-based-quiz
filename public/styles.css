@@ -166,6 +166,21 @@ input[type="radio"]:checked ~ .option span {
   outline:none;
   border:2px solid #06d6a0;
 }
+.landing-page textarea{
+   display:block;
+  background:none;
+  border:2px solid rgba(69, 123, 157,0.7);
+  border-bottom:0;
+  padding:10px 20px;
+  caret-color:#06d6a0;
+  color:#f1faee;
+  text-align:center;
+  width:500px;
+}
+.landing-page textarea:focus{
+  outline:none;
+  border:2px solid #06d6a0;
+}
 .landing-page button{
   border:0;
   background-color: #06d6a0;
@@ -185,7 +200,9 @@ input[type="radio"]:checked ~ .option span {
   color:#f1faee;
   text-align-last:center;
 }
-
+.landing-page select option{
+  text-align-last:center;
+}
 .landing-page select:focus{
   outline:none;
   border:2px solid #06d6a0;
@@ -215,6 +232,9 @@ input[type="radio"]:checked ~ .option span {
     width:300px;
   }
   .landing-page select{
+  width:300px;
+  }
+  .landing-page textarea{
   width:300px;
   }
 }

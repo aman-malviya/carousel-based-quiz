@@ -1,8 +1,8 @@
 import React,{ useEffect, useState }  from 'react'
-import './styles.css'
+import './styleTimer.css'
 function Timer() {
     const calculateTimeLeft = () => {
-        const countdownDate= new Date('December 20, 2020 15:00:00').getTime();
+        const countdownDate= new Date('December 20, 2020 23:15:00').getTime();
         //curent timer +30 minutes  
         let year = new Date().getFullYear();
         const difference = countdownDate - +new Date();
@@ -44,9 +44,8 @@ function Timer() {
       });
     
     return (
-        <div className="Timer">
-                  {timerComponents.length ? timerComponents : <span>Time's up!</span>}
-
+        <div className="Timer d-flex justify-content-center">
+        <div>{timerComponents.length ? timerComponents : <span>Time's up!</span>}</div>
         </div>
     )
 }
