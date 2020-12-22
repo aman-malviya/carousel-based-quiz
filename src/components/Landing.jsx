@@ -18,7 +18,7 @@ export default function Landing(){
         setText(e.target.value);
         setFirst(e.target.value);
     }
-    
+    //register user with email and number as his password
     const register = (event)=>{
         event.preventDefault();
         db.collection("user-details").add({
@@ -29,6 +29,7 @@ export default function Landing(){
             mobile: tel,
             scholar: scholar
         })
+        history.push('/instructions');
     };
 
 
@@ -57,7 +58,7 @@ export default function Landing(){
                 <input value={scholar} onChange={event=>setScholar(event.target.value)} type="number" placeholder="Scholar Number" />
             </div>
         </div>
-        <div className="d-flex justify-content-center"><a href="/verification"><button onClick={register}>Submit</button></a></div>
+        <div className="d-flex justify-content-center"><a><button onClick={register}>Submit</button></a></div>
         <div className="brand">
             Quizzers' Club
             <br />

@@ -18,7 +18,7 @@ export default function AdminAuth(){
 }
 
 const LoginPage=()=>{
-    let isRegisterd=true;
+    let isRegisterd=false;
     const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
