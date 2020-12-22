@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
-
+import {auth} from '../firebase'
+import {useHistory} from 'react-router-dom'
 export default function AdminAuth(){
 
     return(<div className="landing-page">
@@ -18,13 +19,27 @@ export default function AdminAuth(){
 
 const LoginPage=()=>{
     let isRegisterd=true;
+    const history = useHistory();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [isTrue, setTrue]=useState();
     const handleClick=()=>{
         isRegisterd?setTrue(<p></p>):setTrue(<p style={{'color':'#E63946'}}>Wrong Credentials</p>);
     }
+    const signIn = e => {
+        e.preventDefault();
+
+        auth
+            .signInWithEmailAndPassword(email, password)
+            .then(auth => {
+                history.push('/admin')
+            })
+            .catch(error => alert(error.message))
+    }
+
     return <div>
-        <input type="text" placeholder="QCM Unique ID" />
-        <input type="password" placeholder="Password" />
+        <input value={email} onChange={(e)=>setEmail(e.target.value)} type="text" placeholder="QCM Unique ID" />
+        <input value={password} onChange={(e)=>setPassword(e.target.value)} type="password" placeholder="Password" />
         <a href={isRegisterd?"/admin":""}>
             <button onClick={handleClick}>
                 Login
