@@ -1,11 +1,10 @@
-import {React, useState} from 'react';
+import {React, useEffect, useState} from 'react';
 import questions from '../Questions'
 import Timer from './Timer';
-
+import {db} from '../firebase';
 export default function Quiz() {
 
   const numbers=[1,2,3,4,5,6,7,8];
-   
   // function handleClick(e){
   //   numbers.map(number=>{
   //     document.getElementsByClassName("toggleButton")[number-1].style.backgroundColor="#457B9D";
@@ -13,9 +12,43 @@ export default function Quiz() {
     
   //   e.target.style.backgroundColor="#06d6a0";
   // }
+  const [ques,setQues]=useState([]);
+  useEffect(()=>{
+    db.collection('Questions').onSnapshot(snapshot=>{
+      setQues(
+        snapshot.docs.
+          map(doc=>({
+            que:doc.data().question,
+            opta:doc.data().A,
+            optb:doc.data().B,
+            optc:doc.data().C,
+            optd:doc.data().D,
+          }))
+    )
+    })
+  }
+  
+  ,[])
+
 
   return (<div className="question_section">
-    <form id="mainForm" action="/" method="POST">
+      {/* <p>{ques.
+            map(qv=>
+            (<div>
+                  <p>{qv.que}</p>
+                  <p>{qv.opta}</p>
+                  <p>{qv.optb}</p>
+                  <p>{qv.optc}</p>
+                  <p>{qv.optd}</p>
+
+
+
+              </div>))}
+      </p> */}
+
+
+
+      <form id="mainForm" action="/" method="POST">
       <div class="question-container">
         <button style={{'left':'0', 'color':'#E63946'}} className="submit-btn">ABORT</button>
         <div style={{'position':'fixed', 'top':'0'}}>
@@ -34,12 +67,13 @@ export default function Quiz() {
               <div class="carousel-item active">
                 All the best.
               </div>
-              {questions.map((question,i) =>{
+              {ques.map((qv,question,i) =>{
                   return (<div class="carousel-item wow fadeIn" data-wow-duration="0.3s">
                               <div class="question">
                                   <p style={{'margin':'5px 0'}}>{"Question  " +(i+1)} / <span style={{'fontSize':'0.8rem'}}>30</span></p>
                                   <div style={{'height':'0', 'borderTop':'1px dashed rgba(69, 123, 157,0.5)', 'marginBottom':'5px'}}></div>
-                                  <p>{ question.question }</p>
+                                  <p>{ qv.que }</p>
+                                  
                               </div>
                               <div class="Answer">
                                   <ul style={{'listStyle':'none','padding-inline-start':'0'}}>
@@ -49,48 +83,48 @@ export default function Quiz() {
                                         id={question.option1}
                                         name={"answer"+(i+1)}
                                         class={"answer"+(i+1)}
-                                        value={question.option1}
+                                        value={qv.opta}
                                       />
-                                      <label class="option" for={question.option1}>
-                                      <span>A</span>{question.option1 }
+                                      <label class="option" for={qv.opta}>
+                                      <span>A</span>{qv.opta }
                                       </label>
                                       </div>
                                     </li>
                                     <li><div class="form-group">
                                       <input
                                         type="radio"
-                                        id={question.option2}
+                                        id={qv.optb}
                                         name={"answer"+(i+1)}
                                         class={"answer"+(i+1)}
-                                        value={question.option2}
+                                        value={qv.optb}
                                       />
-                                      <label class="option" for={question.option2}>
-                                      <span>B</span>{question.option2 }</label>
+                                      <label class="option" for={qv.optb}>
+                                      <span>B</span>{qv.optb }</label>
                                       </div>
                                     </li>
                                     <li><div class="form-group">
                                       <input
                                         type="radio"
-                                        id={question.option3}
+                                        id={qv.optc}
                                         name={"answer"+(i+1)}
                                         class={"answer"+(i+1)}
-                                        value={question.option3}
+                                        value={qv.optc}
                                       />
-                                      <label class="option" for={question.option3}>
-                                      <span>C</span>{question.option3}
+                                      <label class="option" for={qv.optc}>
+                                      <span>C</span>{qv.optc}
                                       </label>
                                       </div>
                                     </li>
                                     <li><div class="form-group">
                                       <input
                                         type="radio"
-                                        id={question.option4}
+                                        id={qv.optd}
                                         name={"answer"+(i+1)}
                                         class={"answer"+(i+1)}
-                                        value={question.option4}
+                                        value={qv.optd}
                                       />
-                                      <label class="option" for={question.option4}>
-                                      <span>D</span>{question.option4}
+                                      <label class="option" for={qv.optd}>
+                                      <span>D</span>{qv.optd}
                                       </label>
                                       </div>
                                     </li>
