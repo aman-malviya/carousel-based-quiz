@@ -83,14 +83,14 @@ input[type="radio"]:checked ~ .option span {
 
 .questionToggles{
   display:flex;
-  justify-content:center;
+  overflow-x:scroll;
 }
 .questionToggles button{
   background-color:#457B9D;
   border:0;
   height:30px;
   width:30px;
-  margin:5px;
+  margin:5px 10px;
   border-radius:50%;
   color:#fff;
 }
@@ -256,3 +256,22 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+
+/* ScrollBar */
+::-webkit-scrollbar {
+  width:2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: none;
+  background-clip: content-box;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: rgba(69, 123, 157,0.5);
+    border: 7px solid transparent;
+    border-radius: 9px;
+    background-clip: content-box;
+}

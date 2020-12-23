@@ -8,6 +8,7 @@ import Otp from './Otp'
 import Admin from './Admin'
 import Instructions from './Instructions'
 import AdminAuth from './AdminAuth'
+import Score from './Score'
 
 export default function App(){
     // useEffect(()=>{
@@ -30,6 +31,7 @@ export default function App(){
     <Route path='/admin-login'><AdminAuth /></Route>
     <Route path='/admin'><Admin /></Route>
     <Route path='/instructions'><Instructions /></Route>
+    <Route path='/score'><Score /></Route>
     </Switch>
     </Router>
     </div>)
