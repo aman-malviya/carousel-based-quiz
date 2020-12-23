@@ -1,10 +1,9 @@
 import {React, useEffect, useState} from 'react';
-import questions from '../Questions'
 import Timer from './Timer';
 import {db} from '../firebase'
-import {useHistory} from 'react-router-dom'
+// import {useHistory} from 'react-router-dom'
 export default function Quiz() {
-  const history=useHistory();
+  // const history=useHistory();
   const numbers=[1,2,3,4,5,6,7,8];
 
   // function handleClick(e){
@@ -18,8 +17,7 @@ export default function Quiz() {
   useEffect(()=>{
     db.collection('Questions').onSnapshot(snapshot=>{
       setQues(
-        snapshot.docs.
-          map(doc=>({
+        snapshot.docs.map(doc=>({
             que:doc.data().question,
             opta:doc.data().A,
             optb:doc.data().B,
@@ -51,13 +49,13 @@ export default function Quiz() {
 
 
       <form id="mainForm" action="/" method="POST">
-      <div class="question-container">
+      <div className="question-container">
         <button style={{'left':'0', 'color':'#E63946'}} className="submit-btn">ABORT</button>
         <div style={{'position':'fixed', 'top':'0'}}>
         <Timer />
         </div>
         <button className="submit-btn">SUBMIT</button>
-        <div id="carouselExampleIndicators" class="carousel" data-ride="false" data-interval="false" data-wrap="false">
+        <div id="carouselExampleIndicators" className="carousel" data-ride="false" data-interval="false" data-wrap="false">
           <div className="questionToggles">
             {numbers.map(number=>{
                  return (<div style={{'display':'inline-block'}} data-target="#carouselExampleIndicators" data-slide-to={number}>
@@ -65,30 +63,30 @@ export default function Quiz() {
                  </div>)
             })}
           </div>  
-          <div class="carousel-inner">
-              <div class="carousel-item active">
+          <div className="carousel-inner">
+              <div className="carousel-item active">
                 All the best.
               </div>
-              {ques.map((qv,question,i) =>{
-                  return (<div class="carousel-item wow fadeIn" data-wow-duration="0.3s">
-                              <div class="question">
+              {ques.map((qv,i) =>{
+                  return (<div className="carousel-item wow fadeIn" data-wow-duration="0.3s">
+                              <div className="question">
                                   <p style={{'margin':'5px 0'}}>{"Question  " +(i+1)} / <span style={{'fontSize':'0.8rem'}}>30</span></p>
                                   <div style={{'height':'0', 'borderTop':'1px dashed rgba(69, 123, 157,0.5)', 'marginBottom':'5px'}}></div>
                                   <p>{ qv.que }</p>
                                   
                               </div>
-                              <div class="Answer">
-                                  <ul style={{'listStyle':'none','padding-inline-start':'0'}}>
+                              <div className="Answer">
+                                  <ul style={{'listStyle':'none','paddingInlineStart':'0'}}>
                                     <li>
                                       <input
                                         // onChange={e=>setAns(e.target.value)}
                                         type="radio"
-                                        id={question.option1}
+                                        id={qv.opta}
                                         name={"answer"+(i+1)}
-                                        class={"answer"+(i+1)}
+                                        className={"answer"+(i+1)}
                                         value={qv.opta}
                                       />
-                                      <label class="option" for={qv.opta}>
+                                      <label className="option" htmlFor={qv.opta}>
                                       <span>A</span>{qv.opta }
                                       </label>
                                     </li>
@@ -98,10 +96,10 @@ export default function Quiz() {
                                         type="radio"
                                         id={qv.optb}
                                         name={"answer"+(i+1)}
-                                        class={"answer"+(i+1)}
+                                        className={"answer"+(i+1)}
                                         value={qv.optb}
                                       />
-                                      <label class="option" for={qv.optb}>
+                                      <label className="option" htmlFor={qv.optb}>
                                       <span>B</span>{qv.optb }</label>
                                     </li>
                                     <li>
@@ -110,10 +108,10 @@ export default function Quiz() {
                                         type="radio"
                                         id={qv.optc}
                                         name={"answer"+(i+1)}
-                                        class={"answer"+(i+1)}
+                                        className={"answer"+(i+1)}
                                         value={qv.optc}
                                       />
-                                      <label class="option" for={qv.optc}>
+                                      <label className="option" htmlFor={qv.optc}>
                                       <span>C</span>{qv.optc}
                                       </label>
                                     </li>
@@ -123,10 +121,10 @@ export default function Quiz() {
                                         type="radio"
                                         id={qv.optd}
                                         name={"answer"+(i+1)}
-                                        class={"answer"+(i+1)}
+                                        className={"answer"+(i+1)}
                                         value={qv.optd}
                                       />
-                                      <label class="option" for={qv.optd}>
+                                      <label className="option" htmlFor={qv.optd}>
                                       <span>D</span>{qv.optd}
                                       </label>
                                     </li>
@@ -136,18 +134,18 @@ export default function Quiz() {
               })}
           </div>
           <a
-            class="carousel-control prev"
+            className="carousel-control prev"
             href="#carouselExampleIndicators"
             role="button"
             data-slide="prev"
-          ><i class="fas fa-arrow-left"></i> Prev
+          ><i className="fas fa-arrow-left"></i> Prev
           </a>
           <a
-            class="carousel-control next"
+            className="carousel-control next"
             href="#carouselExampleIndicators"
             role="button"
             data-slide="next"
-          >Next <i class="fas fa-arrow-right"></i>
+          >Next <i className="fas fa-arrow-right"></i>
           </a>
         </div>
       </div>

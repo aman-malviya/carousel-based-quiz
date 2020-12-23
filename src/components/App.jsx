@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+// import {useEffect} from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Quiz from './Quiz'
 import Landing from './Landing'
 import Otp from './Otp'
-import {auth} from '../firebase';
+// import {auth} from '../firebase';
 import Admin from './Admin'
 import Instructions from './Instructions'
 import AdminAuth from './AdminAuth'

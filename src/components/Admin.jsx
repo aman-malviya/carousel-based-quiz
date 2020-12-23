@@ -1,6 +1,5 @@
 import React,{useState} from 'react'
 import {db} from '../firebase'
-import firebase from 'firebase'
 export default function Admin(){
     const [evt,setEvt]=useState("");
     const [question,setQuestion] = useState("");

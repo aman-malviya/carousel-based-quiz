@@ -4,7 +4,7 @@ function Timer() {
     const calculateTimeLeft = () => {
         const countdownDate= new Date('December 20, 2020 23:15:00').getTime();
         //curent timer +30 minutes  
-        let year = new Date().getFullYear();
+        // let year = new Date().getFullYear();
         const difference = countdownDate - +new Date();
         let timeLeft = {};
     
@@ -21,7 +21,7 @@ function Timer() {
       };
 
       const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-      const [year] = useState(new Date().getFullYear());
+      // const [year] = useState(new Date().getFullYear());
     
       useEffect(() => {
         setTimeout(() => {

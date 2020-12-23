@@ -1,6 +1,6 @@
 import {React, useState} from 'react'
 import { useHistory } from 'react-router-dom';
-import {auth, db} from '../firebase';
+import {db} from '../firebase';
 export default function Landing(){
 
     const [text, setText]=useState("");
@@ -58,7 +58,7 @@ export default function Landing(){
                 <input value={scholar} onChange={event=>setScholar(event.target.value)} type="number" placeholder="Scholar Number" />
             </div>
         </div>
-        <div className="d-flex justify-content-center"><a><button onClick={register}>Submit</button></a></div>
+        <div className="d-flex justify-content-center"><button onClick={register}>Submit</button></div>
         <div className="brand">
             Quizzers' Club
             <br />
