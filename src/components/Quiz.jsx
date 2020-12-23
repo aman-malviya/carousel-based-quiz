@@ -1,21 +1,15 @@
 import {React, useState} from 'react';
 import questions from '../Questions'
 import Timer from './Timer';
+import {db} from '../firebase'
+import {useHistory} from 'react-router-dom'
 
 export default function Quiz() {
-
+  const history=useHistory();
   const numbers=[1,2,3,4,5,6,7,8];
-   
-  // function handleClick(e){
-  //   numbers.map(number=>{
-  //     document.getElementsByClassName("toggleButton")[number-1].style.backgroundColor="#457B9D";
-  //   })
-    
-  //   e.target.style.backgroundColor="#06d6a0";
-  // }
 
   return (<div className="question_section">
-    <form id="mainForm" action="/" method="POST">
+    <form id="mainForm">
       <div class="question-container">
         <button style={{'left':'0', 'color':'#E63946'}} className="submit-btn">ABORT</button>
         <div style={{'position':'fixed', 'top':'0'}}>
@@ -43,8 +37,9 @@ export default function Quiz() {
                               </div>
                               <div class="Answer">
                                   <ul style={{'listStyle':'none','padding-inline-start':'0'}}>
-                                    <li><div class="form-group">
+                                    <li>
                                       <input
+                                        // onChange={e=>setAns(e.target.value)}
                                         type="radio"
                                         id={question.option1}
                                         name={"answer"+(i+1)}
@@ -54,10 +49,10 @@ export default function Quiz() {
                                       <label class="option" for={question.option1}>
                                       <span>A</span>{question.option1 }
                                       </label>
-                                      </div>
                                     </li>
-                                    <li><div class="form-group">
+                                    <li>
                                       <input
+                                        // onChange={e=>setAns(e.target.value)}
                                         type="radio"
                                         id={question.option2}
                                         name={"answer"+(i+1)}
@@ -66,10 +61,10 @@ export default function Quiz() {
                                       />
                                       <label class="option" for={question.option2}>
                                       <span>B</span>{question.option2 }</label>
-                                      </div>
                                     </li>
-                                    <li><div class="form-group">
+                                    <li>
                                       <input
+                                        // onChange={e=>setAns(e.target.value)}
                                         type="radio"
                                         id={question.option3}
                                         name={"answer"+(i+1)}
@@ -79,10 +74,10 @@ export default function Quiz() {
                                       <label class="option" for={question.option3}>
                                       <span>C</span>{question.option3}
                                       </label>
-                                      </div>
                                     </li>
-                                    <li><div class="form-group">
+                                    <li>
                                       <input
+                                        // onChange={e=>setAns(e.target.value)}
                                         type="radio"
                                         id={question.option4}
                                         name={"answer"+(i+1)}
@@ -92,7 +87,6 @@ export default function Quiz() {
                                       <label class="option" for={question.option4}>
                                       <span>D</span>{question.option4}
                                       </label>
-                                      </div>
                                     </li>
                                   </ul>
                               </div>
