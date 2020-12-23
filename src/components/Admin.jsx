@@ -9,10 +9,11 @@ export default function Admin(){
     const [c,setC] = useState("");
     const [d,setD] = useState("");
     const [ans,setAns] = useState("");
+    let [message, setMessage]=useState("");
 
     const addQuestion=(event)=>{
         event.preventDefault();
-        db.collection('vihan').add({
+        db.collection('Questions').add({
             event: evt,
             question: question,
             A: a,
@@ -21,8 +22,12 @@ export default function Admin(){
             D: d,
             ans:ans,
 
-        }).then(alert("added sucessfully")).catch((e)=>alert(e.message))
+        }).then(setMessage(<p style={{'color':'#f1faee'}}>Successfully added to the database.</p>)      
+        ).catch((e)=>setMessage(<p style={{'color':'#E63946'}}>Some error has occured.</p>))
         console.log("done")
+        setTimeout(() => {
+            setMessage("");
+        }, 3000);
         setEvt("");
         setQuestion("")
         setA("");
@@ -30,8 +35,7 @@ export default function Admin(){
         setC("");
         setD("");
         setAns("");
-
-        }
+    }
     return(<div className="landing-page">
                 <h3>Have a good question in mind? Bring it On.</h3>
                 <form>
@@ -44,7 +48,7 @@ export default function Admin(){
                         <input value={c} onChange={(event)=>setC(event.target.value)} type="text" placeholder="Option 3" />
                         <input value={d} onChange={(event)=>setD(event.target.value)} type="text" placeholder="Option 4" />
                         <select onClick={e=>setAns(e.target.value)}>
-                            {/* <option>Select the correct option</option> */}
+                            <option value="No option selected">Select the correct option</option> 
                             <option value="A">A</option>
                             <option value="B">B</option>
                             <option value="C">C</option>
@@ -57,6 +61,7 @@ export default function Admin(){
                         <button onClick={addQuestion}>Push to the Database</button>
                     </a>
                 </div>
+                <div style={{'padding':'0 10px', 'textAlign':'center'}}>{message}</div>
                 <div className="brand">
                     Quizzers' Club
                     <br />
