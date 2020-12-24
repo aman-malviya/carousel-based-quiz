@@ -8,7 +8,7 @@ export default function Score(){
                 V<span style={{'fontSize':'2.5rem'}}>I</span>H<span style={{'fontSize':'2.5rem'}}>AA</span>N
             </h1>
             <div className="d-flex justify-content-center">
-                <img width="150px" height="150px" src="trophy.png" />
+                <img width="150px" height="150px" src="trophy.jpg" />
             </div>
             <h3>Your Score</h3>
             <div style={{'border':'2px solid rgba(69, 123, 157,0.5)', 'borderRadius':'8px','height':'60px', 'width':'200px', 'margin':'auto', 'padding':'12px', 'color':'#f1faee'}}><h4 style={{'textAlign':'center'}}>50</h4></div>
