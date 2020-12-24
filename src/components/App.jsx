@@ -1,6 +1,6 @@
 import React from 'react'
 // import {useEffect} from 'react'
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
 import Quiz from './Quiz'
 import Landing from './Landing'
 import Otp from './Otp'

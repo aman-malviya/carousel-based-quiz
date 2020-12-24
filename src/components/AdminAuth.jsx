@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
-// import {auth} from '../firebase'
-// import {useHistory} from 'react-router-dom'
+import {db} from '../firebase'
+import {useHistory} from 'react-router-dom'
 export default function AdminAuth(){
-
-    return(<div className="landing-page">
+     
+      return(<div className="landing-page">
         <div className="d-flex justify-content-center">
             <LoginPage />
         </div>
@@ -18,34 +18,35 @@ export default function AdminAuth(){
 }
 
 const LoginPage=()=>{
-    let isRegisterd=false;
-    // const history = useHistory();
+    const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isTrue, setTrue]=useState();
-    const handleClick=()=>{
-        isRegisterd?setTrue(<p></p>):setTrue(<p style={{'color':'#E63946'}}>Wrong Credentials</p>);
+    const [message, setMessage] =useState();
+    const handleClick=(e)=>{
+        e.preventDefault();
+        db.collection("admin-credentials").onSnapshot((snapshot)=>{
+        snapshot.forEach((doc)=>{
+            if(doc.data().LoginId===email && doc.data().Password === password){
+                history.push("/admin");
+            }else{
+                setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Wrong Credentials</p>);
+                setTimeout(()=>{
+                  setMessage("");
+                },2000)
+            }
+        })
+    }) 
     }
-    // const signIn = e => {
-    //     e.preventDefault();
-
-    //     auth
-    //         .signInWithEmailAndPassword(email, password)
-    //         .then(auth => {
-    //             history.push('/admin')
-    //         })
-    //         .catch(error => alert(error.message))
-    // }
 
     return <div>
         <input value={email} onChange={(e)=>setEmail(e.target.value)} type="text" placeholder="QCM Unique ID" />
         <input value={password} onChange={(e)=>setPassword(e.target.value)} type="password" placeholder="Password" />
-        <a href={isRegisterd?"/admin":""}>
+        <a>
             <button onClick={handleClick}>
                 Login
             </button>
         </a>
-        {isTrue}
+        {message}
     </div>
 }
 

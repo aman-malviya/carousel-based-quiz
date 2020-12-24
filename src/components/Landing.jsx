@@ -1,6 +1,8 @@
 import {React, useState} from 'react'
 import { useHistory } from 'react-router-dom';
 import {db} from '../firebase';
+
+
 export default function Landing(){
 
     const [text, setText]=useState("");
@@ -12,6 +14,8 @@ export default function Landing(){
     const [post,setPost]=useState("");             //post
     const [scholar,setScholar]=useState("");     //scholar no.
 
+    const [message, setMessage] =useState();
+
     const history = useHistory();
 
     const handleChange=(e)=>{
@@ -21,15 +25,27 @@ export default function Landing(){
     //register user with email and number as his password
     const register = (event)=>{
         event.preventDefault();
-        db.collection("user-details").add({
-            firstName: first,
-            lastName: last,
-            post:post,
-            email:email,
-            mobile: tel,
-            scholar: scholar
+        db.collection("user-details").where('scholar', '==', scholar).onSnapshot((snapshot)=>{
+           let items=[];
+           snapshot.forEach((doc)=>items.push(doc.data()));
+           if(items.length){
+               setMessage(<p style={{'color':'#f1faee', 'textAlign':'center'}}>You have already taken the test once.</p>);
+               setTimeout(() => {
+                   setMessage("");
+               }, 2000);
+           }else{
+               db.collection("user-details").add({
+                    firstName: first,
+                    lastName: last,
+                    post:post,
+                    email:email,
+                    mobile: tel,
+                    scholar: scholar
+                })
+                history.push('/instructions');
+            }
         })
-        history.push('/instructions');
+        
     };
 
 
@@ -59,6 +75,7 @@ export default function Landing(){
             </div>
         </div>
         <div className="d-flex justify-content-center"><button onClick={register}>Submit</button></div>
+        {message}
         <div className="brand">
             Quizzers' Club
             <br />
