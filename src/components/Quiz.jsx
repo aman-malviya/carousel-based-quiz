@@ -6,13 +6,7 @@ export default function Quiz() {
   const history=useHistory();
   const numbers=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
 
-  // function handleClick(e){
-  //   numbers.map(number=>{
-  //     document.getElementsByClassName("toggleButton")[number-1].style.backgroundColor="#457B9D";
-  //   })
-    
-  //   e.target.style.backgroundColor="#06d6a0";
-  // }
+
   const [ques,setQues]=useState([]);
   useEffect(()=>{
     db.collection('Questions').onSnapshot(snapshot=>{
@@ -50,11 +44,10 @@ export default function Quiz() {
 
 
 
-      <form id="mainForm" action="/" method="POST">
+      <form id="mainForm">
       <div className="question-container">
-        <button style={{'left':'0', 'color':'#E63946'}} className="submit-btn">ABORT</button>
-        <div style={{'position':'fixed', 'top':'0'}}>
-        <Timer />
+        <div style={{'position':'fixed', 'top':'0', 'left':'0','padding':'12px 25px'}}>
+        <Timer style={{'display':'flex', 'justifyContent':'center'}} />
         </div>
         <button onClick={submitTest} className="submit-btn">SUBMIT</button>
         <div id="carouselExampleIndicators" className="carousel" data-ride="false" data-interval="false" data-wrap="false">

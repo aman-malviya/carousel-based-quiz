@@ -2,9 +2,7 @@ import React,{ useEffect, useState }  from 'react'
 import './styleTimer.css'
 function Timer() {
     const calculateTimeLeft = () => {
-        const countdownDate= new Date('December 20, 2020 23:15:00').getTime();
-        //curent timer +30 minutes  
-        // let year = new Date().getFullYear();
+        const countdownDate= new Date('December 24, 2020 23:45:00').getTime();
         const difference = countdownDate - +new Date();
         let timeLeft = {};
     
@@ -21,31 +19,25 @@ function Timer() {
       };
 
       const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-      // const [year] = useState(new Date().getFullYear());
     
       useEffect(() => {
         setTimeout(() => {
           setTimeLeft(calculateTimeLeft());
         }, 1000);
       });
-    
-      const timerComponents = [];
-    
-      Object.keys(timeLeft).forEach((interval) => {
-        if (!timeLeft[interval]) {
-          return;
-        }
-    
-        timerComponents.push(
-          <span>
-            {timeLeft[interval]} {interval}{" "}
-          </span>
-        );
-      });
-    
+      // if(timeLeft.minutes <9){
+      //   timeLeft.minutes = "0"+timeLeft.minutes;
+      // }
+      // if(timeLeft.seconds <9){
+      //   timeLeft.seconds = "0"+timeLeft.seconds;
+      // }
     return (
         <div className="Timer d-flex justify-content-center">
-        <div>{timerComponents.length ? timerComponents : <span>Time's up!</span>}</div>
+        <div style={{'fontWeight':'bold'}}>
+          {timeLeft.minutes?(timeLeft.minutes<=9?"0"+timeLeft.minutes:timeLeft.minutes):"00"}
+          :
+          {timeLeft.seconds?(timeLeft.seconds<=9?"0"+timeLeft.seconds:timeLeft.seconds):"00"}
+        </div>
         </div>
     )
 }
