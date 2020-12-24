@@ -50,7 +50,7 @@ export default function Landing(){
 
 
     return(
-    <div className='landing-page' style={window.innerWidth<500?{'paddingBottom':'35%'}:{'paddingBottom':'15%'}}>
+    <div className='landing-page' style={window.innerWidth<500?{'paddingBottom':'40%'}:{'paddingBottom':'15%'}}>
         <h1 style={{'color':'#E63946', 'fontWeight':'bolder', 'textAlign':'center','fontSize':'3rem'}}>
             V<span style={{'fontSize':'2.5rem'}}>I</span>H<span style={{'fontSize':'2.5rem'}}>AA</span>N
         </h1>

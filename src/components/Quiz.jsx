@@ -1,9 +1,9 @@
 import {React, useEffect, useState} from 'react';
 import Timer from './Timer';
 import {db} from '../firebase'
-// import {useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 export default function Quiz() {
-  // const history=useHistory();
+  const history=useHistory();
   const numbers=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
 
   // function handleClick(e){
@@ -29,7 +29,9 @@ export default function Quiz() {
   }
   
   ,[])
-
+ const submitTest=()=>{
+    history.push("/score");
+ }
 
   return (<div className="question_section">
       {/* <p>{ques.
@@ -54,7 +56,7 @@ export default function Quiz() {
         <div style={{'position':'fixed', 'top':'0'}}>
         <Timer />
         </div>
-        <button className="submit-btn">SUBMIT</button>
+        <button onClick={submitTest} className="submit-btn">SUBMIT</button>
         <div id="carouselExampleIndicators" className="carousel" data-ride="false" data-interval="false" data-wrap="false">
           <div className="questionToggles">
             {numbers.map(number=>{
