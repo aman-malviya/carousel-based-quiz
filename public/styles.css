@@ -2,17 +2,19 @@ body{
   background:url("./bg.png");
   background-size:cover;
   background-position:right;
+  font-family: 'Quicksand', sans-serif;
 }
-
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
 .question_section {
   background:url("./bg.png");
   background-size:cover;
   background-position:right;
   color:#F1FAEE;
-  padding: 2% 22%;
+  padding: 0% 22%;
   font-size: 1.1rem;
-  min-height:100vh;
-  font-family: 'Quicksand', sans-serif;
 }
 
 .question{
@@ -84,15 +86,17 @@ input[type="radio"]:checked ~ .option span {
 .questionToggles{
   display:flex;
   overflow-x:scroll;
+  scroll-behavior:smooth;
 }
 .questionToggles button{
   background-color:#457B9D;
   border:0;
-  height:30px;
-  width:30px;
+  height:27px;
+  width:27px;
   margin:5px 10px;
   border-radius:50%;
   color:#fff;
+  font-size:0.8rem;
 }
 .questionToggles button:focus{
   outline:none;
@@ -114,20 +118,18 @@ input[type="radio"]:checked ~ .option span {
   background:none;
   border:0;
   color:#06d6a0;
-  position:fixed;
-  top:0;
-  right:0;
-  padding:12px 25px;
+  padding:27px 25px;
+  font-size:1.1rem;
   font-weight:bold;
+  float:right;
 }
 @media(max-width:600px){
   .question_section{
-    padding: 15% 5%;
+    padding: 0% 5%;
   }
 }
 @media(min-width:600px){
   .question-container{
-  padding-top:10px;
   border:2px solid rgba(69, 123, 157,0.5);
   border-radius: 10px; 
   box-shadow: 2px 2px 20px #457B9D;
@@ -270,7 +272,7 @@ input::-webkit-inner-spin-button {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(69, 123, 157,0.5);
+    background-color: none;
     border: 7px solid transparent;
     border-radius: 9px;
     background-clip: content-box;

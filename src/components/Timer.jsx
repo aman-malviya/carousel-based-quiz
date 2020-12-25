@@ -2,7 +2,7 @@ import React,{ useEffect, useState }  from 'react'
 import './styleTimer.css'
 function Timer() {
     const calculateTimeLeft = () => {
-        const countdownDate= new Date('December 24, 2020 23:45:00').getTime();
+        const countdownDate= new Date('December 25, 2020 16:16:00').getTime();
         const difference = countdownDate - +new Date();
         let timeLeft = {};
     
@@ -34,9 +34,11 @@ function Timer() {
     return (
         <div className="Timer d-flex justify-content-center">
         <div style={{'fontWeight':'bold'}}>
-          {timeLeft.minutes?(timeLeft.minutes<=9?"0"+timeLeft.minutes:timeLeft.minutes):"00"}
-          :
-          {timeLeft.seconds?(timeLeft.seconds<=9?"0"+timeLeft.seconds:timeLeft.seconds):"00"}
+          <p style={{'textAlign':'center', 'margin':'0', 'padding':'0'}}>
+            {timeLeft.minutes?(timeLeft.minutes<=9?"0"+timeLeft.minutes:timeLeft.minutes):"00"}
+            : 
+            {timeLeft.seconds?(timeLeft.seconds<=9?"0"+timeLeft.seconds:timeLeft.seconds):"00"}
+          </p>        
         </div>
         </div>
     )

@@ -5,7 +5,31 @@ import {useHistory} from 'react-router-dom'
 export default function Quiz() {
   const history=useHistory();
   const numbers=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
+ 
+  let [active, setActive] =useState(0);
+  const [color, setColor] =useState();
 
+  const increment=()=>{
+    if(active!=30){
+      setActive(active+1);
+    }
+  }
+  const decrement=()=>{
+    if(active!=0){
+      setActive(active-1);
+    }
+  }
+
+  useEffect(()=>{
+    document.querySelectorAll('[data-target="#carouselExampleIndicators"]').forEach((element)=>{
+      element.children[0].style.backgroundColor='#457B9D';
+    })
+    
+    let p=document.querySelectorAll('[data-slide-to="'+ (active) +'"]')[0].children[0];
+    p.scrollIntoView({inline:'center', top:'-20px'});
+    p.style.backgroundColor="#06d6a0";
+
+  },[numbers]);
 
   const [ques,setQues]=useState([]);
   useEffect(()=>{
@@ -27,7 +51,24 @@ export default function Quiz() {
     history.push("/score");
  }
 
-  return (<div className="question_section">
+  return (<div style={{'minHeight':'100vh'}}>
+    <div className="grid-container">
+          <div style={{'padding':'25px 25px'}} className="grid-item">
+             <h3 style={{'color':'#E63946', 'fontWeight':'bolder', 'textAlign':'left'}}>
+                V<span style={{'fontSize':'1.2rem'}}>I</span>H<span style={{'fontSize':'1.2rem'}}>AA</span>N
+             </h3>
+          </div>
+          <div className="grid-item" style={{ 'padding':'12px 0', 'color':'#f1faee'}}>
+            <div style={{'display':'inline'}} className="d-flex justify-content-center">
+              <img height="40px" width="40px" src="timer.png" />
+            </div>
+            <Timer style={{'display':'flex', 'justifyContent':'center'}} />
+          </div>
+          <div className="grid-item">
+            <button onClick={submitTest} className="submit-btn">SUBMIT</button>
+          </div>
+      </div>
+    <div className="question_section">
       {/* <p>{ques.
             map(qv=>
             (<div>
@@ -36,39 +77,29 @@ export default function Quiz() {
                   <p>{qv.optb}</p>
                   <p>{qv.optc}</p>
                   <p>{qv.optd}</p>
-
-
-
               </div>))}
       </p> */}
 
-
-
       <form id="mainForm">
       <div className="question-container">
-        <div style={{'position':'fixed', 'top':'0', 'left':'0','padding':'12px 25px'}}>
-        <Timer style={{'display':'flex', 'justifyContent':'center'}} />
-        </div>
-        <button onClick={submitTest} className="submit-btn">SUBMIT</button>
         <div id="carouselExampleIndicators" className="carousel" data-ride="false" data-interval="false" data-wrap="false">
           <div className="questionToggles">
+          <div style={{'display':'inline-block'}} data-target="#carouselExampleIndicators" onClick={()=>{setActive(0)}} data-slide-to="0">
+                      <button className="toggleButton"><img src="luck.png" width="27px" height="27px" /></button>
+                 </div>
             {numbers.map(number=>{
-                 return (<div style={{'display':'inline-block'}} data-target="#carouselExampleIndicators" data-slide-to={number}>
+                 return (<div style={{'display':'inline-block'}} data-target="#carouselExampleIndicators" onClick={()=>{setActive(number)}} data-slide-to={number}>
                       <button className="toggleButton">{number}</button>
                  </div>)
             })}
           </div>  
           <div className="carousel-inner">
-              <div style={{'padding':'100px 0', 'fontSize':'1.5rem'}} className="carousel-item active text-center">
+              <div style={{'padding':'100px 0', 'fontSize':'1.3rem'}} className="carousel-item active text-center">
                 Best of Luck.
                 <br />
                 <br />
-                <br />
-                <span data-target="#carouselExampleIndicators" data-slide-to="1">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="rgba(69, 123, 157,0.5)" class="bi bi-arrow-right-square" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5A.5.5 0 0 0 4 8z"/>
-                  </svg>
+                <span>
+                  <img height="100px" width="100px" src="luck.png" />
                 </span>
               </div>
               {ques.map((qv,i) =>{
@@ -138,6 +169,7 @@ export default function Quiz() {
               })}
           </div>
           <a
+            onClick={decrement}
             className="carousel-control prev"
             href="#carouselExampleIndicators"
             role="button"
@@ -145,6 +177,7 @@ export default function Quiz() {
           ><i className="fas fa-arrow-left"></i> Prev
           </a>
           <a
+            onClick={increment}
             className="carousel-control next"
             href="#carouselExampleIndicators"
             role="button"
@@ -154,6 +187,7 @@ export default function Quiz() {
         </div>
       </div>
     </form>
+  </div>
   </div>  
   );
 }
