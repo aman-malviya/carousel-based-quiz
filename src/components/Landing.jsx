@@ -45,6 +45,11 @@ export default function Landing(){
             setTimeout(() => {
                    setMessage("");
                }, 2000);
+        }else if(tel<1000000000 || tel>999999999999){
+            setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Invalid Mobile Number.</p>);
+            setTimeout(() => {
+                   setMessage("");
+               }, 2000);
         }else{
             db.collection("User-Credentials").where('scholar', '==', scholar).onSnapshot((snapshot)=>   {
             let items=[];
