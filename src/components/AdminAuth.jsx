@@ -38,7 +38,10 @@ const LoginPage=()=>{
     }) 
     }
 
-    return <div>
+    return (<div className="landing-page">
+        <h1 style={{'color':'#E63946', 'fontWeight':'bolder', 'textAlign':'center','fontSize':'3rem'}}>
+            V<span style={{'fontSize':'2.5rem'}}>I</span>H<span style={{'fontSize':'2.5rem'}}>AA</span>N
+        </h1>
         <input value={email} onChange={(e)=>setEmail(e.target.value)} type="text" placeholder="QCM Unique ID" />
         <input value={password} onChange={(e)=>setPassword(e.target.value)} type="password" placeholder="Password" />
         <a>
@@ -47,6 +50,6 @@ const LoginPage=()=>{
             </button>
         </a>
         {message}
-    </div>
+    </div>)
 }
 

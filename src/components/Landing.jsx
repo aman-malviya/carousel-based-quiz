@@ -50,7 +50,7 @@ export default function Landing(){
 
 
     return(
-    <div className='landing-page' style={window.innerWidth<500?{'paddingBottom':'40%'}:{'paddingBottom':'15%'}}>
+    <div className='landing-page'>
         <h1 style={{'color':'#E63946', 'fontWeight':'bolder', 'textAlign':'center','fontSize':'3rem'}}>
             V<span style={{'fontSize':'2.5rem'}}>I</span>H<span style={{'fontSize':'2.5rem'}}>AA</span>N
         </h1>
@@ -76,6 +76,8 @@ export default function Landing(){
         </div>
         <div className="d-flex justify-content-center"><button onClick={register}>Submit</button></div>
         {message}
+        <br />
+        <p style={{'color':'#f1faee', 'textAlign':'center'}}>If you face any issue, feel free to call <br /> Aman : +91 8269366460<br />Yash : +91 8529736944</p>
         <div className="brand">
             Quizzers' Club
             <br />

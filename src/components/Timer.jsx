@@ -2,7 +2,7 @@ import React,{ useEffect, useState }  from 'react'
 import './styleTimer.css'
 function Timer() {
     const calculateTimeLeft = () => {
-        const countdownDate= new Date('December 25, 2020 16:16:00').getTime();
+        const countdownDate= new Date('December 30, 2020 16:16:00').getTime();
         const difference = countdownDate - +new Date();
         let timeLeft = {};
     

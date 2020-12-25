@@ -7,15 +7,14 @@ export default function Quiz() {
   const numbers=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
  
   let [active, setActive] =useState(0);
-  const [color, setColor] =useState();
 
   const increment=()=>{
-    if(active!=30){
+    if(active!==30){
       setActive(active+1);
     }
   }
   const decrement=()=>{
-    if(active!=0){
+    if(active!==0){
       setActive(active-1);
     }
   }
@@ -60,7 +59,7 @@ export default function Quiz() {
           </div>
           <div className="grid-item" style={{ 'padding':'12px 0', 'color':'#f1faee'}}>
             <div style={{'display':'inline'}} className="d-flex justify-content-center">
-              <img height="40px" width="40px" src="timer.png" />
+              <img alt="timer-img" height="40px" width="40px" src="timer.png" />
             </div>
             <Timer style={{'display':'flex', 'justifyContent':'center'}} />
           </div>
@@ -82,24 +81,31 @@ export default function Quiz() {
 
       <form id="mainForm">
       <div className="question-container">
-        <div id="carouselExampleIndicators" className="carousel" data-ride="false" data-interval="false" data-wrap="false">
-          <div className="questionToggles">
-          <div style={{'display':'inline-block'}} data-target="#carouselExampleIndicators" onClick={()=>{setActive(0)}} data-slide-to="0">
-                      <button className="toggleButton"><img src="luck.png" width="27px" height="27px" /></button>
-                 </div>
-            {numbers.map(number=>{
-                 return (<div style={{'display':'inline-block'}} data-target="#carouselExampleIndicators" onClick={()=>{setActive(number)}} data-slide-to={number}>
-                      <button className="toggleButton">{number}</button>
-                 </div>)
-            })}
-          </div>  
+        <div 
+             id="carouselExampleIndicators" 
+             className="carousel" 
+             data-ride="false" 
+             data-interval="false" 
+             data-wrap="false"
+             data-touch="false"
+             data-keyboard="false">
+                  <div className="questionToggles">
+                      <div style={{'display':'inline-block'}} data-target="#carouselExampleIndicators" onClick={()=>{setActive(0)}} data-slide-to="0">
+                        <button className="toggleButton"><img alt="thumb-img" src="luck.png" width="27px" height="27px" /></button>
+                      </div>
+                      {numbers.map(number=>{
+                        return (<div style={{'display':'inline-block'}} data-target="#carouselExampleIndicators" onClick={()=>{setActive(number)}} data-slide-to={number}>
+                            <button style={window.innerWidth>600?{'margin':'11.2px'}:{}} className="toggleButton">{number}</button>
+                        </div>)
+                      })}
+                  </div>  
           <div className="carousel-inner">
               <div style={{'padding':'100px 0', 'fontSize':'1.3rem'}} className="carousel-item active text-center">
                 Best of Luck.
                 <br />
                 <br />
                 <span>
-                  <img height="100px" width="100px" src="luck.png" />
+                  <img alt="thumb-img" height="100px" width="100px" src="luck.png" />
                 </span>
               </div>
               {ques.map((qv,i) =>{
