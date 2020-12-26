@@ -123,6 +123,9 @@ input[type="radio"]:checked ~ .option span {
   font-weight:bold;
   float:right;
 }
+.submit-btn:focus{
+  outline:none;
+}
 @media(max-width:600px){
   .question_section{
     padding: 0% 5%;

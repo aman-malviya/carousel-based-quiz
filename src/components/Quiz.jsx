@@ -40,6 +40,7 @@ export default function Quiz() {
             optb:doc.data().B,
             optc:doc.data().C,
             optd:doc.data().D,
+            ans:doc.data().ans,
           }))
     )
     })
@@ -47,6 +48,17 @@ export default function Quiz() {
   
   ,[])
  const submitTest=()=>{
+   numbers.map((number)=>{
+      for(let n=0; n<3; n++){
+          const input=document.getElementsByName("answer"+(number))[n];
+          if(input.checked===true){
+            db.collection("AnswerBank/"+sessionStorage.getItem("sch")+"/Answers").doc("answer"+number).set({
+              actualAns:ques[number-1].ans,
+              userAns: input.value
+            })
+          }
+      }
+   })
     history.push("/score");
  }
 
@@ -122,37 +134,37 @@ export default function Quiz() {
                                       <input
                                         // onChange={e=>setAns(e.target.value)}
                                         type="radio"
-                                        id={qv.opta}
+                                        id={(i+1)+"_a"}
                                         name={"answer"+(i+1)}
                                         className={"answer"+(i+1)}
-                                        value={qv.opta}
+                                        value="A"
                                       />
-                                      <label className="option" htmlFor={qv.opta}>
-                                      <span>A</span>{qv.opta }
+                                      <label className="option" htmlFor={(i+1)+"_a"}>
+                                      <span>A</span>{qv.opta}
                                       </label>
                                     </li>
                                     <li>
                                       <input
                                         // onChange={e=>setAns(e.target.value)}
                                         type="radio"
-                                        id={qv.optb}
+                                        id={(i+1)+"_b"}
                                         name={"answer"+(i+1)}
                                         className={"answer"+(i+1)}
-                                        value={qv.optb}
+                                        value="B"
                                       />
-                                      <label className="option" htmlFor={qv.optb}>
+                                      <label className="option" htmlFor={(i+1)+"_b"}>
                                       <span>B</span>{qv.optb }</label>
                                     </li>
                                     <li>
                                       <input
                                         // onChange={e=>setAns(e.target.value)}
                                         type="radio"
-                                        id={qv.optc}
+                                        id={(i+1)+"_c"}
                                         name={"answer"+(i+1)}
                                         className={"answer"+(i+1)}
-                                        value={qv.optc}
+                                        value="C"
                                       />
-                                      <label className="option" htmlFor={qv.optc}>
+                                      <label className="option" htmlFor={(i+1)+"_c"}>
                                       <span>C</span>{qv.optc}
                                       </label>
                                     </li>
@@ -160,12 +172,12 @@ export default function Quiz() {
                                       <input
                                         // onChange={e=>setAns(e.target.value)}
                                         type="radio"
-                                        id={qv.optd}
+                                        id={(i+1)+"_d"}
                                         name={"answer"+(i+1)}
                                         className={"answer"+(i+1)}
-                                        value={qv.optd}
+                                        value="D"
                                       />
-                                      <label className="option" htmlFor={qv.optd}>
+                                      <label className="option" htmlFor={(i+1)+"_d"}>
                                       <span>D</span>{qv.optd}
                                       </label>
                                     </li>
