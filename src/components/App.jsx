@@ -1,5 +1,5 @@
 import React from 'react'
-// import {useEffect} from 'react'
+import {useState} from 'react'
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
 import Quiz from './Quiz'
 import Landing from './Landing'
@@ -11,18 +11,17 @@ import AdminAuth from './AdminAuth'
 import Score from './Score'
 
 export default function App(){
-    // useEffect(()=>{
-    //     auth.onAuthStateChanged((authUser))=>{
-    //         if(authUser)
-    //         {
-    //             //user is logged in
-    //         }
-    //         else {
-    //             //user is logged out
-    //         }
-    //     }
-    // })
+
+    const [msg, setMsg]=useState();
+    window.addEventListener("popstate", e=>{
+        window.history.go(1);
+        setMsg(<p style={{'color':'#f1faee', 'textAlign':'center'}}>You can't go to previous page</p>)
+        setTimeout(() => {
+            setMsg("");
+        }, 2000);
+    })
     return(<div>
+    {msg}
        <Router>
     <Switch>
     <Route path='/' exact><Landing /></Route>

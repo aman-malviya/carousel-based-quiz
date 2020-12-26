@@ -52,10 +52,19 @@ export default function Quiz() {
       for(let n=0; n<3; n++){
           const input=document.getElementsByName("answer"+(number))[n];
           if(input.checked===true){
-            db.collection("AnswerBank/"+sessionStorage.getItem("sch")+"/Answers").doc("answer"+number).set({
+            if(ques[number-1].ans===input.value){
+              db.collection("AnswerBank/"+sessionStorage.getItem("name")+"-"+sessionStorage.getItem("sch")+"/Answers").doc("answer"+(number<10?"0"+number:number)).set({
               actualAns:ques[number-1].ans,
-              userAns: input.value
+              userAns: input.value,
+              correct:true
             })
+            }else{
+            db.collection("AnswerBank/"+sessionStorage.getItem("name")+"-"+sessionStorage.getItem("sch")+"/Answers").doc("answer"+(number<10?"0"+number:number)).set({
+              actualAns:ques[number-1].ans,
+              userAns: input.value,
+              correct:false
+            })
+            }
           }
       }
    })

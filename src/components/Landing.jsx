@@ -69,6 +69,7 @@ export default function Landing(){
                     scholar: scholar
                 })
                 history.push('/instructions');
+                sessionStorage.setItem("name", first);
                 sessionStorage.setItem("sch", scholar);
             }
         })
