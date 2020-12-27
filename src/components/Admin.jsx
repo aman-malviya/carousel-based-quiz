@@ -40,7 +40,7 @@ export default function Admin(){
                 <form>
                 <div className="d-flex justify-content-center">
                     <div>
-                        <input value={evt} onChange={event=>setEvt(event.target.value)} type="text" placeholder="Event Name" />
+                        <input value={evt} onChange={event=>setEvt(event.target.value)} required type="text" placeholder="Event Name" />
                         <textarea value={question} onChange={event=>setQuestion(event.target.value)} type="text" placeholder="Question" />
                         <input value ={a} onChange={(event)=>setA(event.target.value)} type="text" placeholder="Option 1" />
                         <input value={b} onChange={(event)=>setB(event.target.value)} type="text" placeholder="Option 2" />

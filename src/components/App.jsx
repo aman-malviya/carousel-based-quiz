@@ -10,6 +10,8 @@ import Instructions from './Instructions'
 import AdminAuth from './AdminAuth'
 import Score from './Score'
 
+// import { AuthProvider } from "./AuthProvider";
+import PrivateRoute from "./PrivateRoute";
 export default function App(){
     // useEffect(()=>{
     //     auth.onAuthStateChanged((authUser))=>{
@@ -23,13 +25,17 @@ export default function App(){
     //     }
     // })
     return(<div>
-       <Router>
+       
+    <Router>
     <Switch>
     <Route path='/' exact><Landing /></Route>
     <Route path='/verification'><Otp /></Route>
     <Route path='/quiz'><Quiz /></Route>
+
     <Route path='/admin-login'><AdminAuth /></Route>
-    <Route path='/admin'><Admin /></Route>
+
+         <PrivateRoute redirectTo='/admin-login'  path='/admin'></PrivateRoute>
+
     <Route path='/instructions'><Instructions /></Route>
     <Route path='/score'><Score /></Route>
     </Switch>
