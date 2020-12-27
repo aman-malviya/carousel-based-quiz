@@ -1,6 +1,10 @@
-import React,{useState} from 'react'
-import {db} from '../firebase'
+import React,{useState, useEffect} from 'react'
+import firebaseApp, { auth } from '../firebase'
+import {useHistory} from 'react-router-dom'
+                
+
 export default function Admin(){
+    const history = useHistory();
     const [evt,setEvt]=useState("");
     const [question,setQuestion] = useState("");
     const [a,setA] = useState("");
@@ -10,6 +14,16 @@ export default function Admin(){
     const [ans,setAns] = useState("");
     let [message, setMessage]=useState("");
 
+    useEffect(() => {
+        auth.onAuthStateChanged((user) => {
+          //redirect the page 
+          console.log(user)
+          if(!user){
+            history.push('/admin-login')
+          }
+        })
+      }, []);
+
     const addQuestion=(event)=>{
         event.preventDefault();
         if(event ==="" || question==="" || a==="" || b==="" || c==="" || d==="" || ans===""){
@@ -18,7 +32,7 @@ export default function Admin(){
                    setMessage("");
             }, 2000);
         }else{
-            db.collection('QuestionBank').add({
+            firebaseApp.firestore().collection('QuestionBank').add({
                 event: evt,
                 question: question,
                 A: a,

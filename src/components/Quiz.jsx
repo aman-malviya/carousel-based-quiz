@@ -1,6 +1,6 @@
 import {React, useEffect, useState} from 'react';
 import Timer from './Timer';
-import {db} from '../firebase'
+import firebaseApp from '../firebase'
 import {useHistory} from 'react-router-dom'
 export default function Quiz() {
   const history=useHistory();
@@ -35,7 +35,7 @@ export default function Quiz() {
   //useEffect for fetching questions from the database
   const [ques,setQues]=useState([]);
   useEffect(()=>{
-    db.collection('Questions').limit(30).onSnapshot(snapshot=>{
+    firebaseApp.firestore().collection('Questions').limit(30).onSnapshot(snapshot=>{
       setQues(
         snapshot.docs.map(doc=>({
             que:doc.data().question,
@@ -58,13 +58,13 @@ export default function Quiz() {
           if(input.checked===true){
             //Storing the user responses into the database
             if(ques[number-1].ans===input.value){
-              db.collection("AnswerBank/"+sessionStorage.getItem("name")+"-"+sessionStorage.getItem("sch")+"/Answers").doc("answer"+(number<10?"0"+number:number)).set({
+              firebaseApp.firestore().collection("AnswerBank/"+sessionStorage.getItem("name")+"-"+sessionStorage.getItem("sch")+"/Answers").doc("answer"+(number<10?"0"+number:number)).set({
                 actualAns:ques[number-1].ans,
                 userAns: input.value,
                 correct:true
               })
             }else{
-              db.collection("AnswerBank/"+sessionStorage.getItem("name")+"-"+sessionStorage.getItem("sch")+"/Answers").doc("answer"+(number<10?"0"+number:number)).set({
+              firebaseApp.firestore().collection("AnswerBank/"+sessionStorage.getItem("name")+"-"+sessionStorage.getItem("sch")+"/Answers").doc("answer"+(number<10?"0"+number:number)).set({
                 actualAns:ques[number-1].ans,
                 userAns: input.value,
                 correct:false
