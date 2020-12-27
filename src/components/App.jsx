@@ -12,16 +12,15 @@ import Score from './Score'
 
 export default function App(){
 
-    const [msg, setMsg]=useState();
-    window.addEventListener("popstate", e=>{
-        window.history.go(1);
-        setMsg(<p style={{'color':'#f1faee', 'textAlign':'center'}}>You can't go to previous page</p>)
-        setTimeout(() => {
-            setMsg("");
-        }, 2000);
-    })
+    // const [msg, setMsg]=useState();
+    // window.addEventListener("popstate", e=>{
+    //     window.history.go(1);
+    //     setMsg(<p style={{'color':'#f1faee', 'textAlign':'center'}}>You can't go to previous page</p>)
+    //     setTimeout(() => {
+    //         setMsg("");
+    //     }, 2000);
+    // })
     return(<div>
-    {msg}
        <Router>
     <Switch>
     <Route path='/' exact><Landing /></Route>

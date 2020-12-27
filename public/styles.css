@@ -126,6 +126,9 @@ input[type="radio"]:checked ~ .option span {
 .submit-btn:focus{
   outline:none;
 }
+.question-container{
+  padding-bottom:50px;
+}
 @media(max-width:600px){
   .question_section{
     padding: 0% 5%;
@@ -136,6 +139,7 @@ input[type="radio"]:checked ~ .option span {
   border:2px solid rgba(69, 123, 157,0.5);
   border-radius: 10px; 
   box-shadow: 2px 2px 20px #457B9D;
+  padding-bottom:0;
 }
 }
 

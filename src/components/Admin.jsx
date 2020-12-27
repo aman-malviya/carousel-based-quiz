@@ -29,7 +29,6 @@ export default function Admin(){
 
             }).then(setMessage(<p style={{'color':'#f1faee'}}>Successfully added to the database.</p>)      
             ).catch((e)=>setMessage(<p style={{'color':'#E63946'}}>Some error has occured.</p>))
-            console.log("done")
             setTimeout(() => {
                 setMessage("");
             }, 3000);

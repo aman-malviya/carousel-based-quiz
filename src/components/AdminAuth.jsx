@@ -24,6 +24,7 @@ const LoginPage=()=>{
     const [message, setMessage] =useState();
     const handleClick=(e)=>{
         e.preventDefault();
+        //Checking the admin credentials with the onses stored in the database
         db.collection("admin-credentials").onSnapshot((snapshot)=>{
         snapshot.forEach((doc)=>{
             if(doc.data().LoginId===email && doc.data().Password === password){
