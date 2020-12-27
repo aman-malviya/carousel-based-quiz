@@ -3,7 +3,12 @@ import {db} from '../firebase'
 import {useHistory} from "react-router-dom"
 
 export default function Score(){
-
+    const history =useHistory();
+    window.addEventListener("popstate", e=>{
+        history.push("/");
+        sessionStorage.removeItem("name");
+        sessionStorage.removeItem("sch");
+    })
     //Score Calculation
     let score=0;
     const [points, setPoints] =useState(0);
