@@ -84,7 +84,7 @@ export default function Landing(){
             V<span style={{'fontSize':'2.5rem'}}>I</span>H<span style={{'fontSize':'2.5rem'}}>AA</span>N
         </h1>
         <div style={{'color':'#f1faee', 'padding':'2% 10%', 'textAlign':'center'}}>
-            <p>VIHAAN is QCM's opening event for session( It take place even before fresher's evening). The event is organized for the first year students to participate , learn and to let them know what awaits them in future. VIHAAN is a platform for the students, amateurs, quizzers and newcomers to mettle in quizzing.</p>
+            <p>VIHAAN is QCM's opening event for a session. It take place even before the fresher's eve. Vihaan is organized for the first year students to participate, learn and to let them know what awaits them in future. VIHAAN is a platform for the students, amateurs, quizzers and newcomers to check their mettle in quizzing.</p>
         </div>
         <h3>Hello {text} !</h3>
         <div className="d-flex justify-content-center">
