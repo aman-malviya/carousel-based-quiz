@@ -47,7 +47,26 @@ const LoginPage=()=>{
             })
             .catch(error => alert(error.message))
     }
-    return <div>
+    // return <div>
+    //     //Checking the admin credentials with the onses stored in the database
+    //     db.collection("admin-credentials").onSnapshot((snapshot)=>{
+    //     snapshot.forEach((doc)=>{
+    //         if(doc.data().LoginId===email && doc.data().Password === password){
+    //             history.push("/admin");
+    //         }else{
+    //             setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Wrong Credentials</p>);
+    //             setTimeout(()=>{
+    //               setMessage("");
+    //             },2000)
+    //         }
+    //     })
+    // }) 
+    // }
+
+    return (<div className="landing-page">
+        <h1 style={{'color':'#E63946', 'fontWeight':'bolder', 'textAlign':'center','fontSize':'3rem'}}>
+            V<span style={{'fontSize':'2.5rem'}}>I</span>H<span style={{'fontSize':'2.5rem'}}>AA</span>N
+        </h1>
         <input value={email} onChange={(e)=>setEmail(e.target.value)} type="text" placeholder="QCM Unique ID" />
         <input value={password} onChange={(e)=>setPassword(e.target.value)} type="password" placeholder="Password" />
         <a>
@@ -56,6 +75,6 @@ const LoginPage=()=>{
             </button>
         </a>
         {message}
-    </div>
+    </div>)
 }
 

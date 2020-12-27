@@ -93,7 +93,7 @@ input[type="radio"]:checked ~ .option span {
   border:0;
   height:27px;
   width:27px;
-  margin:5px 10px;
+  margin:8px 10px;
   border-radius:50%;
   color:#fff;
   font-size:0.8rem;
@@ -123,6 +123,12 @@ input[type="radio"]:checked ~ .option span {
   font-weight:bold;
   float:right;
 }
+.submit-btn:focus{
+  outline:none;
+}
+.question-container{
+  padding-bottom:50px;
+}
 @media(max-width:600px){
   .question_section{
     padding: 0% 5%;
@@ -133,12 +139,13 @@ input[type="radio"]:checked ~ .option span {
   border:2px solid rgba(69, 123, 157,0.5);
   border-radius: 10px; 
   box-shadow: 2px 2px 20px #457B9D;
+  padding-bottom:0;
 }
 }
 
 /* Landing Page */
 .landing-page{
-  padding:40px 0;
+  padding:40px 0 150px 0;
   background:url("./bg.png");
   min-height:100vh;
   background-size:cover;

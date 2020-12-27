@@ -12,42 +12,48 @@ export default function Admin(){
 
     const addQuestion=(event)=>{
         event.preventDefault();
-        db.collection('Questions').add({
-            event: evt,
-            question: question,
-            A: a,
-            B: b,
-            C: c,
-            D: d,
-            ans:ans,
+        if(event ==="" || question==="" || a==="" || b==="" || c==="" || d==="" || ans===""){
+           setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Fill out all the fields first.</p>);
+            setTimeout(() => {
+                   setMessage("");
+            }, 2000);
+        }else{
+            db.collection('QuestionBank').add({
+                event: evt,
+                question: question,
+                A: a,
+                B: b,
+                C: c,
+                D: d,
+                ans:ans,
 
-        }).then(setMessage(<p style={{'color':'#f1faee'}}>Successfully added to the database.</p>)      
-        ).catch((e)=>setMessage(<p style={{'color':'#E63946'}}>Some error has occured.</p>))
-        console.log("done")
-        setTimeout(() => {
-            setMessage("");
-        }, 3000);
-        setEvt("");
-        setQuestion("")
-        setA("");
-        setB("");
-        setC("");
-        setD("");
-        setAns("");
+            }).then(setMessage(<p style={{'color':'#f1faee'}}>Successfully added to the database.</p>)      
+            ).catch((e)=>setMessage(<p style={{'color':'#E63946'}}>Some error has occured.</p>))
+            setTimeout(() => {
+                setMessage("");
+            }, 3000);
+            setEvt("");
+            setQuestion("")
+            setA("");
+            setB("");
+            setC("");
+            setD("");
+            setAns("");
+    }
     }
     return(<div className="landing-page">
                 <h3>Have a good question in mind? Bring it On.</h3>
                 <form>
                 <div className="d-flex justify-content-center">
                     <div>
-                        <input value={evt} onChange={event=>setEvt(event.target.value)} required type="text" placeholder="Event Name" />
-                        <textarea value={question} onChange={event=>setQuestion(event.target.value)} type="text" placeholder="Question" />
-                        <input value ={a} onChange={(event)=>setA(event.target.value)} type="text" placeholder="Option 1" />
-                        <input value={b} onChange={(event)=>setB(event.target.value)} type="text" placeholder="Option 2" />
-                        <input value={c} onChange={(event)=>setC(event.target.value)} type="text" placeholder="Option 3" />
-                        <input value={d} onChange={(event)=>setD(event.target.value)} type="text" placeholder="Option 4" />
-                        <select onClick={e=>setAns(e.target.value)}>
-                            <option value="No option selected">Select the correct option</option> 
+                        <input required value={evt} onChange={event=>setEvt(event.target.value)} type="text" placeholder="Event Name" />
+                        <textarea required value={question} onChange={event=>setQuestion(event.target.value)} type="text" placeholder="Question" />
+                        <input required value ={a} onChange={(event)=>setA(event.target.value)} type="text" placeholder="Option 1" />
+                        <input required value={b} onChange={(event)=>setB(event.target.value)} type="text" placeholder="Option 2" />
+                        <input required value={c} onChange={(event)=>setC(event.target.value)} type="text" placeholder="Option 3" />
+                        <input required value={d} onChange={(event)=>setD(event.target.value)} type="text" placeholder="Option 4" />
+                        <select required onClick={e=>setAns(e.target.value)}>
+                            <option value="">Select the correct option</option> 
                             <option value="A">A</option>
                             <option value="B">B</option>
                             <option value="C">C</option>
