@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {db,auth} from '../firebase'
+import firebaseApp from '../firebase'
 import {useHistory} from 'react-router-dom'
 export default function AdminAuth(){
      
@@ -41,8 +41,8 @@ const LoginPage=()=>{
         e.preventDefault();
 
         
-            auth.signInWithEmailAndPassword(email, password)
-            .then(auth => {
+        firebaseApp.auth().signInWithEmailAndPassword(email, password)
+            .then(() => {
                 history.push('/admin')
             })
             .catch(error => alert(error.message))

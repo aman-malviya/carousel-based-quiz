@@ -1,6 +1,6 @@
 import {React, useState} from 'react'
 import { useHistory } from 'react-router-dom';
-import {db} from '../firebase';
+import firebaseApp from '../firebase';
 
 
 export default function Landing(){
@@ -51,7 +51,7 @@ export default function Landing(){
                    setMessage("");
                }, 2000);
         }else{
-            db.collection("User-Credentials").where('scholar', '==', scholar).onSnapshot((snapshot)=>   {
+            firebaseApp.firestore().collection("User-Credentials").where('scholar', '==', scholar).onSnapshot((snapshot)=>   {
             let items=[];
             snapshot.forEach((doc)=>items.push(doc.data()));
             if(items.length){
@@ -60,7 +60,7 @@ export default function Landing(){
                    setMessage("");
                }, 2000);
             }else{
-               db.collection("User-Credentials").add({
+               firebaseApp.firestore().collection("User-Credentials").add({
                     firstName: first,
                     lastName: last,
                     post:post,
