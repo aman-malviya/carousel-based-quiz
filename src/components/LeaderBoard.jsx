@@ -4,22 +4,23 @@ import Brand from './Brand'
 import {db}  from '../firebase'
 
 export default function LeaderBoard(){
-    const [scores, setScores]=useState([]);
+    const [points, setPoints]=useState([]);
     useEffect(()=>{
-            db.collection("scores").limit(30).orderBy("score", "desc").onSnapshot((snapshot)=>{
+            db.collection("scores").onSnapshot((snapshot)=>{
                 snapshot.forEach((doc)=>{
+					let scores=[];
                     scores.push(doc.data());
-                    setScores(scores);
+                    setPoints(scores);
                 })
             })
     },[])
-    console.log(scores);
+    console.log(points);
     
     return(<div>
         <br />
         <Event />
         <div className="landing-page">
-            {scores.map((score)=>{
+            {points.map((score)=>{
                 return <div className="score" style={{'display':'grid', 'grid-template-columns':'auto auto', 'margin':'auto'}}>
                     <div>{score.name}</div>
                     <div>{score.points}</div>

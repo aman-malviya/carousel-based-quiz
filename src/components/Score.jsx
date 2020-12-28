@@ -57,7 +57,7 @@ export default function Score(){
             <h6 style={{'color':'#f1faee', 'padding':'20px 50px', 'textAlign':'center'}}        >Thankyou for taking the Test.
                 <br />
                 <br />
-                Team Quizzers' Club MANIT will release the dashboard soon.<br /><br />Stay tuned.
+                Team Quizzers' Club MANIT will release the leaderboard soon.<br /><br />Stay tuned.
             </h6>    
         </div>
         <Brand />
