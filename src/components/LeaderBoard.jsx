@@ -6,12 +6,12 @@ import {db}  from '../firebase'
 export default function LeaderBoard(){
     const [points, setPoints]=useState([]);
     useEffect(()=>{
-            db.collection("scores").onSnapshot((snapshot)=>{
+            db.collection("scores").orderBy("points", "desc").limit(30).onSnapshot((snapshot)=>{
+                let scores=[];
                 snapshot.forEach((doc)=>{
-					let scores=[];
                     scores.push(doc.data());
-                    setPoints(scores);
                 })
+                setPoints(scores);
             })
     },[])
     console.log(points);
@@ -20,10 +20,14 @@ export default function LeaderBoard(){
         <br />
         <Event />
         <div className="landing-page">
+            <div className="score" style={{'display':'grid', 'grid-template-columns':'3fr 1fr', 'margin':'auto', 'backgroundColor':'#06b6a0', 'border':'none', 'textAlign':'left'}}>
+                    <div>Student</div>
+                    <div style={{'textAlign':'center'}}>Points</div>
+            </div>
             {points.map((score)=>{
-                return <div className="score" style={{'display':'grid', 'grid-template-columns':'auto auto', 'margin':'auto'}}>
+                return <div className="score" style={{'display':'grid', 'grid-template-columns':'3fr 1fr', 'margin':'auto', 'textAlign':'left'}}>
                     <div>{score.name}</div>
-                    <div>{score.points}</div>
+                    <div style={{'textAlign':'center'}}>{score.points}</div>
                 </div>
             })}        
         </div>
