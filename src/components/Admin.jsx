@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from 'react'
 import firebaseApp, { auth } from '../firebase'
 import {useHistory} from 'react-router-dom'
+import Brand from './Brand'
                 
 
 export default function Admin(){
@@ -81,13 +82,7 @@ export default function Admin(){
                     </a>
                 </div>
                 <div style={{'padding':'0 10px', 'textAlign':'center'}}>{message}</div>
-                <div className="brand">
-                    Quizzers' Club
-                    <br />
-                    <span style={{'color':'#E63946', 'fontSize':'1.4rem'}}>
-                        MANIT
-                    </span>
-                </div>
+                <Brand />
                 </form>
             </div>
         );

@@ -1,19 +1,15 @@
 import React, {useState} from 'react'
+import Brand from './Brand'
 import firebaseApp from '../firebase'
 import {useHistory} from 'react-router-dom'
+import Event from './Event'
 export default function AdminAuth(){
      
       return(<div className="landing-page">
         <div className="d-flex justify-content-center">
             <LoginPage />
         </div>
-        <div className="brand">
-            Quizzers' Club
-            <br />
-            <span style={{'color':'#E63946', 'fontSize':'1.4rem'}}>
-                MANIT
-            </span>
-        </div>
+        <Brand />
     </div>)
 }
 
@@ -49,18 +45,18 @@ const LoginPage=()=>{
     // }) 
     // }
 
-    return (<div className="landing-page">
-        <h1 style={{'color':'#E63946', 'fontWeight':'bolder', 'textAlign':'center','fontSize':'3rem'}}>
-            V<span style={{'fontSize':'2.5rem'}}>I</span>H<span style={{'fontSize':'2.5rem'}}>AA</span>N
-        </h1>
-        <input value={email} onChange={(e)=>setEmail(e.target.value)} type="text" placeholder="QCM Unique ID" />
-        <input value={password} onChange={(e)=>setPassword(e.target.value)} type="password" placeholder="Password" />
-        <a>
-            <button onClick={signIn}>
-                Login
-            </button>
-        </a>
-        {message}
+    return (<div>
+        <Event />
+        <div className="landing-page">
+            <input value={email} onChange={(e)=>setEmail(e.target.value)} type="text" placeholder="QCM Unique ID" />
+            <input value={password} onChange={(e)=>setPassword(e.target.value)} type="password" placeholder="Password" />
+            <a>
+                <button onClick={signIn}>
+                    Login
+                </button>
+            </a>
+            {message}
+        </div>
     </div>)
 }
 

@@ -1,9 +1,10 @@
 import {React, useEffect, useState} from 'react';
 import Timer from './Timer';
-import firebaseApp from '../firebase'
+import firebaseApp, {auth} from '../firebase'
 import {useHistory} from 'react-router-dom'
 export default function Quiz() {
   const history=useHistory();
+
   const numbers=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
   //useState hook to highlight the corresponding question toggle button
   let [active, setActive] =useState(0);
@@ -127,9 +128,9 @@ export default function Quiz() {
                   return (<div className="carousel-item wow fadeIn" data-wow-duration="0.3s">
                               <div className="question">
                                   <p style={{'margin':'5px 0'}}>{"Question  " +(i+1)} / <span style={{'fontSize':'0.8rem'}}>30</span></p>
-                                  <div style={{'height':'0', 'borderTop':'1px dashed rgba(69, 123, 157,0.5)', 'marginBottom':'5px'}}></div>
+                                  <div style={{'height':'0', 'borderTop':'1px dashed rgba(69, 123, 157,0.5)', 'marginBottom':'5px'}}></div><br />
                                   <p>{ qv.que }</p>
-                                  
+                                  <br />
                               </div>
                               <div className="Answer">
                                   <ul style={{'listStyle':'none','paddingInlineStart':'0'}}>
@@ -141,7 +142,7 @@ export default function Quiz() {
                                         className={"answer"+(i+1)}
                                         value="A"
                                       />
-                                      <label className="option" htmlFor={(i+1)+"_a"}>
+                                      <label className="option grid-c" htmlFor={(i+1)+"_a"}>
                                       <span>A</span>{qv.opta}
                                       </label>
                                     </li>
@@ -153,7 +154,7 @@ export default function Quiz() {
                                         className={"answer"+(i+1)}
                                         value="B"
                                       />
-                                      <label className="option" htmlFor={(i+1)+"_b"}>
+                                      <label className="option grid-c" htmlFor={(i+1)+"_b"}>
                                       <span>B</span>{qv.optb }</label>
                                     </li>
                                     <li>
@@ -164,7 +165,7 @@ export default function Quiz() {
                                         className={"answer"+(i+1)}
                                         value="C"
                                       />
-                                      <label className="option" htmlFor={(i+1)+"_c"}>
+                                      <label className="option grid-c" htmlFor={(i+1)+"_c"}>
                                       <span>C</span>{qv.optc}
                                       </label>
                                     </li>
@@ -176,7 +177,7 @@ export default function Quiz() {
                                         className={"answer"+(i+1)}
                                         value="D"
                                       />
-                                      <label className="option" htmlFor={(i+1)+"_d"}>
+                                      <label className="option grid-c" htmlFor={(i+1)+"_d"}>
                                       <span>D</span>{qv.optd}
                                       </label>
                                     </li>

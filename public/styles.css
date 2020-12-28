@@ -2,7 +2,7 @@ body{
   background:url("./bg.png");
   background-size:cover;
   background-position:right;
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Quicksand', sans-serif !important;
 }
 .grid-container {
   display: grid;
@@ -17,12 +17,12 @@ body{
   font-size: 1.1rem;
 }
 
-.question{
-  padding:20px 0;
-}
 
 .option {
-  display: inline-block;
+  display: grid;
+  grid-template-columns:auto auto;
+  justify-content:left;
+  align-items:center;
   border: 0;
   text-align: left;
   padding: 8px 20px;
@@ -31,7 +31,6 @@ body{
 }
 
 .option span {
-  float: left;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -150,14 +149,14 @@ input[type="radio"]:checked ~ .option span {
   min-height:100vh;
   background-size:cover;
   background-position:center;
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Quicksand', sans-serif !important;
 }
 .landing-page h3{
   text-align:center;
   color:#06d6a0;
   margin-bottom:20px;
 }
-.landing-page input{
+.landing-page input, .landing-page .score{
   display:block;
   background:none;
   border:2px solid rgba(69, 123, 157,0.7);
@@ -168,12 +167,16 @@ input[type="radio"]:checked ~ .option span {
   text-align:center;
   width:500px;
 }
-.landing-page input:first-child{
+.landing-page input:first-child, .landing-page .score:first-child{
   border-radius:8px 8px 0 0;
 }
-.landing-page input:last-child{
+.landing-page input:last-child, .landing-page .score:last-child{
   border-bottom:2px solid rgba(69, 123, 157,0.7);
 }
+.landing-page .score:last-child{
+ border-radius:0 0 8px 8px;
+}
+
 .landing-page ::placeholder{
   color: rgba(69, 123, 157,0.7);
 }
@@ -232,15 +235,18 @@ input[type="radio"]:checked ~ .option span {
   color:#fff;
   text-align:center;
   font-weight:bold;
-  font-size:1.8rem;
+  font-size:1.6rem;
   padding:15px 0;
   border-radius: 10px 10px 0 0;
+}
+.brand span{
+  margin-left:10px;
 }
 @media(max-width:600px){
   .landing-page{
   background-position:right;
   }
-  .landing-page input{
+  .landing-page input, .landing-page .score{
     width:300px;
   }
   .landing-page button{

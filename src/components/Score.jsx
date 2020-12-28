@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import Brand from './Brand'
 import {db} from '../firebase'
 import {useHistory} from "react-router-dom"
 
@@ -37,7 +38,8 @@ export default function Score(){
 
     //Store the points in the database
     db.collection("scores").doc(sessionStorage.getItem("name")+"-"+sessionStorage.getItem("sch")).set({
-        points:points
+        points:points,
+        name:sessionStorage.getItem("name")+"-"+sessionStorage.getItem("sch")
     });
     
     return (<div className="d-flex justify-content-center landing-page">
@@ -58,10 +60,6 @@ export default function Score(){
                 Team Quizzers' Club MANIT will release the dashboard soon.<br /><br />Stay tuned.
             </h6>    
         </div>
-        <div className="brand">
-            Quizzers' Club
-            <br />
-            <span style={{'color':'#E63946', 'fontSize':'1.4rem'}}>MANIT</span>
-        </div>
+        <Brand />
    </div>)
 }

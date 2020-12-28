@@ -1,5 +1,6 @@
 import React from 'react'
 import {useState} from 'react'
+import LeaderBoard from './LeaderBoard'
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
 import Quiz from './Quiz'
 import Landing from './Landing'
@@ -28,6 +29,7 @@ export default function App(){
 
                     <Route path='/instructions'><Instructions /></Route>
                     <Route path='/score'><Score /></Route>
+                    <Route path="/leader-board" ><LeaderBoard /></Route>
                     </Switch>
                 </Router>
             {/* </AuthProvider> */}

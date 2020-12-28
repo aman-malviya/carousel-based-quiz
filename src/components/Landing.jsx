@@ -1,12 +1,13 @@
 import {React, useState} from 'react'
 import { useHistory } from 'react-router-dom';
 import firebaseApp from '../firebase';
+import Brand from './Brand'
+import Event from './Event'
 
 
 export default function Landing(){
 
     const [text, setText]=useState("");
-
     const [email,setEmail]=useState("");         //email
     const [tel,setTel]= useState("");           //mobile
     const [first,setFirst]=useState("");         //first name
@@ -17,6 +18,7 @@ export default function Landing(){
     const [message, setMessage] =useState();
 
     const history = useHistory();
+
 
     const handleChange=(e)=>{
         setText(e.target.value);
@@ -80,9 +82,7 @@ export default function Landing(){
 
     return(
     <div className='landing-page'>
-        <h1 style={{'color':'#E63946', 'fontWeight':'bolder', 'textAlign':'center','fontSize':'3rem'}}>
-            V<span style={{'fontSize':'2.5rem'}}>I</span>H<span style={{'fontSize':'2.5rem'}}>AA</span>N
-        </h1>
+        <Event />
         <div style={{'color':'#f1faee', 'padding':'2% 10%', 'textAlign':'center'}}>
             <p>VIHAAN is QCM's opening event for a session. It take place even before the fresher's eve. Vihaan is organized for the first year students to participate, learn and to let them know what awaits them in future. VIHAAN is a platform for the students, amateurs, quizzers and newcomers to check their mettle in quizzing.</p>
         </div>
@@ -108,11 +108,7 @@ export default function Landing(){
         {message}
         <br />
         <p style={{'color':'#f1faee', 'textAlign':'center'}}>If you face any issue, feel free to call <br /> Aman : +91 8269366460<br />Yash : +91 8529736944</p>
-        <div className="brand">
-            Quizzers' Club
-            <br />
-            <span style={{'color':'#E63946', 'fontSize':'1.4rem'}}>MANIT</span>
-        </div>
+        <Brand />
     </div>
     )
 }

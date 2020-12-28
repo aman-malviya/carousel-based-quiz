@@ -1,6 +1,9 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import {auth} from '../firebase'
+import {useHistory} from 'react-router-dom'
 
 export default function Instructions(){
+const history=useHistory();
  return(<div className="landing-page d-flex justify-content-center">
             <div style={window.innerWidth>700?{'padding':'0 25%'}:{'padding':'0 8%'}} className="question">
                 <p style={{'margin':'5px 0','color':'#f1faee','paddingTop':'5%'}}>
