@@ -1,6 +1,6 @@
 import {React, useEffect, useState} from 'react';
 import Timer from './Timer';
-import firebaseApp, {auth} from '../firebase'
+import firebaseApp from '../firebase'
 import {useHistory} from 'react-router-dom'
 export default function Quiz() {
   const history=useHistory();
@@ -50,7 +50,7 @@ export default function Quiz() {
     })
   }
   ,[])
-
+  
   //Submit test function on clicking submit button
   const submitTest=()=>{
    numbers.map((number)=>{
@@ -75,6 +75,7 @@ export default function Quiz() {
       }
    })
     history.push("/score");
+    sessionStorage.removeItem("auth");
  }
 
   return (<div style={{'minHeight':'100vh'}}>

@@ -68,7 +68,7 @@ export default function Landing(){
                     post:post,
                     email:email,
                     mobile: tel,
-                    scholar: scholar
+                    scholar: scholar,
                 })
                 history.push('/instructions');
                 sessionStorage.setItem("name", first);

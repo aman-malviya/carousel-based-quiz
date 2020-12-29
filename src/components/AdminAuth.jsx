@@ -27,7 +27,10 @@ const LoginPage=()=>{
             .then(() => {
                 history.push('/admin')
             })
-            .catch(error => alert(error.message))
+            .catch(error=>setMessage(<p style={{'color':'#E63946','textAlign':'center'}}>Invalid Credentials</p>))
+                setTimeout(() => {
+                    setMessage("")
+                }, 2000);
     }
     // return <div>
     //     //Checking the admin credentials with the onses stored in the database
@@ -50,12 +53,12 @@ const LoginPage=()=>{
         <div className="landing-page">
             <input value={email} onChange={(e)=>setEmail(e.target.value)} type="text" placeholder="QCM Unique ID" />
             <input value={password} onChange={(e)=>setPassword(e.target.value)} type="password" placeholder="Password" />
-            <a>
-                <button onClick={signIn}>
+            <button onClick={signIn}>
                     Login
-                </button>
-            </a>
+            </button>
+            <div>
             {message}
+            </div>
         </div>
     </div>)
 }

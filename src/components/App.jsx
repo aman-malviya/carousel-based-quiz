@@ -1,38 +1,37 @@
-import React from 'react'
-import {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import LeaderBoard from './LeaderBoard'
-import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Quiz from './Quiz'
 import Landing from './Landing'
-import Otp from './Otp'
-// import {auth} from '../firebase';
 import Admin from './Admin'
 import Instructions from './Instructions'
 import AdminAuth from './AdminAuth'
+import NotFound from './NotFound'
 import Score from './Score'
+import PrivateRoute from './PrivateRoute'
+import {db} from '../firebase'
 
-import { AuthProvider } from "./AuthProvider";
-import PrivateRoute from "./PrivateRoute";
 export default function App(){
-
+    const [auth, setAuth]=useState(true);
+    // useEffect(()=>{
+    //    setAuth(sessionStorage.getItem("auth"));
+    // })
+    
     return(
     <div>
-        {/* <AuthProvider> */}
             <Router>
                 <Switch>
                     <Route path='/' exact><Landing /></Route>
                     {/*<Route path='/verification'><Otp /></Route> */}
-                    <Route path='/quiz'><Quiz /></Route>
-
-                    <Route path='/admin-login'><AdminAuth /></Route>
-                    <Route path='/admin'><Admin /></Route>
-
-                    <Route path='/instructions'><Instructions /></Route>
-                    <Route path='/score'><Score /></Route>
-                    <Route path="/leader-board" ><LeaderBoard /></Route>
+                    <Route exact path='/admin-login'><AdminAuth /></Route>
+                    <Route exact path='/admin'><Admin /></Route>
+                    <Route exact path="/leader-board" ><LeaderBoard /></Route>
+                    <PrivateRoute exact auth={auth}  path='/quiz' component={Quiz} />
+                    <PrivateRoute exact auth={auth}  path='/instructions' component={Instructions} />
+                    <PrivateRoute exact auth={auth}  path='/score' component={Score} />
+                    <Route><NotFound /></Route>
                     </Switch>
                 </Router>
-            {/* </AuthProvider> */}
     </div>
     )
 }

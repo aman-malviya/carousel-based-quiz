@@ -167,12 +167,13 @@ input[type="radio"]:checked ~ .option span {
   text-align:center;
   width:500px;
 }
-.landing-page input:first-child, .landing-page .score:first-child{
-  border-radius:8px 8px 0 0;
-}
 .landing-page input:last-child, .landing-page .score:last-child{
   border-bottom:2px solid rgba(69, 123, 157,0.7);
 }
+.landing-page input:first-child, .landing-page .score:first-child{
+  border-radius:8px 8px 0 0;
+}
+
 .landing-page .score:last-child{
  border-radius:0 0 8px 8px;
 }

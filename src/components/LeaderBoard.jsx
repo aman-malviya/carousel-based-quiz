@@ -6,6 +6,7 @@ import {db}  from '../firebase'
 export default function LeaderBoard(){
     const [points, setPoints]=useState([]);
     useEffect(()=>{
+            db.collection("scores").doc("null-null").delete();
             db.collection("scores").orderBy("points", "desc").limit(30).onSnapshot((snapshot)=>{
                 let scores=[];
                 snapshot.forEach((doc)=>{
@@ -14,7 +15,6 @@ export default function LeaderBoard(){
                 setPoints(scores);
             })
     },[])
-    console.log(points);
     
     return(<div>
         <br />
