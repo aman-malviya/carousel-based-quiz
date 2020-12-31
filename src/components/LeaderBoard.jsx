@@ -20,7 +20,7 @@ export default function LeaderBoard(){
         <br />
         <Event />
         <div className="landing-page">
-            <div className="score" style={{'display':'grid', 'grid-template-columns':'3fr 1fr', 'margin':'auto', 'backgroundColor':'#06b6a0', 'border':'none', 'textAlign':'left'}}>
+            <div className="score" style={{'display':'grid', 'gridTemplateColumns':'3fr 1fr', 'margin':'auto', 'backgroundColor':'#06b6a0', 'border':'none', 'textAlign':'left'}}>
                     <div>Student</div>
                     <div style={{'textAlign':'center'}}>Points</div>
             </div>

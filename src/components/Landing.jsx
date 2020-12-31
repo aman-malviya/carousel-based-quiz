@@ -35,7 +35,7 @@ export default function Landing(){
             setTimeout(() => {
                    setMessage("");
                }, 2000);
-        }else if(scholar<200000000 || scholar>300000000){
+        }else if(scholar<201110000 || scholar>201120000){
             setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Invalid Scholar Number.</p>);
             setTimeout(() => {
                    setMessage("");
@@ -92,16 +92,19 @@ export default function Landing(){
                 <input value={first} onChange={handleChange} type="text" placeholder="First Name" required />
                 <input value={last} onChange={event=>setLast(event.target.value)} type="text" placeholder="Last Name" required />
                 <select value={post} onChange={event=>setPost(event.target.value)} required>
-                    <option value="">Select an option</option>
-                    <option value="Executive">Executive</option>
-                    <option value="Quizzer">Quizzer</option>
-                    <option value="Web Developer">Web Developer</option>
-                    <option value="Content Writer">Content Writer</option>
-                    <option value="Photographer">Photographer</option>
+                    <option value="">Select your branch</option>
+                    <option value="CSE">CSE</option>
+                    <option value="ECE">ECE</option>
+                    <option value="Electrical">Electrical</option>
+                    <option value="Mechanical">Mechanical</option>
+                    <option value="Civil">Civil</option>
+                    <option value="MSME">MSME</option>
+                    <option value="BArch">BArch</option>
+                    <option value="BPlan">BPlan</option>
                 </select>
                 <input type="email" value ={email} onChange={event=>setEmail(event.target.value)}  placeholder="Email Address" required />
                 <input value={tel} onChange={event=>setTel(event.target.value)} type="tel" placeholder="Mobile Number" required />
-                <input min="200000000" max="300000000" value={scholar} onChange={event=>setScholar(event.target.value)} type="number" placeholder="Scholar Number" required />
+                <input value={scholar} onChange={event=>setScholar(event.target.value)} type="number" placeholder="Scholar Number" required />
             </div>
         </div>
         <div className="d-flex justify-content-center"><button onClick={register}>Submit</button></div>

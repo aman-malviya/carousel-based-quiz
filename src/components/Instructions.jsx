@@ -33,30 +33,30 @@ export default function Instructions(){
                 <div style={{'height':'0', 'borderTop':'1px dashed rgba(69, 123, 157,0.5)', 'marginBottom':'5px'}}>
                 </div>
                 <p style={{'fontSize':'1rem', 'color':'#f1faee'}}>
-                    1. Total time allotted to solve the paper is 30 mins.The total number of questions is 30.
+                    1. Make sure that you have a proper internet connection for the next 30 minutes.
                     <br />
                     <div style={{'height':'0', 'marginBottom':'10px'}}>
                     </div>
-                    2. Questions are divided into 2 sections, Aptitude and General Knowledge. Each section has 15 questions.
+                    2. Questions majorly cover two domains, Aptitude and General Knowledge.
                     <br />
                     <div style={{'height':'0', 'marginBottom':'10px'}}>
                     </div>
-                    3. Any of the section can be attempted first, and the student can jump in between sections.
+                    3. Total time allotted to solve the paper is 30 mins.The total number of questions is 30.
                     <br />
                     <div style={{'height':'0', 'marginBottom':'10px'}}>
                     </div>
-                    4. Each question carries 3 marks with no negative marks.
+                    4. Each question carries 4 marks.
                     <br />
                     <div style={{'height':'0', 'marginBottom':'10px'}}>
                     </div>
-                    5. Some questions with ** beside them are considered a bonus question and carry 4 marks for a right answer and -1 for a wrong answer.
+                    5. +4 for correct answer, -1 for incorrect answer. Once you answer a question, cannot unanswer it.
                     <br />
                     <div style={{'height':'0', 'marginBottom':'10px'}}>
                     </div>
-                    6. Attempting the quiz twice leads to disqualification.
+                    6. Avoid refreshing and navigating while giving the test, you may get disqualified and your response may be lost.
                 </p>
                 <a style={{'display':'block', 'textDecoration':'none', 'marginTop':'20px'}} className="d-flex justify-content-center" href="/quiz">
-                    <button style={{'borderRadius':'8px', 'width':'250px'}}>
+                    <button onClick={sessionStorage.setItem("submitTime", new Date().getTime()+1805000)} style={{'borderRadius':'8px', 'width':'250px'}}>
                         Proceed
                     </button>
                 </a>

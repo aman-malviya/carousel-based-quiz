@@ -81,6 +81,7 @@ export default function Quiz() {
    })
     history.push("/score");
     sessionStorage.removeItem("auth");
+    sessionStorage.removeItem("submitTime");
  }
   const [loading, setLoading]=useState(true);
   const theme = createMuiTheme({
@@ -96,7 +97,6 @@ export default function Quiz() {
   setTimeout(() => {
     setLoading(false);
   }, 3000);
-
   return (loading?
   <ThemeProvider theme={theme}>
     <LinearProgress />

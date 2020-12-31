@@ -22,13 +22,27 @@ export default function Score(){
     const history =useHistory();
     window.addEventListener("popstate", e=>{
         history.push("/");
-        sessionStorage.removeItem("name");
-        sessionStorage.removeItem("sch");
     })
     //Score Calculation
     const [points, setPoints] =useState(0);
     useEffect(()=>{
         let score=0;
+        // db.collection("AnswerBank/"+sessionStorage.getItem("name")+"-"+sessionStorage.getItem("sch")+"/Answers").onSnapshot((snapshot)=>{
+        //     snapshot.forEach((doc)=>{
+        //             if(doc.data().userAns === ""){
+        //                 setPoints(score);
+        //             }
+        //             if(doc.data().correct ===true){
+        //                 score=score+4;
+        //                 setPoints(score);
+        //             }
+        //             if(doc.data().correct === false){
+        //                 score=score-1;
+        //                 setPoints(score);
+        //             }
+        //     })
+        // })
+
         //If user didn't answer no increment no decrement in points
         db.collection("AnswerBank/"+sessionStorage.getItem("name")+"-"+sessionStorage.getItem("sch")+"/Answers").where('userAns','==','').onSnapshot((snapshot)=>{
             snapshot.forEach((doc)=>{
@@ -55,10 +69,9 @@ export default function Score(){
     db.collection("scores").doc(sessionStorage.getItem("name")+"-"+sessionStorage.getItem("sch")).set({
         points:points,
         name:sessionStorage.getItem("name")+"-"+sessionStorage.getItem("sch")
-    });
-    setTimeout(() => {
+    }).then(()=>{
         setLoading(false);
-    }, 4000);
+    })
     return (loading?
         <ThemeProvider theme={theme}>
             <LinearProgress />
@@ -79,7 +92,10 @@ export default function Score(){
                 <br />
                 <br />
                 Team Quizzers' Club MANIT will release the leaderboard soon.<br /><br />Stay tuned.
-            </h6>    
+            </h6> 
+            <div className="d-flex justify-content-center">
+                <a style={{'color':'#f1faee', 'textDecoration':'underline'}} href="/leader-board">Check your position on the leaderboard</a>
+            </div>   
         </div>
         <Brand />
    </div>)
