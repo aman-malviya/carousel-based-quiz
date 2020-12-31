@@ -1,8 +1,31 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {LinearProgress} from '@material-ui/core'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import {Redirect} from "react-router-dom"
+
 
 export default function Instructions(){
+    const token=sessionStorage.getItem("auth");
+    const [loading, setLoading]=useState(true);
+    const theme = createMuiTheme({
+        palette: {
+            primary: {
+                main: "#06d6a0",
+            },
+            secondary: {
+                main: "#f1faee",
+            },
+        },
+    });
+    setTimeout(() => {
+        setLoading(false);
+    }, 3000);
 
- return(<div className="landing-page d-flex justify-content-center">
+ return(loading?
+    <ThemeProvider theme={theme}>
+        <LinearProgress />
+    </ThemeProvider>    
+    :token?<div className="landing-page d-flex justify-content-center">
             <div style={window.innerWidth>700?{'padding':'0 25%'}:{'padding':'0 8%'}} className="question">
                 <p style={{'margin':'5px 0','color':'#f1faee','paddingTop':'5%'}}>
                     Instructions-
@@ -39,5 +62,8 @@ export default function Instructions(){
                 </a>
             </div>
         </div>
+        :
+        <Redirect to="/" />
     )
+    
 }

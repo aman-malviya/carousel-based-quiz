@@ -23,7 +23,7 @@ export default function Admin(){
             history.push('/admin-login')
           }
         })
-      }, []);
+      });
 
     const addQuestion=(event)=>{
         event.preventDefault();

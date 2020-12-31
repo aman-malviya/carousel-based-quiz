@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import LeaderBoard from './LeaderBoard'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Quiz from './Quiz'
@@ -8,14 +8,17 @@ import Instructions from './Instructions'
 import AdminAuth from './AdminAuth'
 import NotFound from './NotFound'
 import Score from './Score'
-import PrivateRoute from './PrivateRoute'
-import {db} from '../firebase'
+// import PrivateRoute from './PrivateRoute'
+// import {db} from '../firebase'
 
 export default function App(){
-    const [auth, setAuth]=useState(true);
+    // const [auth, setAuth]=useState(false);
     // useEffect(()=>{
-    //    setAuth(sessionStorage.getItem("auth"));
+    //     if(sessionStorage.getItem("auth")){
+    //         setAuth(true);
+    //     }
     // })
+
     
     return(
     <div>
@@ -23,12 +26,12 @@ export default function App(){
                 <Switch>
                     <Route path='/' exact><Landing /></Route>
                     {/*<Route path='/verification'><Otp /></Route> */}
-                    <Route exact path='/admin-login'><AdminAuth /></Route>
-                    <Route exact path='/admin'><Admin /></Route>
-                    <Route exact path="/leader-board" ><LeaderBoard /></Route>
-                    <PrivateRoute exact auth={auth}  path='/quiz' component={Quiz} />
-                    <PrivateRoute exact auth={auth}  path='/instructions' component={Instructions} />
-                    <PrivateRoute exact auth={auth}  path='/score' component={Score} />
+                    <Route path='/admin-login'><AdminAuth /></Route>
+                    <Route path='/admin'><Admin /></Route>
+                    <Route path="/leader-board" ><LeaderBoard /></Route>
+                    <Route path='/quiz' component={Quiz} />
+                    <Route path='/instructions' component={Instructions} />
+                    <Route path='/score' component={Score} />
                     <Route><NotFound /></Route>
                     </Switch>
                 </Router>

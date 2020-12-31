@@ -4,9 +4,7 @@ import firebaseApp from '../firebase';
 import Brand from './Brand'
 import Event from './Event'
 
-
 export default function Landing(){
-
     const [text, setText]=useState("");
     const [email,setEmail]=useState("");         //email
     const [tel,setTel]= useState("");           //mobile
@@ -56,24 +54,26 @@ export default function Landing(){
             firebaseApp.firestore().collection("User-Credentials").where('scholar', '==', scholar).onSnapshot((snapshot)=>   {
             let items=[];
             snapshot.forEach((doc)=>items.push(doc.data()));
-            if(items.length){
-               setMessage(<p style={{'color':'#f1faee', 'textAlign':'center'}}>You have already taken the test once.</p>);
-               setTimeout(() => {
-                   setMessage("");
-               }, 2000);
-            }else{
-               firebaseApp.firestore().collection("User-Credentials").add({
-                    firstName: first,
-                    lastName: last,
-                    post:post,
-                    email:email,
-                    mobile: tel,
-                    scholar: scholar,
-                })
-                history.push('/instructions');
-                sessionStorage.setItem("name", first);
-                sessionStorage.setItem("sch", scholar);
-            }
+
+                if(items.length){
+                    setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>You have already taken the test once.</p>);
+                    setTimeout(() => {
+                        setMessage("");
+                    }, 2000);
+                }else{
+                    firebaseApp.firestore().collection("Users").add({
+                        firstName: first,
+                        lastName: last,
+                        post:post,
+                        email:email,
+                        mobile: tel,
+                        scholar: scholar,
+                    })
+                    history.push('/instructions');
+                    sessionStorage.setItem("name", first);
+                    sessionStorage.setItem("sch", scholar);  
+                    sessionStorage.setItem("auth", true);
+                }
         })
         
         }

@@ -1,10 +1,13 @@
 import {React, useEffect, useState} from 'react';
 import Timer from './Timer';
 import firebaseApp from '../firebase'
-import {useHistory} from 'react-router-dom'
+import {useHistory, Redirect} from 'react-router-dom'
+import {LinearProgress} from '@material-ui/core'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
 export default function Quiz() {
   const history=useHistory();
-
+  const token=sessionStorage.getItem("auth");
   const numbers=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
   //useState hook to highlight the corresponding question toggle button
   let [active, setActive] =useState(0);
@@ -22,7 +25,8 @@ export default function Quiz() {
     }
   }
   useEffect(()=>{
-    //Setting collor of all the buttons to light blue
+    if(document.getElementsByClassName("question_section").length){
+    //Setting color of all the buttons to light blue
     document.querySelectorAll('[data-target="#carouselExampleIndicators"]').forEach((element)=>{
       element.children[0].style.backgroundColor='#457B9D';
     })
@@ -30,6 +34,7 @@ export default function Quiz() {
     let p=document.querySelectorAll('[data-slide-to="'+ (active) +'"]')[0].children[0];
     p.scrollIntoView({inline:'center', top:'-20px'});
     p.style.backgroundColor="#06d6a0";
+    }
 
   },[numbers]);
 
@@ -77,8 +82,26 @@ export default function Quiz() {
     history.push("/score");
     sessionStorage.removeItem("auth");
  }
+  const [loading, setLoading]=useState(true);
+  const theme = createMuiTheme({
+        palette: {
+            primary: {
+                main: "#06d6a0",
+            },
+            secondary: {
+                main: "#f1faee",
+            },
+        },
+    });
+  setTimeout(() => {
+    setLoading(false);
+  }, 3000);
 
-  return (<div style={{'minHeight':'100vh'}}>
+  return (loading?
+  <ThemeProvider theme={theme}>
+    <LinearProgress />
+  </ThemeProvider>
+  :token?<div style={{'minHeight':'100vh'}}>
     <div className="grid-container">
           <div style={{'padding':'25px 25px'}} className="grid-item">
              <h3 style={{'color':'#E63946', 'fontWeight':'bolder', 'textAlign':'left'}}>
@@ -208,5 +231,7 @@ export default function Quiz() {
     </form>
   </div>
   </div>  
+  :
+  <Redirect to="/" />
   );
 }

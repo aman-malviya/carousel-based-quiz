@@ -1,9 +1,24 @@
 import React, {useState, useEffect} from 'react'
 import Brand from './Brand'
 import {db} from '../firebase'
+import {LinearProgress} from '@material-ui/core'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import {useHistory} from "react-router-dom"
 
 export default function Score(){
+    const [loading, setLoading]=useState(true);
+    const theme = createMuiTheme({
+        palette: {
+            primary: {
+                main: "#06d6a0",
+            },
+            secondary: {
+                main: "#f1faee",
+            },
+        },
+    });
+
+
     const history =useHistory();
     window.addEventListener("popstate", e=>{
         history.push("/");
@@ -11,9 +26,9 @@ export default function Score(){
         sessionStorage.removeItem("sch");
     })
     //Score Calculation
-    let score=0;
     const [points, setPoints] =useState(0);
     useEffect(()=>{
+        let score=0;
         //If user didn't answer no increment no decrement in points
         db.collection("AnswerBank/"+sessionStorage.getItem("name")+"-"+sessionStorage.getItem("sch")+"/Answers").where('userAns','==','').onSnapshot((snapshot)=>{
             snapshot.forEach((doc)=>{
@@ -41,9 +56,16 @@ export default function Score(){
         points:points,
         name:sessionStorage.getItem("name")+"-"+sessionStorage.getItem("sch")
     });
-    
-    return (<div className="d-flex justify-content-center landing-page">
-        <div>
+    setTimeout(() => {
+        setLoading(false);
+    }, 4000);
+    return (loading?
+        <ThemeProvider theme={theme}>
+            <LinearProgress />
+        </ThemeProvider>
+        :
+        <div className="d-flex justify-content-center landing-page">
+          <div>
             <h1 style={{'color':'#E63946', 'fontWeight':'bolder', 'textAlign':'center','fontSize':'3rem'}}>
                 V<span style={{'fontSize':'2.5rem'}}>I</span>H<span style={{'fontSize':'2.5rem'}}>AA</span>N
             </h1>
