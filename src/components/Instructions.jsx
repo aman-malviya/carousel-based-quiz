@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {LinearProgress} from '@material-ui/core'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import {Redirect} from "react-router-dom"
+import {Redirect, Prompt} from "react-router-dom"
 
 
 export default function Instructions(){
@@ -26,6 +26,13 @@ export default function Instructions(){
         <LinearProgress />
     </ThemeProvider>    
     :token?<div className="landing-page d-flex justify-content-center">
+            <Prompt
+                message={(location, action)=>{
+                    if(action==='POP'){
+                        return "Are you sure you want to navigate back? You will be taken to the register window and you won't be able to take the test again."
+                    }
+                }}
+            />
             <div style={window.innerWidth>700?{'padding':'0 25%'}:{'padding':'0 8%'}} className="question">
                 <p style={{'margin':'5px 0','color':'#f1faee','paddingTop':'5%'}}>
                     Instructions-

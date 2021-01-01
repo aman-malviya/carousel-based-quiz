@@ -51,7 +51,7 @@ export default function Landing(){
                    setMessage("");
                }, 2000);
         }else{
-            firebaseApp.firestore().collection("User-Credentials").where('scholar', '==', scholar).onSnapshot((snapshot)=>   {
+            firebaseApp.firestore().collection("Users").where('scholar', '==', scholar).onSnapshot((snapshot)=>   {
             let items=[];
             snapshot.forEach((doc)=>items.push(doc.data()));
 
