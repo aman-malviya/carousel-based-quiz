@@ -6,6 +6,7 @@ import {Redirect, Prompt} from "react-router-dom"
 
 export default function Instructions(){
     const token=sessionStorage.getItem("auth");
+    const submitTime=sessionStorage.getItem("submitTime");
     const [loading, setLoading]=useState(true);
     const theme = createMuiTheme({
         palette: {
@@ -25,7 +26,7 @@ export default function Instructions(){
     <ThemeProvider theme={theme}>
         <LinearProgress />
     </ThemeProvider>    
-    :token?<div className="landing-page d-flex justify-content-center">
+    :token?submitTime?<Redirect to="/quiz" />:<div className="landing-page d-flex justify-content-center">
             <Prompt
                 message={(location, action)=>{
                     if(action==='POP'){
@@ -64,7 +65,9 @@ export default function Instructions(){
                     6. Avoid refreshing and navigating while giving the test, you may get disqualified and your response may be lost.
                 </p>
                 <a style={{'display':'block', 'textDecoration':'none', 'marginTop':'20px'}} className="d-flex justify-content-center" href="/quiz">
-                    <button onClick={sessionStorage.setItem("submitTime", new Date().getTime()+1805000)} style={{'borderRadius':'8px', 'width':'250px'}}>
+                    <button onClick={()=>
+                    sessionStorage.setItem("submitTime", new Date().getTime()+1805000)
+                    } style={{'borderRadius':'8px', 'width':'250px'}}>
                         Proceed
                     </button>
                 </a>

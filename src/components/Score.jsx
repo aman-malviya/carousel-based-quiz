@@ -3,7 +3,7 @@ import Brand from './Brand'
 import {db} from '../firebase'
 import {LinearProgress} from '@material-ui/core'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import {useHistory} from "react-router-dom"
+import {useHistory, Redirect} from "react-router-dom"
 
 export default function Score(){
     const [loading, setLoading]=useState(true);
@@ -18,7 +18,7 @@ export default function Score(){
         },
     });
 
-
+    const sch=sessionStorage.getItem("sch");
     const history =useHistory();
     window.addEventListener("popstate", e=>{
         history.push("/");
@@ -77,7 +77,7 @@ export default function Score(){
             <LinearProgress />
         </ThemeProvider>
         :
-        <div className="d-flex justify-content-center landing-page">
+        sch?<div className="d-flex justify-content-center landing-page">
           <div>
             <h1 style={{'color':'#E63946', 'fontWeight':'bolder', 'textAlign':'center','fontSize':'3rem'}}>
                 V<span style={{'fontSize':'2.5rem'}}>I</span>H<span style={{'fontSize':'2.5rem'}}>AA</span>N
@@ -94,9 +94,15 @@ export default function Score(){
                 Team Quizzers' Club MANIT will release the leaderboard soon.<br /><br />Stay tuned.
             </h6> 
             <div className="d-flex justify-content-center">
-                <a style={{'color':'#f1faee', 'textDecoration':'underline'}} href="/leader-board">Check your position on the leaderboard</a>
+                <a href="/leader-board"><button style={{'borderRadius':'8px', 'width':'250px'}} onClick={(e)=>{
+                    sessionStorage.removeItem("sch");
+                    sessionStorage.removeItem("name");
+                }}>Leaderboard</button></a>
             </div>   
         </div>
         <Brand />
-   </div>)
+   </div>
+   :
+   <Redirect to="/" />
+   )
 }
