@@ -13,6 +13,7 @@ export default function Admin(){
     const [c,setC] = useState("");
     const [d,setD] = useState("");
     const [ans,setAns] = useState("");
+    const [cat,setCat] = useState("");
     let [message, setMessage]=useState("");
 
     useEffect(() => {
@@ -27,7 +28,7 @@ export default function Admin(){
 
     const addQuestion=(event)=>{
         event.preventDefault();
-        if(event ==="" || question==="" || a==="" || b==="" || c==="" || d==="" || ans===""){
+        if(event ==="" || question==="" || a==="" || b==="" || c==="" || d==="" || ans==="" || cat===""){
            setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Fill out all the fields first.</p>);
             setTimeout(() => {
                    setMessage("");
@@ -35,6 +36,7 @@ export default function Admin(){
         }else{
             firebaseApp.firestore().collection('QuestionBank').add({
                 event: evt,
+                category:cat,
                 question: question,
                 A: a,
                 B: b,
@@ -48,6 +50,7 @@ export default function Admin(){
                 setMessage("");
             }, 3000);
             setEvt("");
+            setCat("")
             setQuestion("")
             setA("");
             setB("");
@@ -62,6 +65,11 @@ export default function Admin(){
                 <div className="d-flex justify-content-center">
                     <div>
                         <input required value={evt} onChange={event=>setEvt(event.target.value)} type="text" placeholder="Event Name" />
+                        <select required onClick={e=>setCat(e.target.value)}>
+                            <option value="">Select Category</option> 
+                            <option value="Aptitude">Aptitude</option>
+                            <option value="GK">General Knowledge</option>
+                        </select>
                         <textarea required value={question} onChange={event=>setQuestion(event.target.value)} type="text" placeholder="Question" />
                         <input required value ={a} onChange={(event)=>setA(event.target.value)} type="text" placeholder="Option 1" />
                         <input required value={b} onChange={(event)=>setB(event.target.value)} type="text" placeholder="Option 2" />

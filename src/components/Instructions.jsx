@@ -29,7 +29,8 @@ export default function Instructions(){
             <Prompt
                 message={(location, action)=>{
                     if(action==='POP'){
-                        return "Are you sure you want to navigate back? You will be taken to the register window and you won't be able to take the test again."
+                        sessionStorage.removeItem("auth");
+                        return "Are you sure you want to navigate back? You will be taken to the register window and you won't be able to take the test again.";
                     }
                 }}
             />
