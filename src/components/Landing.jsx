@@ -35,7 +35,7 @@ export default function Landing(){
             setTimeout(() => {
                    setMessage("");
                }, 2000);
-        }else if(scholar<201110000 || scholar>201120000){
+        }else if(scholar<201109000 || scholar>201120000){
             setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Invalid Scholar Number.</p>);
             setTimeout(() => {
                    setMessage("");
@@ -98,6 +98,7 @@ export default function Landing(){
                     <option value="Electrical">Electrical</option>
                     <option value="Mechanical">Mechanical</option>
                     <option value="Civil">Civil</option>
+					<option value="Chemical">Chemical</option>
                     <option value="MSME">MSME</option>
                     <option value="BArch">BArch</option>
                     <option value="BPlan">BPlan</option>
