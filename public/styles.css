@@ -4,6 +4,10 @@ body{
   background-position:right;
   font-family: 'Quicksand', sans-serif !important;
 }
+::selection{
+  background:#06a6b0;
+  color:#f1faee;
+}
 .grid-container {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -15,6 +19,13 @@ body{
   color:#F1FAEE;
   padding: 0% 22%;
   font-size: 1.1rem;
+  -webkit-touch-callout: none; /* iOS Safari */ 
+    -webkit-user-select: none; /* Safari */ 
+     -khtml-user-select: none; /* Konqueror HTML */ 
+       -moz-user-select: none; /* Firefox */ 
+        -ms-user-select: none; /* Internet Explorer/Edge */ 
+            user-select: none; /* Non-prefixed version, currently 
+                                  supported by Chrome and Opera */
 }
 
 

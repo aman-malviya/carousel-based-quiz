@@ -35,7 +35,6 @@ export default function Quiz() {
     p.scrollIntoView({inline:'center', top:'-20px'});
     p.style.backgroundColor="#06d6a0";
     }
-
   },[numbers]);
 
   //useEffect for fetching questions from the database
@@ -83,6 +82,11 @@ export default function Quiz() {
     sessionStorage.removeItem("auth");
     sessionStorage.removeItem("submitTime");
  }
+//  useEffect(()=>{
+//    setTimeout(() => {
+//      submitTest();
+//    }, 18000);
+//  })
   const [loading, setLoading]=useState(true);
   const theme = createMuiTheme({
         palette: {
@@ -105,7 +109,7 @@ export default function Quiz() {
     <div className="grid-container">
           <div style={{'padding':'25px 25px'}} className="grid-item">
              <h3 style={{'color':'#E63946', 'fontWeight':'bolder', 'textAlign':'left'}}>
-                V<span style={{'fontSize':'1.2rem'}}>I</span>H<span style={{'fontSize':'1.2rem'}}>AA</span>N
+                V<span style={{'fontSize':'1.2rem'}}>I</span>H<span style={{'fontSize':'1.2rem'}}>AA</span>N<span style={{'fontSize':'1.2rem'}}>'21</span>
              </h3>
           </div>
           <div className="grid-item" style={{ 'padding':'12px 0', 'color':'#f1faee'}}>
@@ -149,7 +153,7 @@ export default function Quiz() {
                 </span>
               </div>
               {ques.map((qv,i) =>{
-                  return (<div className="carousel-item wow fadeIn" data-wow-duration="0.3s">
+                  return (<div className="carousel-item">
                               <div className="question">
                                   <p style={{'margin':'5px 0'}}>{"Question  " +(i+1)} / <span style={{'fontSize':'0.8rem'}}>30</span></p>
                                   <div style={{'height':'0', 'borderTop':'1px dashed rgba(69, 123, 157,0.5)', 'marginBottom':'5px'}}></div><br />

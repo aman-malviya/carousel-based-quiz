@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import {React, useState, useEffect} from 'react'
 import { useHistory } from 'react-router-dom';
 import firebaseApp from '../firebase';
 import Brand from './Brand'
@@ -78,13 +78,25 @@ export default function Landing(){
         
         }
     };
-
+    // const [render, setRender]=useState(false);
+    // useEffect(()=>{
+    //     let d=new Date(2021, 1, 3).getTime();
+    //     console.log(d);
+    //     let startDate= new Date(2021, 1, 1, 0, 0, 0, 0).getTime();
+    //     let endDate= new Date(2021, 1, 5, 0, 0, 0, 0).getTime();
+    //     console.log(startDate);
+    //     console.log(endDate);
+    //     if(d>startDate && d<endDate){
+    //         setRender(true);
+    //     }
+    // })
 
     return(
     <div className='landing-page'>
         <Event />
         <div style={{'color':'#f1faee', 'padding':'2% 10%', 'textAlign':'center'}}>
-            <p>VIHAAN is QCM's opening event for a session. It take place even before the fresher's eve. Vihaan is organized for the first year students to participate, learn and to let them know what awaits them in future. VIHAAN is a platform for the students, amateurs, quizzers and newcomers to check their mettle in quizzing.</p>
+            <p>VIHAAN is Quizzers' Club MANIT's opening event for a session. We organize it even before the freshers evening, exclusively for the first years of our institute.
+            The purpose behind VIHAAN is to provide a platform to the newcomers to showcase their quizzing abilities and prove their mettle in quizzing.</p>
         </div>
         <h3>Hello {text} !</h3>
         <div className="d-flex justify-content-center">
