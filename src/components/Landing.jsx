@@ -62,7 +62,7 @@ export default function Landing(){
                         setMessage("");
                     }, 2000);
                 }else{
-                    firebaseApp.firestore().collection("Users").add({
+                    firebaseApp.firestore().collection("Users").doc(first+"-"+last).set({
                         firstName: first,
                         lastName: last,
                         post:post,
