@@ -1,8 +1,9 @@
 import {React, useState, useEffect} from 'react'
-import { useHistory } from 'react-router-dom';
+import { useHistory, useQuery, useLocation } from 'react-router-dom';
 import firebaseApp from '../firebase';
 import Brand from './Brand'
 import Event from './Event'
+import TestNotStarted from './TestNotStarted'
 
 export default function Landing(){
     const [text, setText]=useState("");
@@ -78,26 +79,24 @@ export default function Landing(){
         
         }
     };
-    // const [render, setRender]=useState(false);
-    // useEffect(()=>{
-    //     let d=new Date(2021, 1, 3).getTime();
-    //     console.log(d);
-    //     let startDate= new Date(2021, 1, 1, 0, 0, 0, 0).getTime();
-    //     let endDate= new Date(2021, 1, 5, 0, 0, 0, 0).getTime();
-    //     console.log(startDate);
-    //     console.log(endDate);
-    //     if(d>startDate && d<endDate){
-    //         setRender(true);
-    //     }
-    // })
-
+    const [render, setRender]=useState(false);
+    const bypass=useLocation().search ==="?bypass";
+    useEffect(()=>{
+        let d=new Date().getTime();
+        let startDate= new Date(2021, 0, 16, 19, 0, 0, 0).getTime();
+        let endDate= new Date(2021, 0, 16, 21, 0, 0, 0).getTime();
+        if((d>startDate && d<endDate)|| bypass){
+            setRender(true);
+        }
+    })
     return(
     <div className='landing-page'>
         <Event />
-        <div style={{'color':'#f1faee', 'padding':'2% 10%', 'textAlign':'center'}}>
+        <div style={{'color':'#f1faee', 'padding':'2% 10% ', 'textAlign':'justify', 'textAlignLast':'center'}}>
             <p>VIHAAN is Quizzers' Club MANIT's opening event for a session. We organize it even before the freshers evening, exclusively for the first years of our institute.
             The purpose behind VIHAAN is to provide a platform to the newcomers to showcase their quizzing abilities and prove their mettle in quizzing.</p>
         </div>
+        {render?<div>
         <h3>Hello {text} !</h3>
         <div className="d-flex justify-content-center">
             <div>
@@ -124,6 +123,10 @@ export default function Landing(){
         {message}
         <br />
         <p style={{'color':'#f1faee', 'textAlign':'center'}}>If you face any issue, feel free to call <br /> Aman : +91 8269366460<br />Yash : +91 8529736944</p>
+        </div>
+        :
+        <TestNotStarted />
+        }
         <Brand />
     </div>
     )
