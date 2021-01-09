@@ -67,8 +67,17 @@ export default function Admin(){
     }
     }
     return(<div>
-	<button style={{'position':'fixed', 'top':'0', 'right':'0'}} className="submit-btn" onClick={signOut}>LOGOUT</button>
-	<div className="landing-page">
+	<div style={{'display':'grid', 'gridTemplateColumns':'1fr 1fr'}}>
+			<div style={{'padding':'25px 25px', 'float':'left'}} className="grid-item">
+				<h3 style={{'color':'#E63946', 'fontWeight':'bolder', 'textAlign':'left'}}>
+					V<span style={{'fontSize':'1.2rem'}}>I</span>H<span style={{'fontSize':'1.2rem'}}>AA</span>N<span style={{'fontSize':'1.2rem'}}>'21</span>
+				</h3>
+          </div>
+		  <div style={{'float':'right'}}>
+				<button style={{'float':'right'}} className="submit-btn" onClick={signOut}>LOGOUT</button>
+		</div>
+	</div>
+	<div style={{'paddingTop':'0px'}} className="landing-page">
                 <h3>Have a good question in mind? Bring it On.</h3>
                 <form>
                 <div className="d-flex justify-content-center">
