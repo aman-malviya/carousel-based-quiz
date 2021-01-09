@@ -15,7 +15,14 @@ export default function Admin(){
     const [ans,setAns] = useState("");
     const [cat,setCat] = useState("");
     let [message, setMessage]=useState("");
-
+	
+	const signOut=()=>{
+	firebaseApp.auth().signOut().then(() => {
+		history.push("/admin-login");
+	}).catch((error) => {
+		console.log(error.message);
+	});
+	}
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
           //redirect the page 
@@ -59,7 +66,9 @@ export default function Admin(){
             setAns("");
     }
     }
-    return(<div className="landing-page">
+    return(<div>
+	<button style={{'position':'fixed', 'top':'0', 'right':'0'}} className="submit-btn" onClick={signOut}>LOGOUT</button>
+	<div className="landing-page">
                 <h3>Have a good question in mind? Bring it On.</h3>
                 <form>
                 <div className="d-flex justify-content-center">
@@ -93,5 +102,6 @@ export default function Admin(){
                 <Brand />
                 </form>
             </div>
+		</div>
         );
 }
