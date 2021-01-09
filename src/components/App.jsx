@@ -28,7 +28,7 @@ export default function App(){
                     {/*<Route path='/verification'><Otp /></Route> */}
                     <Route path='/admin-login'><AdminAuth /></Route>
                     <Route path='/admin'><Admin /></Route>
-                    <Route path="/leader-board" ><LeaderBoard /></Route>
+                    {/*<Route path="/leader-board" ><LeaderBoard /></Route>*/}
                     <Route path='/quiz' component={Quiz} />
                     <Route path='/instructions' component={Instructions} />
                     <Route path='/score' component={Score} />
