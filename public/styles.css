@@ -302,3 +302,7 @@ input::-webkit-inner-spin-button {
     border-radius: 9px;
     background-clip: content-box;
 }
+
+#timeOver{
+  display:none;
+}

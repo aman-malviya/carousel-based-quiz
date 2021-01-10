@@ -66,7 +66,7 @@ export default function Instructions(){
                 </p>
                 <a style={{'display':'block', 'textDecoration':'none', 'marginTop':'20px'}} className="d-flex justify-content-center" href="/quiz">
                     <button onClick={()=>
-                    sessionStorage.setItem("submitTime", new Date().getTime()+1805000)
+                    sessionStorage.setItem("submitTime", new Date().getTime()+904000)
                     } style={{'borderRadius':'8px', 'width':'250px'}}>
                         Proceed
                     </button>

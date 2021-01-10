@@ -33,7 +33,12 @@ function Timer() {
     // })
     // let minutes=Math.floor(timeLeft/60);
     // let seconds=timeLeft %60;
-    
+    useEffect(()=>{
+      if(!timeLeft.minutes && !timeLeft.seconds){
+        document.getElementById('contain').style.display='none';
+        document.getElementById('timeOver').style.display='block';
+      }
+    }, [timeLeft.seconds])
 
     return (
         <div className="Timer d-flex justify-content-center">
@@ -48,4 +53,4 @@ function Timer() {
     )
 }
 
-export default Timer
+export default Timer;

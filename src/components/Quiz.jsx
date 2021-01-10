@@ -82,11 +82,6 @@ export default function Quiz() {
     sessionStorage.removeItem("auth");
     sessionStorage.removeItem("submitTime");
  }
-//  useEffect(()=>{
-//    setTimeout(() => {
-//      submitTest();
-//    }, 18000);
-//  })
   const [loading, setLoading]=useState(true);
   const theme = createMuiTheme({
         palette: {
@@ -122,7 +117,23 @@ export default function Quiz() {
             <button onClick={submitTest} className="submit-btn">SUBMIT</button>
           </div>
       </div>
-    <div className="question_section">
+
+
+    {/*When the time is over*/}
+    <div style={{'color':'#f1faee'}} id='timeOver'>
+        <br />
+        <br />
+        <h1 style={{'textAlign':'center'}}>Time Over</h1>
+        <br />
+        <h2 style={{'color':'#E63946',"textAlign":'center'}}>! Don't leave the page now !</h2>
+        <br />
+        <br />
+        <h4 style={{"textAlign":'center'}}>Press the submit button.</h4>
+    </div>
+    {/*When the time is over*/}
+
+
+    <div id='contain' className="question_section">
       <form id="mainForm">
       <div className="question-container">
         <div 

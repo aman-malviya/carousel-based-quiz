@@ -41,7 +41,7 @@ export default function Admin(){
                    setMessage("");
             }, 2000);
         }else{
-            firebaseApp.firestore().collection('QuestionBank').add({
+            firebaseApp.firestore().collection(cat==='slot1'?'QuestionBank-Slot1':'QuestionBank-Slot2').add({
                 event: evt,
                 category:cat,
                 question: question,
@@ -57,13 +57,11 @@ export default function Admin(){
                 setMessage("");
             }, 3000);
             setEvt("");
-            setCat("")
-            setQuestion("")
+            setQuestion("");
             setA("");
             setB("");
             setC("");
             setD("");
-            setAns("");
     }
     }
     return(<div>
@@ -82,11 +80,11 @@ export default function Admin(){
                 <form>
                 <div className="d-flex justify-content-center">
                     <div>
-                        <input required value={evt} onChange={event=>setEvt(event.target.value)} type="text" placeholder="Event Name" />
+                        <input required value="Vihaan" type="text" placeholder="Event Name" />
                         <select required onClick={e=>setCat(e.target.value)}>
-                            <option value="">Select Category</option> 
-                            <option value="Aptitude">Aptitude</option>
-                            <option value="GK">General Knowledge</option>
+                            <option value="">Select Slot</option> 
+                            <option value="slot1">Slot 1</option>
+                            <option value="slot2">Slot 2</option>
                         </select>
                         <textarea required value={question} onChange={event=>setQuestion(event.target.value)} type="text" placeholder="Question" />
                         <input required value ={a} onChange={(event)=>setA(event.target.value)} type="text" placeholder="Option 1" />
