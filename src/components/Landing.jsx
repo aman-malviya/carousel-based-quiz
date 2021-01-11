@@ -83,9 +83,11 @@ export default function Landing(){
     const bypass=useLocation().search ==="?bypass";
     useEffect(()=>{
         let d=new Date().getTime();
-        let startDate= new Date(2021, 0, 16, 19, 0, 0, 0).getTime();
-        let endDate= new Date(2021, 0, 16, 21, 0, 0, 0).getTime();
-        if((d>startDate && d<endDate)|| bypass){
+        let startDateSlot1= new Date(2021, 0, 16, 18, 30, 0, 0).getTime();
+        let endDateSlot1= new Date(2021, 0, 16, 19, 0, 0, 0).getTime();
+        let startDateSlot2= new Date(2021, 0, 16, 20, 30, 0, 0).getTime();
+        let endDateSlot2= new Date(2021, 0, 16, 21, 0, 0, 0).getTime();
+        if((d>startDateSlot1 && d<endDateSlot1)|| bypass ||(d>startDateSlot2 && d<endDateSlot2) ){
             setRender(true);
         }
     })

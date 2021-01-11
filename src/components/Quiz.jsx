@@ -36,11 +36,24 @@ export default function Quiz() {
     p.style.backgroundColor="#06d6a0";
     }
   },[numbers]);
-
+  //Selection of Collection based on time
+  let d=new Date().getTime();
+  let startDateSlot1= new Date(2021, 0, 16, 18, 30, 0, 0).getTime();
+  let endDateSlot1= new Date(2021, 0, 16, 19, 0, 0, 0).getTime();
+  let startDateSlot2= new Date(2021, 0, 16, 20, 30, 0, 0).getTime();
+  let endDateSlot2= new Date(2021, 0, 16, 21, 0, 0, 0).getTime();
+  let collection='';;
+  if(d>startDateSlot1 && d<endDateSlot1){
+    collection='QuestionBank-Slot1'
+  }else if(d>startDateSlot2 && d<endDateSlot2){
+    collection='QuestionBank-Slot2'
+  }else{
+    collection='Questions'
+  }
   //useEffect for fetching questions from the database
   const [ques,setQues]=useState([]);
   useEffect(()=>{
-    firebaseApp.firestore().collection('Questions').limit(30).onSnapshot(snapshot=>{
+    firebaseApp.firestore().collection(collection).limit(30).onSnapshot(snapshot=>{
       setQues(
         snapshot.docs.map(doc=>({
             que:doc.data().question,
@@ -54,7 +67,7 @@ export default function Quiz() {
     })
   }
   ,[])
-  
+
   //Submit test function on clicking submit button
   const submitTest=()=>{
    numbers.map((number)=>{
@@ -103,34 +116,20 @@ export default function Quiz() {
   :token?<div style={{'minHeight':'100vh'}}>
     <div className="grid-container">
           <div style={{'padding':'25px 25px'}} className="grid-item">
-             <h3 style={{'color':'#E63946', 'fontWeight':'bolder', 'textAlign':'left'}}>
-                V<span style={{'fontSize':'1.2rem'}}>I</span>H<span style={{'fontSize':'1.2rem'}}>AA</span>N<span style={{'fontSize':'1.2rem'}}>'21</span>
+             <h3 style={{'color':'#E63946', 'fontWeight':'bolder', 'textAlign':'left', 'fontSize':'1.3rem'}}>
+                V<span style={{'fontSize':'1rem'}}>I</span>H<span style={{'fontSize':'1rem'}}>AA</span>N<span style={{'fontSize':'1rem'}}>'21</span>
              </h3>
           </div>
           <div className="grid-item" style={{ 'padding':'12px 0', 'color':'#f1faee'}}>
             <div style={{'display':'inline'}} className="d-flex justify-content-center">
               <img alt="timer-img" height="40px" width="40px" src="timer.png" />
             </div>
-            <Timer style={{'display':'flex', 'justifyContent':'center'}} />
+            <Timer func={submitTest} style={{'display':'flex', 'justifyContent':'center'}} />
           </div>
           <div className="grid-item">
             <button onClick={submitTest} className="submit-btn">SUBMIT</button>
           </div>
       </div>
-
-
-    {/*When the time is over*/}
-    <div style={{'color':'#f1faee'}} id='timeOver'>
-        <br />
-        <br />
-        <h1 style={{'textAlign':'center'}}>Time Over</h1>
-        <br />
-        <h2 style={{'color':'#E63946',"textAlign":'center'}}>! Don't leave the page now !</h2>
-        <br />
-        <br />
-        <h4 style={{"textAlign":'center'}}>Press the submit button.</h4>
-    </div>
-    {/*When the time is over*/}
 
 
     <div id='contain' className="question_section">

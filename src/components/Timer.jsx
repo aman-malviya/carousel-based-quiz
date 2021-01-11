@@ -1,6 +1,6 @@
 import React,{ useEffect, useState }  from 'react'
 
-function Timer() {
+function Timer(props) {
     const calculateTimeLeft = () => {
         const countdownDate= sessionStorage.getItem("submitTime");
         const difference = countdownDate - +new Date();
@@ -35,8 +35,7 @@ function Timer() {
     // let seconds=timeLeft %60;
     useEffect(()=>{
       if(!timeLeft.minutes && !timeLeft.seconds){
-        document.getElementById('contain').style.display='none';
-        document.getElementById('timeOver').style.display='block';
+        props.func();
       }
     }, [timeLeft.seconds])
 
