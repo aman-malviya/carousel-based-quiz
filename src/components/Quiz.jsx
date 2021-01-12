@@ -2,10 +2,25 @@ import {React, useEffect, useState} from 'react';
 import Timer from './Timer';
 import firebaseApp from '../firebase'
 import {useHistory, Redirect} from 'react-router-dom'
-import {LinearProgress} from '@material-ui/core'
+import {LinearProgress, Popover, Button} from '@material-ui/core'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 export default function Quiz() {
+  //Popover
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
+
+  //Popover
   const history=useHistory();
   const token=sessionStorage.getItem("auth");
   const numbers=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
@@ -244,6 +259,34 @@ export default function Quiz() {
       </div>
     </form>
   </div>
+  {/* popover --- help */}
+  <button className="pop-btn"aria-describedby={id} variant="contained" color="primary" onClick={handleClick}>
+        ?
+  </button>
+  <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+      >
+      <div style={{'padding':'20px'}}>
+        In case of any queries, call -
+        <br />
+        Aman - +91 8269366460
+        <br />
+        Yash - +91 8529736944
+      </div>
+  </Popover>
+  {/* popover --- help */}
+
   </div>  
   :
   <Redirect to="/" />

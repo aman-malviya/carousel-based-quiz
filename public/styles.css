@@ -302,3 +302,22 @@ input::-webkit-inner-spin-button {
     border-radius: 9px;
     background-clip: content-box;
 }
+
+/* Popover */
+.pop-btn{
+  position:fixed;
+  bottom:0;
+  right:50%;
+  height:30px;
+  width:50px;
+  transform:translateX(25px);
+  border:0;
+  background-color:#E63946;
+  color:#f1faee;
+  border-radius:25px 25px 0 0;
+  padding-top:5px;
+  padding-bottom:0;
+}
+.pop-btn:focus{
+  outline:none;
+}

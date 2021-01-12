@@ -33,6 +33,7 @@ function Timer(props) {
     // })
     // let minutes=Math.floor(timeLeft/60);
     // let seconds=timeLeft %60;
+
     useEffect(()=>{
       if(!timeLeft.minutes && !timeLeft.seconds){
         props.func();
@@ -42,7 +43,7 @@ function Timer(props) {
     return (
         <div className="Timer d-flex justify-content-center">
         <div style={{'fontWeight':'bold'}}>
-          <p style={{'textAlign':'center', 'margin':'0', 'padding':'0'}}>
+          <p style={{'textAlign':'center', 'margin':'0', 'padding':'0', 'color':timeLeft.minutes?'#f1faee':'#E63946'}}>
             {timeLeft.minutes?(timeLeft.minutes<=9?"0"+timeLeft.minutes:timeLeft.minutes):"00"}
             : 
             {timeLeft.seconds?(timeLeft.seconds<=9?"0"+timeLeft.seconds:timeLeft.seconds):"00"}
