@@ -53,14 +53,14 @@ export default function Quiz() {
   },[numbers]);
   //Selection of Collection based on time
   let d=new Date().getTime();
-  let startDateSlot1= new Date(2021, 0, 16, 18, 30, 0, 0).getTime();
-  let endDateSlot1= new Date(2021, 0, 16, 19, 0, 0, 0).getTime();
-  let startDateSlot2= new Date(2021, 0, 16, 20, 30, 0, 0).getTime();
-  let endDateSlot2= new Date(2021, 0, 16, 21, 0, 0, 0).getTime();
+  let startSlot1= new Date(2021, 0, 14, 18, 0, 0, 0).getTime();
+  let endSlot1= new Date(2021, 0, 14, 19, 30, 0, 0).getTime();
+  let startSlot2= new Date(2021, 0, 14, 20, 0, 0, 0).getTime();
+  let endSlot2= new Date(2021, 0, 14, 21, 30, 0, 0).getTime();
   let collection='';;
-  if(d>startDateSlot1 && d<endDateSlot1){
+  if(d>startSlot1 && d<endSlot1){
     collection='QuestionBank-Slot1'
-  }else if(d>startDateSlot2 && d<endDateSlot2){
+  }else if(d>startSlot2 && d<endSlot2){
     collection='QuestionBank-Slot2'
   }else{
     collection='Questions'
@@ -179,7 +179,7 @@ export default function Quiz() {
               </div>
               {ques.map((qv,i) =>{
                   return (<div className="carousel-item">
-                              <div className="question">
+                              <div className="question" style={{'whiteSpace':'pre-wrap'}}>
                                   <p style={{'margin':'5px 0'}}>{"Question  " +(i+1)} / <span style={{'fontSize':'0.8rem'}}>30</span></p>
                                   <div style={{'height':'0', 'borderTop':'1px dashed rgba(69, 123, 157,0.5)', 'marginBottom':'5px'}}></div><br />
                                   <p>{ qv.que }</p>
