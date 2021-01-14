@@ -1,5 +1,5 @@
 import {React, useState, useEffect} from 'react'
-import { useHistory, useQuery, useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import firebaseApp from '../firebase';
 import Brand from './Brand'
 import Event from './Event'
@@ -13,21 +13,21 @@ export default function Landing(){
     const [last,setLast]=useState("");             //last name
     const [post,setPost]=useState("");             //post
     const [scholar,setScholar]=useState("");     //scholar no.
-
     const [message, setMessage] =useState();
 
     const history = useHistory();
-
 
     const handleChange=(e)=>{
         setText(e.target.value);
         setFirst(e.target.value);
     }
+
     //Email Validation
     function validateEmail(emailAdd) {
         const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(emailAdd).toLowerCase());
     }
+
     //register user 
     const register = (event)=>{
         event.preventDefault();
@@ -79,18 +79,21 @@ export default function Landing(){
         
         }
     };
+
+    //Render Form based on time
     const [render, setRender]=useState(false);
-    const bypass=useLocation().search ==="?bypass";
+    const bypass=useLocation().search ==="?letMePass";
     useEffect(()=>{
         let d=new Date().getTime();
-        let startSlot1= new Date(2021, 0, 14, 18, 30, 0, 0).getTime();
-        let endSlot1= new Date(2021, 0, 14, 19, 0, 0, 0).getTime();
-        let startSlot2= new Date(2021, 0, 14, 20, 30, 0, 0).getTime();
-        let endSlot2= new Date(2021, 0, 14, 21, 0, 0, 0).getTime();
+        let startSlot1= new Date(2021, 0, 16, 18, 30, 0, 0).getTime();
+        let endSlot1= new Date(2021, 0, 16, 19, 0, 0, 0).getTime();
+        let startSlot2= new Date(2021, 0, 16, 20, 30, 0, 0).getTime();
+        let endSlot2= new Date(2021, 0, 16, 21, 0, 0, 0).getTime();
         if((d>startSlot1 && d<endSlot1)|| bypass ||(d>startSlot2 && d<endSlot2) ){
             setRender(true);
         }
-    })
+    });
+
     return(
     <div className='landing-page'>
         <Event />

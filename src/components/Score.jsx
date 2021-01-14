@@ -93,12 +93,12 @@ export default function Score(){
                 <br />
                 Team Quizzers' Club MANIT will release the leaderboard soon.<br /><br />Stay tuned.
             </h6> 
-            {/*<div className="d-flex justify-content-center">
-                <a href="/leader-board"><button style={{'borderRadius':'8px', 'width':'250px'}} onClick={()=>{
+            <div className="d-flex justify-content-center">
+                <a href="/"><button style={{'borderRadius':'8px', 'width':'250px'}} onClick={()=>{
                     sessionStorage.removeItem("sch");
                     sessionStorage.removeItem("name");
-                }}>Leaderboard</button></a>
-            </div> */}
+                }}>Go to Landing Page</button></a>
+            </div>
         </div>
         <Brand />
    </div>

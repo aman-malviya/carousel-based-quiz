@@ -2,31 +2,29 @@ import {React, useEffect, useState} from 'react';
 import Timer from './Timer';
 import firebaseApp from '../firebase'
 import {useHistory, Redirect} from 'react-router-dom'
-import {LinearProgress, Popover, Button} from '@material-ui/core'
+import {LinearProgress, Popover} from '@material-ui/core'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 export default function Quiz() {
+
   //Popover
   const [anchorEl, setAnchorEl] = useState(null);
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
-
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
-
   //Popover
+
   const history=useHistory();
   const token=sessionStorage.getItem("auth");
   const numbers=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
+
   //useState hook to highlight the corresponding question toggle button
   let [active, setActive] =useState(0);
-
   //Increment on pushing next button
   const increment=()=>{
     if(active!==30){
@@ -51,13 +49,14 @@ export default function Quiz() {
     p.style.backgroundColor="#06d6a0";
     }
   },[numbers]);
+
   //Selection of Collection based on time
   let d=new Date().getTime();
-  let startSlot1= new Date(2021, 0, 14, 18, 0, 0, 0).getTime();
-  let endSlot1= new Date(2021, 0, 14, 19, 30, 0, 0).getTime();
-  let startSlot2= new Date(2021, 0, 14, 20, 0, 0, 0).getTime();
-  let endSlot2= new Date(2021, 0, 14, 21, 30, 0, 0).getTime();
-  let collection='';;
+  let startSlot1= new Date(2021, 0, 16, 18, 0, 0, 0).getTime();
+  let endSlot1= new Date(2021, 0, 16, 19, 30, 0, 0).getTime();
+  let startSlot2= new Date(2021, 0, 16, 20, 0, 0, 0).getTime();
+  let endSlot2= new Date(2021, 0, 16, 21, 30, 0, 0).getTime();
+  let collection='';
   if(d>startSlot1 && d<endSlot1){
     collection='QuestionBank-Slot1'
   }else if(d>startSlot2 && d<endSlot2){
@@ -65,6 +64,7 @@ export default function Quiz() {
   }else{
     collection='Questions'
   }
+
   //useEffect for fetching questions from the database
   const [ques,setQues]=useState([]);
   useEffect(()=>{
@@ -110,7 +110,10 @@ export default function Quiz() {
     sessionStorage.removeItem("auth");
     sessionStorage.removeItem("submitTime");
  }
+
+  //Loading Component
   const [loading, setLoading]=useState(true);
+  //Loading Component Theme
   const theme = createMuiTheme({
         palette: {
             primary: {
@@ -124,6 +127,7 @@ export default function Quiz() {
   setTimeout(() => {
     setLoading(false);
   }, 3000);
+
   return (loading?
   <ThemeProvider theme={theme}>
     <LinearProgress />
