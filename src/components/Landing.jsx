@@ -69,6 +69,7 @@ export default function Landing(){
                         email:email,
                         mobile: tel,
                         scholar: scholar,
+                        inTime:new Date().toLocaleTimeString()
                     })
                     history.push('/instructions');
                     sessionStorage.setItem("name", first);
