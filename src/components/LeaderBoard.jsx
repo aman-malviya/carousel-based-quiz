@@ -7,7 +7,7 @@ export default function LeaderBoard(){
     const [points, setPoints]=useState([]);
     useEffect(()=>{
             db.collection("scores").doc("null-null").delete();
-            db.collection("scores").orderBy("points", "desc").limit(30).onSnapshot((snapshot)=>{
+            db.collection("scores").orderBy("points", "desc").onSnapshot((snapshot)=>{
                 let scores=[];
                 snapshot.forEach((doc)=>{
                     scores.push(doc.data());

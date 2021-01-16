@@ -40,7 +40,7 @@ export default function Landing(){
             setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Invalid Scholar Number.</p>);
             setTimeout(() => {
                    setMessage("");
-               }, 2000);
+               }, 2000); 
         }else if(validateEmail(email)===false){
             setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Invalid Email.</p>);
             setTimeout(() => {
