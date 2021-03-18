@@ -84,10 +84,10 @@ export default function Landing(){
     const bypass=useLocation().search ==="?letMePass";
     useEffect(()=>{
         let d=new Date().getTime();
-        let startSlot1= new Date(2021, 2, 18, 15, 0, 0, 0).getTime();
-        let endSlot1= new Date(2021, 2, 18, 15, 15, 0, 0).getTime();
+        let startSlot1= new Date(2021, 2, 18, 16, 0, 0, 0).getTime();
+        let endSlot1= new Date(2021, 2, 18, 16, 30, 0, 0).getTime();
         let startSlot2= new Date(2021, 2, 18, 18, 0, 0, 0).getTime();
-        let endSlot2= new Date(2021, 2, 18, 30, 0, 0, 0).getTime();
+        let endSlot2= new Date(2021, 2, 18, 18, 30, 0, 0).getTime();
         if((d>startSlot1 && d<endSlot1)|| bypass ||(d>startSlot2 && d<endSlot2) ){
             setRender(true);
         }
