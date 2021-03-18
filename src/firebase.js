@@ -1,12 +1,13 @@
 import firebase from "firebase";
 const firebaseApp = firebase.initializeApp({
-  apiKey: "AIzaSyC8CbnHmGM0Ocsz-XCyR41qlk9SaNAwY2A",
-  authDomain: "qcm-vihaan-950a8.firebaseapp.com",
-  projectId: "qcm-vihaan-950a8",
-  storageBucket: "qcm-vihaan-950a8.appspot.com",
-  messagingSenderId: "457328054650",
-  appId: "1:457328054650:web:9277517c4565f750ca86c3",
-  measurementId: "G-RW54EH0T5D",
+  apiKey: "AIzaSyDDuHuR_H05eiVjZJxudUG3H3F_tjdG28k",
+  authDomain: "contact-form-ae96f.firebaseapp.com",
+  databaseURL: "https://contact-form-ae96f.firebaseio.com",
+  projectId: "contact-form-ae96f",
+  storageBucket: "contact-form-ae96f.appspot.com",
+  messagingSenderId: "893098497968",
+  appId: "1:893098497968:web:1fce15587dfa1534722875",
+  measurementId: "G-85JQTKJRNR"
 });
 export const db = firebaseApp.firestore();
 export const auth = firebase.auth();

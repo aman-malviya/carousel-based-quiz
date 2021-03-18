@@ -21,7 +21,7 @@ export default function Quiz() {
 
   const history=useHistory();
   const token=sessionStorage.getItem("auth");
-  const numbers=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
+  const numbers=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60];
 
   //useState hook to highlight the corresponding question toggle button
   let [active, setActive] =useState(0);
@@ -57,18 +57,18 @@ export default function Quiz() {
   let startSlot2= new Date(2021, 0, 16, 20, 0, 0, 0).getTime();
   let endSlot2= new Date(2021, 0, 16, 21, 30, 0, 0).getTime();
   let collection='';
-  if(d>startSlot1 && d<endSlot1){
-    collection='QuestionBank-Slot1'
-  }else if(d>startSlot2 && d<endSlot2){
-    collection='QuestionBank-Slot2'
-  }else{
-    collection='Questions'
-  }
+  // if(d>startSlot1 && d<endSlot1){
+  //   collection='QuestionBank-Slot1'
+  // }else if(d>startSlot2 && d<endSlot2){
+  //   collection='QuestionBank-Slot2'
+  // }else{
+  //   collection='Questions'
+  // }
 
   //useEffect for fetching questions from the database
   const [ques,setQues]=useState([]);
   useEffect(()=>{
-    firebaseApp.firestore().collection(collection).limit(30).onSnapshot(snapshot=>{
+    firebaseApp.firestore().collection('QuestionBank').limit(30).onSnapshot(snapshot=>{
       setQues(
         snapshot.docs.map(doc=>({
             que:doc.data().question,
@@ -136,7 +136,7 @@ export default function Quiz() {
     <div className="grid-container">
           <div style={{'padding':'25px 25px'}} className="grid-item">
              <h3 style={{'color':'#E63946', 'fontWeight':'bolder', 'textAlign':'left', 'fontSize':'1.3rem'}}>
-                V<span style={{'fontSize':'1rem'}}>I</span>H<span style={{'fontSize':'1rem'}}>AA</span>N<span style={{'fontSize':'1rem'}}>'21</span>
+                E-S<span style={{'fontSize':'1rem'}}>U</span>MM<span style={{'fontSize':'1rem'}}>I</span>T<span style={{'fontSize':'1rem'}}>'21</span>
              </h3>
           </div>
           <div className="grid-item" style={{ 'padding':'12px 0', 'color':'#f1faee'}}>
@@ -284,9 +284,7 @@ export default function Quiz() {
       <div style={{'padding':'20px'}}>
         In case of any queries, call -
         <br />
-        Aman - +91 8269366460
-        <br />
-        Yash - +91 8529736944
+        Aditya - +91 8989473997
       </div>
   </Popover>
   {/* popover --- help */}

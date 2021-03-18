@@ -51,7 +51,7 @@ const LoginPage=()=>{
     return (<div>
         <Event />
         <div className="landing-page">
-            <input value={email} onChange={(e)=>setEmail(e.target.value)} type="text" placeholder="QCM Unique ID" />
+            <input value={email} onChange={(e)=>setEmail(e.target.value)} type="text" placeholder="Unique ID" />
             <input value={password} onChange={(e)=>setPassword(e.target.value)} type="password" placeholder="Password" />
             <button onClick={signIn}>
                     Login

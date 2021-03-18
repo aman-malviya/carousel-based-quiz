@@ -11,7 +11,6 @@ export default function Landing(){
     const [tel,setTel]= useState("");           //mobile
     const [first,setFirst]=useState("");         //first name
     const [last,setLast]=useState("");             //last name
-    const [post,setPost]=useState("");             //post
     const [scholar,setScholar]=useState("");     //scholar no.
     const [message, setMessage] =useState();
 
@@ -31,7 +30,7 @@ export default function Landing(){
     //register user 
     const register = (event)=>{
         event.preventDefault();
-        if(first==="" || last==="" || post==="" || email==="" || tel==="" || scholar===""){
+        if(first==="" || last==="" || email==="" || tel==="" || scholar===""){
             setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Fill all the details first.</p>);
             setTimeout(() => {
                    setMessage("");
@@ -65,7 +64,6 @@ export default function Landing(){
                     firebaseApp.firestore().collection("Users").doc(first+"-"+last).set({
                         firstName: first,
                         lastName: last,
-                        post:post,
                         email:email,
                         mobile: tel,
                         scholar: scholar,
@@ -86,10 +84,10 @@ export default function Landing(){
     const bypass=useLocation().search ==="?letMePass";
     useEffect(()=>{
         let d=new Date().getTime();
-        let startSlot1= new Date(2021, 0, 16, 18, 30, 0, 0).getTime();
-        let endSlot1= new Date(2021, 0, 16, 19, 0, 0, 0).getTime();
-        let startSlot2= new Date(2021, 0, 16, 20, 30, 0, 0).getTime();
-        let endSlot2= new Date(2021, 0, 16, 21, 0, 0, 0).getTime();
+        let startSlot1= new Date(2021, 2, 18, 15, 0, 0, 0).getTime();
+        let endSlot1= new Date(2021, 2, 18, 15, 15, 0, 0).getTime();
+        let startSlot2= new Date(2021, 2, 18, 18, 0, 0, 0).getTime();
+        let endSlot2= new Date(2021, 2, 18, 30, 0, 0, 0).getTime();
         if((d>startSlot1 && d<endSlot1)|| bypass ||(d>startSlot2 && d<endSlot2) ){
             setRender(true);
         }
@@ -99,36 +97,24 @@ export default function Landing(){
     <div className='landing-page'>
         <Event />
         <div style={{'color':'#f1faee', 'padding':'2% 10% ', 'textAlign':'justify', 'textAlignLast':'center'}}>
-            <p>VIHAAN is Quizzers' Club MANIT's opening event for a session. We organize it even before the freshers evening, exclusively for the first years of our institute.
-            The purpose behind VIHAAN is to provide a platform to the newcomers to showcase their quizzing abilities and prove their mettle in quizzing.</p>
+        <p>E-Summit is the flagship Event of Entrepreneurship Cell MANIT, aimed at fueling the entrepreneurial spirit in the students, helping start-up founders, and educating the inquisitive minds to create an innovation driven start-up culture. We aim to bring together the academic community, venture capitalists, new-age entrepreneurs and all those passionate about making a difference to common grounds and to give a chance to the students to exhibit and develop their entrepreneurial talent and creativity through various business related games, workshops, guest lectures and competitions; and to create an environment for everyone to learn and grow.
+        </p>
         </div>
         {render?<div>
         <h3>Hello {text} !</h3>
         <div className="d-flex justify-content-center">
             <div>
-                <input value={first} onChange={handleChange} type="text" placeholder="First Name" required />
-                <input value={last} onChange={event=>setLast(event.target.value)} type="text" placeholder="Last Name" required />
-                <select value={post} onChange={event=>setPost(event.target.value)} required>
-                    <option value="">Select your branch</option>
-                    <option value="CSE">CSE</option>
-                    <option value="ECE">ECE</option>
-                    <option value="Electrical">Electrical</option>
-                    <option value="Mechanical">Mechanical</option>
-                    <option value="Civil">Civil</option>
-					<option value="Chemical">Chemical</option>
-                    <option value="MSME">MSME</option>
-                    <option value="BArch">BArch</option>
-                    <option value="BPlan">BPlan</option>
-                </select>
-                <input type="email" value ={email} onChange={event=>setEmail(event.target.value)}  placeholder="Email Address" required />
+                <input value={first} onChange={handleChange} type="text" placeholder="Leader Name" required />
+                <input value={last} onChange={event=>setLast(event.target.value)} type="text" placeholder="Team Name" required />
                 <input value={tel} onChange={event=>setTel(event.target.value)} type="tel" placeholder="Mobile Number" required />
-                <input value={scholar} onChange={event=>setScholar(event.target.value)} type="number" placeholder="Scholar Number" required />
+                <input type="email" value ={email} onChange={event=>setEmail(event.target.value)}  placeholder="Email Address" required />
+                <input value={scholar} onChange={event=>setScholar(event.target.value)} type="number" placeholder="Password" required />
             </div>
         </div>
         <div className="d-flex justify-content-center"><button onClick={register}>Submit</button></div>
         {message}
         <br />
-        <p style={{'color':'#f1faee', 'textAlign':'center'}}>If you face any issue, feel free to call <br /> Aman : +91 8269366460<br />Yash : +91 8529736944</p>
+        <p style={{'color':'#f1faee', 'textAlign':'center'}}>If you face any issue, feel free to call <br /> Aditya : +91 8989473997</p>
         </div>
         :
         <TestNotStarted />

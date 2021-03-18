@@ -42,15 +42,15 @@ export default function Instructions(){
                 <div style={{'height':'0', 'borderTop':'1px dashed rgba(69, 123, 157,0.5)', 'marginBottom':'5px'}}>
                 </div>
                 <p style={{'fontSize':'1rem', 'color':'#f1faee'}}>
-                    1. Make sure that you have a proper internet connection for the next 20 minutes.
+                    1. Make sure that you have a proper internet connection for the next 30 minutes.
                     <br />
                     <div style={{'height':'0', 'marginBottom':'10px'}}>
                     </div>
-                    2. Total number of questions is 30 and all of them are based on General Science.
+                    2. Total number of questions is 60 and all of them are based on General Science.
                     <br />
                     <div style={{'height':'0', 'marginBottom':'10px'}}>
                     </div>
-                    3. Total time allotted for the quiz is 15 minutes.
+                    3. Total time allotted for the quiz is 30 minutes.
                     <br />
                     <div style={{'height':'0', 'marginBottom':'10px'}}>
                     </div>
@@ -63,10 +63,14 @@ export default function Instructions(){
                     <div style={{'height':'0', 'marginBottom':'10px'}}>
                     </div>
                     6. Avoid reloading and navigating while attempting the quiz, you may get disqualified and your response may be lost.
+                    <br />
+                    <div style={{'height':'0', 'marginBottom':'10px'}}>
+                    </div>
+                    7. Use the question toggles or the Previous and Next Buttons to toggle between questions. Press Submit only when you want to end the quiz.
                 </p>
                 <a style={{'display':'block', 'textDecoration':'none', 'marginTop':'20px'}} className="d-flex justify-content-center" href="/quiz">
                     <button onClick={()=>
-                    sessionStorage.setItem("submitTime", new Date().getTime()+904000)
+                    sessionStorage.setItem("submitTime", new Date().getTime()+1804000)
                     } style={{'borderRadius':'8px', 'width':'250px'}}>
                         Proceed
                     </button>

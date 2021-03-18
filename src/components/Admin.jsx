@@ -13,7 +13,6 @@ export default function Admin(){
     const [c,setC] = useState("");
     const [d,setD] = useState("");
     const [ans,setAns] = useState("");
-    const [cat,setCat] = useState("");
     let [message, setMessage]=useState("");
 	
 	const signOut=()=>{
@@ -35,15 +34,14 @@ export default function Admin(){
 
     const addQuestion=(event)=>{
         event.preventDefault();
-        if(event ==="" || question==="" || a==="" || b==="" || c==="" || d==="" || ans==="" || cat===""){
+        if(event ==="" || question==="" || a==="" || b==="" || c==="" || d==="" || ans===""){
            setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Fill out all the fields first.</p>);
             setTimeout(() => {
                    setMessage("");
             }, 2000);
         }else{
-            firebaseApp.firestore().collection(cat==='slot1'?'QuestionBank-Slot1':'QuestionBank-Slot2').add({
+            firebaseApp.firestore().collection('QuestionBank').add({
                 event: evt,
-                category:cat,
                 question: question,
                 A: a,
                 B: b,
@@ -68,7 +66,7 @@ export default function Admin(){
 	<div style={{'display':'grid', 'gridTemplateColumns':'1fr 1fr'}}>
 			<div style={{'padding':'25px 25px', 'float':'left'}} className="grid-item">
 				<h3 style={{'color':'#E63946', 'fontWeight':'bolder', 'textAlign':'left'}}>
-					V<span style={{'fontSize':'1.2rem'}}>I</span>H<span style={{'fontSize':'1.2rem'}}>AA</span>N<span style={{'fontSize':'1.2rem'}}>'21</span>
+					E-S<span style={{'fontSize':'1.2rem'}}>U</span>MM<span style={{'fontSize':'1.2rem'}}>I</span>T<span style={{'fontSize':'1.2rem'}}>'21</span>
 				</h3>
           </div>
 		  <div style={{'float':'right'}}>
@@ -80,12 +78,7 @@ export default function Admin(){
                 <form>
                 <div className="d-flex justify-content-center">
                     <div>
-                        <input required value="Vihaan" type="text" placeholder="Event Name" />
-                        <select required onClick={e=>setCat(e.target.value)}>
-                            <option value="">Select Slot</option> 
-                            <option value="slot1">Slot 1</option>
-                            <option value="slot2">Slot 2</option>
-                        </select>
+                        <input required value="E-Summit '21" type="text" placeholder="Event Name" />
                         <textarea required value={question} onChange={event=>setQuestion(event.target.value)} type="text" placeholder="Question" />
                         <input required value ={a} onChange={(event)=>setA(event.target.value)} type="text" placeholder="Option 1" />
                         <input required value={b} onChange={(event)=>setB(event.target.value)} type="text" placeholder="Option 2" />
