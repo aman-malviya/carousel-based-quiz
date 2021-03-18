@@ -1,5 +1,5 @@
 import React from 'react'
-// import LeaderBoard from './LeaderBoard'
+import LeaderBoard from './LeaderBoard'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Quiz from './Quiz'
 import Landing from './Landing'
