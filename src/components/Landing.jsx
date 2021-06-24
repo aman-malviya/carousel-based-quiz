@@ -83,13 +83,13 @@ export default function Landing(){
 
     //Render Form based on time
     const [render, setRender]=useState(false);
-    const bypass=useLocation().search ==="?letMePass";
+    const bypass=useLocation().search ==="?letDobbyPass";
     useEffect(()=>{
         let d=new Date().getTime();
-        let startSlot1= new Date(2021, 0, 16, 18, 30, 0, 0).getTime();
-        let endSlot1= new Date(2021, 0, 16, 19, 0, 0, 0).getTime();
-        let startSlot2= new Date(2021, 0, 16, 20, 30, 0, 0).getTime();
-        let endSlot2= new Date(2021, 0, 16, 21, 0, 0, 0).getTime();
+        let startSlot1= new Date(2021, 6, 6, 14, 0, 0, 0).getTime();
+        let endSlot1= new Date(2021, 6, 6, 16, 0, 0, 0).getTime();
+        let startSlot2= new Date(2021, 6, 6, 18, 0, 0, 0).getTime();
+        let endSlot2= new Date(2021, 6, 6, 20, 0, 0, 0).getTime();
         if((d>startSlot1 && d<endSlot1)|| bypass ||(d>startSlot2 && d<endSlot2) ){
             setRender(true);
         }
@@ -99,8 +99,7 @@ export default function Landing(){
     <div className='landing-page'>
         <Event />
         <div style={{'color':'#f1faee', 'padding':'2% 10% ', 'textAlign':'justify', 'textAlignLast':'center'}}>
-            <p>VIHAAN is Quizzers' Club MANIT's opening event for a session. We organize it even before the freshers evening, exclusively for the first years of our institute.
-            The purpose behind VIHAAN is to provide a platform to the newcomers to showcase their quizzing abilities and prove their mettle in quizzing.</p>
+            <p>After another year of a successful journey, its finally time to pass the baton. Quizzers’ Club MANIT, the only quizzing club of NIT Bhopal is all set to recruit new members. So, wait till the slots open, and then brainstorm over those riveting 30 questions on Mental Ability and General Knowledge.<br />All the best!</p>
         </div>
         {render?<div>
         <h3>Hello {text} !</h3>

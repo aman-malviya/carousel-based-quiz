@@ -46,7 +46,7 @@ export default function Instructions(){
                     <br />
                     <div style={{'height':'0', 'marginBottom':'10px'}}>
                     </div>
-                    2. Total number of questions is 30 and all of them are based on General Science.
+                    2. Total number of questions is 30 and they are on Mental Ability and General Knowledge.
                     <br />
                     <div style={{'height':'0', 'marginBottom':'10px'}}>
                     </div>

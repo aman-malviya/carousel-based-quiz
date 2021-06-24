@@ -52,10 +52,10 @@ export default function Quiz() {
 
   //Selection of Collection based on time
   let d=new Date().getTime();
-  let startSlot1= new Date(2021, 0, 16, 18, 0, 0, 0).getTime();
-  let endSlot1= new Date(2021, 0, 16, 19, 30, 0, 0).getTime();
-  let startSlot2= new Date(2021, 0, 16, 20, 0, 0, 0).getTime();
-  let endSlot2= new Date(2021, 0, 16, 21, 30, 0, 0).getTime();
+  let startSlot1= new Date(2021, 6, 6, 14, 0, 0, 0).getTime();
+  let endSlot1= new Date(2021, 6, 6, 16, 0, 0, 0).getTime();
+  let startSlot2= new Date(2021, 6, 6, 18, 0, 0, 0).getTime();
+  let endSlot2= new Date(2021, 6, 6, 20, 0, 0, 0).getTime();
   let collection='';
   if(d>startSlot1 && d<endSlot1){
     collection='QuestionBank-Slot1'
@@ -136,7 +136,7 @@ export default function Quiz() {
     <div className="grid-container">
           <div style={{'padding':'25px 25px'}} className="grid-item">
              <h3 style={{'color':'#E63946', 'fontWeight':'bolder', 'textAlign':'left', 'fontSize':'1.3rem'}}>
-                V<span style={{'fontSize':'1rem'}}>I</span>H<span style={{'fontSize':'1rem'}}>AA</span>N<span style={{'fontSize':'1rem'}}>'21</span>
+                RECRUITMENTS
              </h3>
           </div>
           <div className="grid-item" style={{ 'padding':'12px 0', 'color':'#f1faee'}}>

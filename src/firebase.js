@@ -1,12 +1,12 @@
 import firebase from "firebase";
 const firebaseApp = firebase.initializeApp({
-  apiKey: "AIzaSyC8CbnHmGM0Ocsz-XCyR41qlk9SaNAwY2A",
-  authDomain: "qcm-vihaan-950a8.firebaseapp.com",
-  projectId: "qcm-vihaan-950a8",
-  storageBucket: "qcm-vihaan-950a8.appspot.com",
-  messagingSenderId: "457328054650",
-  appId: "1:457328054650:web:9277517c4565f750ca86c3",
-  measurementId: "G-RW54EH0T5D",
+  apiKey: "AIzaSyCNscTqFUf8Wkh55ZwuVMSHYcjMz0HJ0eQ",
+  authDomain: "recruitments2021-619b8.firebaseapp.com",
+  projectId: "recruitments2021-619b8",
+  storageBucket: "recruitments2021-619b8.appspot.com",
+  messagingSenderId: "586285876118",
+  appId: "1:586285876118:web:e5f6bf7cf500765d2413b7",
+  measurementId: "G-Y1531RJLNF"
 });
 export const db = firebaseApp.firestore();
 export const auth = firebase.auth();
