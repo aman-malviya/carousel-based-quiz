@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function Event(){
     return <h1 style={{'color':'#E63946', 'fontWeight':'bolder', 'textAlign':'center','fontSize':'3rem'}}>
-            V<span style={{'fontSize':'2.5rem'}}>I</span>H<span style={{'fontSize':'2.5rem'}}>AA</span>N<span style={{'fontSize':'2.5rem'}}>'21</span>
+            R<span style={{'fontSize':'2.5rem'}}>E</span>C<span style={{'fontSize':'2.5rem'}}>R</span>U<span style={{'fontSize':'2.5rem'}}>ITMENTS</span>
         </h1>
 }
