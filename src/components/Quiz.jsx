@@ -19,15 +19,36 @@ export default function Quiz() {
   const id = open ? 'simple-popover' : undefined;
   //Popover
 
+
+  //useEffect for fetching questions from the database
+  const [ques,setQues]=useState([]);
+  useEffect(()=>{
+    firebaseApp.firestore().collection(collection).limit(30).onSnapshot(snapshot=>{
+      setQues(
+        snapshot.docs.map(doc=>({
+            que:doc.data().question,
+            opta:doc.data().A,
+            optb:doc.data().B,
+            optc:doc.data().C,
+            optd:doc.data().D,
+            ans:doc.data().ans,
+          }))
+    )
+    })
+  }
+  ,[])
+
   const history=useHistory();
   const token=sessionStorage.getItem("auth");
-  const numbers=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
+  const numbers=[];
+
+  for(let i=1; i<=ques.length; i++)numbers.push(i);
 
   //useState hook to highlight the corresponding question toggle button
   let [active, setActive] =useState(0);
   //Increment on pushing next button
   const increment=()=>{
-    if(active!==30){
+    if(active!==ques.length){
       setActive(active+1);
     }
   }
@@ -65,28 +86,11 @@ export default function Quiz() {
     collection='Questions'
   }
 
-  //useEffect for fetching questions from the database
-  const [ques,setQues]=useState([]);
-  useEffect(()=>{
-    firebaseApp.firestore().collection(collection).limit(30).onSnapshot(snapshot=>{
-      setQues(
-        snapshot.docs.map(doc=>({
-            que:doc.data().question,
-            opta:doc.data().A,
-            optb:doc.data().B,
-            optc:doc.data().C,
-            optd:doc.data().D,
-            ans:doc.data().ans,
-          }))
-    )
-    })
-  }
-  ,[])
 
   //Submit test function on clicking submit button
   const submitTest=()=>{
    numbers.map((number)=>{
-      for(let n=0; n<3; n++){
+      for(let n=0; n<=3; n++){
           const input=document.getElementsByName("answer"+(number))[n];
           if(input.checked===true){
             //Storing the user responses into the database
@@ -184,7 +188,7 @@ export default function Quiz() {
               {ques.map((qv,i) =>{
                   return (<div className="carousel-item">
                               <div className="question" style={{'whiteSpace':'pre-wrap'}}>
-                                  <p style={{'margin':'5px 0'}}>{"Question  " +(i+1)} / <span style={{'fontSize':'0.8rem'}}>30</span></p>
+                                  <p style={{'margin':'5px 0'}}>{"Question  " +(i+1)} / <span style={{'fontSize':'0.8rem'}}>{ques.length}</span></p>
                                   <div style={{'height':'0', 'borderTop':'1px dashed rgba(69, 123, 157,0.5)', 'marginBottom':'5px'}}></div><br />
                                   <p>{ qv.que }</p>
                                   <br />

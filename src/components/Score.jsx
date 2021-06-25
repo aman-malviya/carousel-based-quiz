@@ -80,7 +80,7 @@ export default function Score(){
         sch?<div className="d-flex justify-content-center landing-page">
           <div>
             <h1 style={{'color':'#E63946', 'fontWeight':'bolder', 'textAlign':'center','fontSize':'3rem'}}>
-                V<span style={{'fontSize':'2.5rem'}}>I</span>H<span style={{'fontSize':'2.5rem'}}>AA</span>N
+                RECRUITMENTS
             </h1>
             <div className="d-flex justify-content-center">
                 <img alt="trophy-img" width="150px" height="150px" src="trophy.png" />
@@ -88,7 +88,7 @@ export default function Score(){
             <div style={{'border':'2px solid rgba(69, 123, 157,0.5)', 'borderRadius':'8px','height':'60px', 'width':'200px', 'margin':'auto', 'padding':'12px', 'color':'#f1faee'}}>
                 <h4 style={{'textAlign':'center'}}>{points}</h4>
             </div>
-            <h6 style={{'color':'#f1faee', 'padding':'20px 50px', 'textAlign':'center'}}        >Thankyou for taking the Test.
+            <h6 style={{'color':'#f1faee', 'padding':'20px 50px', 'textAlign':'center'}}>Thankyou for taking the Test.
                 <br />
                 <br />
                 Team Quizzers' Club MANIT will release the leaderboard soon.<br /><br />Stay tuned.
