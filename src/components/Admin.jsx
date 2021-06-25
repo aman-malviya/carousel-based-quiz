@@ -25,8 +25,6 @@ export default function Admin(){
 	}
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
-          //redirect the page 
-          console.log(user)
           if(!user){
             history.push('/admin-login')
           }
