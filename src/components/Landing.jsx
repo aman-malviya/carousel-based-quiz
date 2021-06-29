@@ -86,10 +86,10 @@ export default function Landing(){
     const bypass=useLocation().search ==="?letDobbyPass";
     useEffect(()=>{
         let d=new Date().getTime();
-        let startSlot1= new Date(2021, 6, 6, 14, 0, 0, 0).getTime();
-        let endSlot1= new Date(2021, 6, 6, 16, 0, 0, 0).getTime();
-        let startSlot2= new Date(2021, 6, 6, 18, 0, 0, 0).getTime();
-        let endSlot2= new Date(2021, 6, 6, 20, 0, 0, 0).getTime();
+        let startSlot1= new Date(2021, 5, 29, 14, 0, 0, 0).getTime();
+        let endSlot1= new Date(2021, 5, 29, 16, 0, 0, 0).getTime();
+        let startSlot2= new Date(2021, 5, 29, 18, 0, 0, 0).getTime();
+        let endSlot2= new Date(2021, 5, 29, 20, 0, 0, 0).getTime();
         if((d>startSlot1 && d<endSlot1)|| bypass ||(d>startSlot2 && d<endSlot2) ){
             setRender(true);
         }
