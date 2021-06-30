@@ -34,10 +34,16 @@ export default function Quiz() {
             optc: doc.data().C,
             optd: doc.data().D,
             ans: doc.data().ans,
+            cat:doc.data().category
           }))
         );
       });
   }, []);
+
+  ques.sort((a,b)=>{
+    return a.cat.localeCompare(b.cat);
+  })
+
 
   const history = useHistory();
   const token = sessionStorage.getItem("auth");
@@ -77,10 +83,10 @@ export default function Quiz() {
 
   //Selection of Collection based on time
   let d = new Date().getTime();
-  let startSlot1 = new Date(2021, 5, 29, 14, 0, 0, 0).getTime();
-  let endSlot1 = new Date(2021, 5, 29, 16, 0, 0, 0).getTime();
-  let startSlot2 = new Date(2021, 5, 29, 18, 0, 0, 0).getTime();
-  let endSlot2 = new Date(2021, 5, 29, 20, 0, 0, 0).getTime();
+  let startSlot1= new Date(2021, 6, 6, 14, 0, 0, 0).getTime();
+  let endSlot1= new Date(2021, 6, 6, 16, 0, 0, 0).getTime();
+  let startSlot2= new Date(2021, 6, 6, 18, 0, 0, 0).getTime();
+  let endSlot2= new Date(2021, 6, 6, 20, 0, 0, 0).getTime();
   let collection = "";
   if (d > startSlot1 && d < endSlot1) {
     collection = "QuestionBank-Slot1";
@@ -168,10 +174,10 @@ export default function Quiz() {
               color: "#E63946",
               fontWeight: "bolder",
               textAlign: "left",
-              fontSize: "1.3rem",
+              fontSize: window.innerWidth>700?"1.3rem":"1rem",
             }}
           >
-            RECRUITMENTS
+            RECRUIT<br />MENTS
           </h3>
         </div>
         <div
@@ -277,6 +283,7 @@ export default function Quiz() {
                           <span style={{ fontSize: "0.8rem" }}>
                             {ques.length}
                           </span>
+                          <span style={{'float':'right', 'opacity':'0.5'}}>{qv.cat}</span>
                         </p>
                         <div
                           style={{

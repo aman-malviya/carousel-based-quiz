@@ -36,7 +36,7 @@ export default function Landing(){
             setTimeout(() => {
                    setMessage("");
                }, 2000);
-        }else if(scholar<201109000 || scholar>201120000){
+        }else if(!((scholar>201109000 || scholar<201120000) || (scholar>191109000 || scholar<191120000))){
             setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Invalid Scholar Number.</p>);
             setTimeout(() => {
                    setMessage("");
@@ -52,11 +52,8 @@ export default function Landing(){
                    setMessage("");
                }, 2000);
         }else{
-            firebaseApp.firestore().collection("Users").where('scholar', '==', scholar).onSnapshot((snapshot)=>   {
-            let items=[];
-            snapshot.forEach((doc)=>items.push(doc.data()));
-
-                if(items.length){
+            firebaseApp.firestore().collection("Users").where('scholar', '==', scholar).onSnapshot((snapshot)=>{
+                if(snapshot.size){
                     setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>You have already taken the test once.</p>);
                     setTimeout(() => {
                         setMessage("");
@@ -86,10 +83,10 @@ export default function Landing(){
     const bypass=useLocation().search ==="?letDobbyPass";
     useEffect(()=>{
         let d=new Date().getTime();
-        let startSlot1= new Date(2021, 5, 29, 14, 0, 0, 0).getTime();
-        let endSlot1= new Date(2021, 5, 29, 16, 0, 0, 0).getTime();
-        let startSlot2= new Date(2021, 5, 29, 18, 0, 0, 0).getTime();
-        let endSlot2= new Date(2021, 5, 29, 20, 0, 0, 0).getTime();
+        let startSlot1= new Date(2021, 6, 6, 14, 0, 0, 0).getTime();
+        let endSlot1= new Date(2021, 6, 6, 16, 0, 0, 0).getTime();
+        let startSlot2= new Date(2021, 6, 6, 18, 0, 0, 0).getTime();
+        let endSlot2= new Date(2021, 6, 6, 20, 0, 0, 0).getTime();
         if((d>startSlot1 && d<endSlot1)|| bypass ||(d>startSlot2 && d<endSlot2) ){
             setRender(true);
         }
