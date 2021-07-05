@@ -22,7 +22,7 @@ export default function TextNotStarted() {
         <div style={{ textAlign: "right" }}>
           6th July
           <br />
-          6:00 PM to 6:15 PM
+          4:00 PM to 4:30 PM
         </div>
       </div>
       <div
@@ -39,7 +39,7 @@ export default function TextNotStarted() {
         <div style={{ textAlign: "right" }}>
           6th July
           <br />
-          8:00 PM to 8:15 PM
+          8:00 PM to 8:30 PM
         </div>
       </div>
     </div>
