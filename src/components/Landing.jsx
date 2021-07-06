@@ -88,7 +88,7 @@ export default function Landing(){
         let endSlot1= new Date(2021, 6, 6, 16, 30, 0, 0).getTime();
         let startSlot2= new Date(2021, 6, 6, 20, 0, 0, 0).getTime();
         let endSlot2= new Date(2021, 6, 6, 20, 30, 0, 0).getTime();
-        if((d>startSlot1 && d<endSlot1)|| bypass ||(d>startSlot2 && d<endSlot2)){
+        if((bypass)){
             setRender(true);
         }
     });

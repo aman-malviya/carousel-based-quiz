@@ -5,7 +5,7 @@ export default function TextNotStarted() {
     <div style={{ padding: "0 10%" }}>
       <br />
       <div>
-        <h3>You can not enter the Quiz now.</h3>
+        <h3>Quiz has ended.</h3>
       </div>
       <div
         style={{
