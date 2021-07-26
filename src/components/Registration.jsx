@@ -1,0 +1,146 @@
+import {React, useState, useEffect} from 'react'
+import { useHistory, useLocation } from 'react-router-dom';
+import firebaseApp from '../firebase';
+import Brand from './Brand'
+import Event from './Event'
+import RegClosed from './RegClosed'
+
+export default function Landing(){
+    const [name, setName]=useState("");
+    const [college, setCollege]=useState("");
+    const [email,setEmail]=useState("");         //email
+    const [tel,setTel]= useState("");           //mobile
+    const [city,setCity]=useState("");         //first name
+    const [state,setState]=useState("");             //last name
+    const [pwd,setPwd]=useState("");             //post
+    const [rpwd,setRpwd]=useState("");     //scholar no.
+    const [message, setMessage] =useState();
+
+    const history = useHistory();
+
+    const handleChange=(e)=>{
+        setName(e.target.value);
+    }
+
+    //Email Validation
+    function validateEmail(emailAdd) {
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(emailAdd).toLowerCase());
+    }
+
+    //register user 
+    const register = (event)=>{
+        event.preventDefault();
+        firebaseApp.firestore().collection("Users").where("email", "==", email).get().then((snapshot)=>{
+            if(snapshot.size){
+                setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>You're already registered.</p>);
+                setTimeout(() => {
+                    setMessage("");
+                }, 2000);
+                return snapshot.size;
+            }
+        }).then((size)=>{
+            let flag=true;
+            if(size){
+                flag=false;
+            }
+            if(pwd !== rpwd){
+                flag=false;
+                console.log("password");
+                setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Passwords do not match.</p>);
+                setTimeout(() => {
+                    setMessage("");
+                }, 2000);
+                return;
+            }
+            if(name==="" || college==="" || city==="" || email==="" || tel==="" || state==="" || pwd==="" || rpwd === ""){
+                console.log("empty");
+                flag=false;
+                setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Fill all the details first.</p>);
+                setTimeout(() => {
+                       setMessage("");
+                }, 2000);
+                return;
+            }
+            
+            if(validateEmail(email)===false){
+                console.log("email");
+                flag=false;
+                setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Invalid Email.</p>);
+                setTimeout(() => {
+                       setMessage("");
+                }, 2000);
+                return;
+            }
+            
+            if(tel<1000000000 || tel>999999999999){
+                console.log("phone");
+                flag=false;
+                setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Invalid Mobile Number.</p>);
+                setTimeout(() => {
+                       setMessage("");
+                }, 2000);
+                return;
+            }
+    
+            if(flag){
+                console.log("main kaam");
+                firebaseApp.firestore().collection("Users").doc().set({
+                    name: name,
+                    college: college,
+                    email:email,
+                    phone:tel,
+                    state: state,
+                    city: city,
+                    password:pwd
+                })
+            }
+        })
+
+        
+    };
+
+    //Render Form based on time
+    const [render, setRender]=useState(false);
+    const bypass=useLocation().search ==="?bypass";
+    useEffect(()=>{
+        let d=new Date().getTime();
+        let regClose= new Date(2021, 6, 14, 23, 59, 0, 0).getTime();
+
+        if(d<regClose || bypass){
+            setRender(true);
+        }
+    });
+
+    return(
+    <div className='landing-page'>
+        <Event />
+        <div style={{'color':'#f1faee', 'padding':'2% 10% ', 'textAlign':'justify', 'textAlignLast':'center'}}>
+            <p>VIHAAN is Quizzers' Club MANIT's opening event for a session. We organize it even before the freshers evening, exclusively for the first years of our institute.
+            The purpose behind VIHAAN is to provide a platform to the newcomers to showcase their quizzing abilities and prove their mettle in quizzing.</p>
+        </div>
+        {render?<div>
+        <h3>Hello {name} !</h3>
+        <div className="d-flex justify-content-center">
+            <div>
+                <input value={name} onChange={handleChange} type="text" placeholder="Name" required />
+                <input value={college} onChange={event=>setCollege(event.target.value)} type="text" placeholder="College" required />
+                <input type="email" value ={email} onChange={event=>setEmail(event.target.value)}  placeholder="Email Address" required />
+                <input value={tel} onChange={event=>setTel(event.target.value)} type="tel" placeholder="Mobile Number" required />
+                <input value={state} onChange={event=>setState(event.target.value)} type="text" placeholder="State" required />
+                <input value={city} onChange={event=>setCity(event.target.value)} type="text" placeholder="City" required />
+                <input value={pwd} onChange={event=>setPwd(event.target.value)} type="password" placeholder="Create Password" required />
+                <input value={rpwd} onChange={event=>setRpwd(event.target.value)} type="password" placeholder="Re-enter Password" required />
+            </div>
+        </div>
+        <div className="d-flex justify-content-center"><button onClick={register}>Submit</button></div>
+        {message}
+        <br />
+        </div>
+        :
+        <RegClosed />
+        }
+        <Brand />
+    </div>
+    )
+}

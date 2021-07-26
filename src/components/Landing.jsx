@@ -6,21 +6,11 @@ import Event from './Event'
 import TestNotStarted from './TestNotStarted'
 
 export default function Landing(){
-    const [text, setText]=useState("");
     const [email,setEmail]=useState("");         //email
-    const [tel,setTel]= useState("");           //mobile
-    const [first,setFirst]=useState("");         //first name
-    const [last,setLast]=useState("");             //last name
-    const [post,setPost]=useState("");             //post
-    const [scholar,setScholar]=useState("");     //scholar no.
-    const [message, setMessage] =useState();
+    const [pwd, setPwd]=useState("");
+    const [message, setMessage]=useState("");
 
     const history = useHistory();
-
-    const handleChange=(e)=>{
-        setText(e.target.value);
-        setFirst(e.target.value);
-    }
 
     //Email Validation
     function validateEmail(emailAdd) {
@@ -31,56 +21,33 @@ export default function Landing(){
     //register user 
     const register = (event)=>{
         event.preventDefault();
-        if(first==="" || last==="" || post==="" || email==="" || tel==="" || scholar===""){
+        if(email==="" || pwd === ""){
             setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Fill all the details first.</p>);
             setTimeout(() => {
                    setMessage("");
                }, 2000);
-        }else if(!((scholar>201109000 && scholar<201120000) || (scholar>191109000 && scholar<191120000))){
-            setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Invalid Scholar Number.</p>);
-            setTimeout(() => {
-                   setMessage("");
-               }, 2000); 
         }else if(validateEmail(email)===false){
             setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Invalid Email.</p>);
             setTimeout(() => {
                    setMessage("");
-               }, 2000);
-        }else if(tel<1000000000 || tel>999999999999){
-            setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Invalid Mobile Number.</p>);
-            setTimeout(() => {
-                   setMessage("");
-               }, 2000);
+            }, 2000);
         }else{
-            firebaseApp.firestore().collection("Users").where('scholar', '==', scholar).onSnapshot((snapshot)=>{
-                if(snapshot.size){
-                    setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>You have already taken the test once.</p>);
+            firebaseApp.firestore().collection("Users").where("email", "==", email).get().then((snap)=>{
+                if(!snap.size){
+                    setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>You have not registered for the quiz.</p>);
                     setTimeout(() => {
                         setMessage("");
                     }, 2000);
                 }else{
-                    firebaseApp.firestore().collection("Users").doc(first+"-"+last).set({
-                        firstName: first,
-                        lastName: last,
-                        post:post,
-                        email:email,
-                        mobile: tel,
-                        scholar: scholar,
-                        inTime:new Date().toLocaleTimeString()
-                    })
-                    history.push('/instructions');
-                    sessionStorage.setItem("name", first);
-                    sessionStorage.setItem("sch", scholar);  
-                    sessionStorage.setItem("auth", true);
+                    console.log(snap);
                 }
-        })
-        
+            })
         }
     };
 
     //Render Form based on time
     const [render, setRender]=useState(false);
-    const bypass=useLocation().search ==="?letGrootPass";
+    const bypass=useLocation().search ==="?bypass";
 
     useEffect(()=>{
         let d=new Date().getTime();
@@ -100,26 +67,10 @@ export default function Landing(){
             <p>After another year of a successful journey, its finally time to pass the baton. Quizzers’ Club MANIT, the only quizzing club of NIT Bhopal is all set to recruit new members. So, wait till the slots open, and then brainstorm over those riveting 30 questions on Mental Ability and General Knowledge.<br />All the best!</p>
         </div>
         {render?<div>
-        <h3>Hello {text} !</h3>
         <div className="d-flex justify-content-center">
             <div>
-                <input value={first} onChange={handleChange} type="text" placeholder="First Name" required />
-                <input value={last} onChange={event=>setLast(event.target.value)} type="text" placeholder="Last Name" required />
-                <select value={post} onChange={event=>setPost(event.target.value)} required>
-                    <option value="">Select your branch</option>
-                    <option value="CSE">CSE</option>
-                    <option value="ECE">ECE</option>
-                    <option value="Electrical">Electrical</option>
-                    <option value="Mechanical">Mechanical</option>
-                    <option value="Civil">Civil</option>
-					<option value="Chemical">Chemical</option>
-                    <option value="MSME">MSME</option>
-                    <option value="BArch">BArch</option>
-                    <option value="BPlan">BPlan</option>
-                </select>
                 <input type="email" value ={email} onChange={event=>setEmail(event.target.value)}  placeholder="Email Address" required />
-                <input value={tel} onChange={event=>setTel(event.target.value)} type="tel" placeholder="Mobile Number" required />
-                <input value={scholar} onChange={event=>setScholar(event.target.value)} type="number" placeholder="Scholar Number" required />
+                <input value={pwd} onChange={event=>setPwd(event.target.value)} type="password" placeholder="Password" required />
             </div>
         </div>
         <div className="d-flex justify-content-center"><button onClick={register}>Submit</button></div>

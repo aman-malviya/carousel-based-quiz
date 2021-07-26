@@ -8,24 +8,16 @@ import Instructions from './Instructions'
 import AdminAuth from './AdminAuth'
 import NotFound from './NotFound'
 import Score from './Score'
-// import PrivateRoute from './PrivateRoute'
-// import {db} from '../firebase'
+import Registration from './Registration'
 
 export default function App(){
-    // const [auth, setAuth]=useState(false);
-    // useEffect(()=>{
-    //     if(sessionStorage.getItem("auth")){
-    //         setAuth(true);
-    //     }
-    // })
-
     
     return(
     <div>
             <Router>
                 <Switch>
                     <Route path='/' exact><Landing /></Route>
-                    {/* <Route path='/verification'><Otp /></Route> */}
+                    <Route path='/register' exact><Registration /></Route>
                     <Route path='/admin-login'><AdminAuth /></Route>
                     <Route path='/admin'><Admin /></Route>
                     <Route path="/leader-board" ><LeaderBoard /></Route>
