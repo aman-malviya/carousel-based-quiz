@@ -32,18 +32,6 @@ export default function Admin(){
         })
     });
 
-    const makeURL=()=>{
-        firebaseApp.firestore().collection("Questions").get().then(snapshot=>{
-            snapshot.docs.forEach(doc=>{
-                firebaseApp.storage().ref().child(doc.data().img).getDownloadURL().then(url=>{
-                    firebaseApp.firestore().collection("Questions").doc(doc.id).update({
-                        img:url
-                    })
-                })
-            })
-        })
-    }
-
     const addQuestion=(event)=>{
         const img=document.getElementById("image").files[0];
         const timeStamp=new Date().getTime();
@@ -56,42 +44,58 @@ export default function Admin(){
         }else{
             if(img){
                 var metadata={
-                contentType:img.type,
+                    contentType:img.type,
                 }
                 setuploading(true);
-                firebaseApp.storage().ref().child("images/"+timeStamp).put(img, metadata).then(snap=>{
-                    setuploading(false);
+                firebaseApp.storage().ref().child("images/"+timeStamp).put(img, metadata).then(()=>{
+                    firebaseApp.storage().ref().child("images/"+timeStamp).getDownloadURL().then(url=>{
+                        firebaseApp.firestore().collection('Questions').add({
+                            category: cat,
+                            question: question,
+                            A: a,
+                            B: b,
+                            C: c,
+                            D: d,
+                            ans:ans,
+                            img:url,
+                        }).then(()=>{
+                            setuploading(false);
+                            setMessage(<p style={{'color':'#f1faee'}}>Successfully added to the database.</p>)   
+                            setTimeout(() => {
+                                setMessage("");
+                                window.location.reload();
+                            }, 2000);
+                        }).catch((e)=>{
+                            setMessage(<p style={{'color':'#E63946'}}>Some error has occured.</p>);
+                            setTimeout(() => {
+                                setMessage("");
+                            }, 3000);
+                        })
+                    })
+                })
+            }else{
+                firebaseApp.firestore().collection('Questions').add({
+                    category: cat,
+                    question: question,
+                    A: a,
+                    B: b,
+                    C: c,
+                    D: d,
+                    ans:ans,
+                    img:"",
+                }).then(()=>{
                     setMessage(<p style={{'color':'#f1faee'}}>Successfully added to the database.</p>)   
                     setTimeout(() => {
                         setMessage("");
                         window.location.reload();
                     }, 2000);
+                }).catch((e)=>{
+                    setMessage(<p style={{'color':'#E63946'}}>Some error has occured.</p>);
+                    setTimeout(() => {
+                        setMessage("");
+                    }, 3000);
                 })
             }
-            firebaseApp.firestore().collection('Questions').add({
-                category: cat,
-                question: question,
-                A: a,
-                B: b,
-                C: c,
-                D: d,
-                ans:ans,
-                img:img?"images/"+timeStamp:"",
-            }).then(()=>{
-                if(!img){
-                    setMessage(<p style={{'color':'#f1faee'}}>Successfully added to the database.</p>)   
-                    setTimeout(() => {
-                        setMessage("");
-                        window.location.reload();
-                    }, 2000);
-                }
-            }).catch((e)=>{
-                setMessage(<p style={{'color':'#E63946'}}>Some error has occured.</p>);
-                setTimeout(() => {
-                    setMessage("");
-                }, 3000);
-            })
-            makeURL();
         }
     }
     return(<div>
