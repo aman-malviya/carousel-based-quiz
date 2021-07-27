@@ -282,7 +282,7 @@ export default function Quiz() {
                         ></div>
                         <br />
                         <p>{qv.que}</p>
-                        {qv.img.length?<div>
+                        {qv.imgURL?<div>
                             <br />
                             <div className="d-flex justify-content-center">
                               <div className="ques-img shadow-lg"><img src={qv.imgURL} alt="ques-img" /></div>

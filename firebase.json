@@ -1,7 +1,6 @@
 {
   "hosting": {
-    "site": "qcm-recruitments2021",
-    "public": "./build",
+    "public": "build",
     "ignore": [
       "firebase.json",
       "**/.*",
