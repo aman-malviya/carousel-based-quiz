@@ -1,11 +1,11 @@
 import React from "react";
 
-export default function TextNotStarted() {
+export default function TextNotStarted(props) {
   return (
     <div style={{ padding: "0 10%" }}>
       <br />
       <div>
-        <h3 style={{'fontSize':'3rem'}}>Registrations Closed.</h3>
+        <h3 style={{'fontSize':'3rem'}}>{props.info}</h3>
       </div>
       <div
         style={{

@@ -30,7 +30,19 @@ export default function Admin(){
             history.push('/admin-login')
           }
         })
-      });
+    });
+
+    const makeURL=()=>{
+        firebaseApp.firestore().collection("Questions").get().then(snapshot=>{
+            snapshot.docs.forEach(doc=>{
+                firebaseApp.storage().ref().child(doc.data().img).getDownloadURL().then(url=>{
+                    firebaseApp.firestore().collection("Questions").doc(doc.id).update({
+                        img:url
+                    })
+                })
+            })
+        })
+    }
 
     const addQuestion=(event)=>{
         const img=document.getElementById("image").files[0];
@@ -79,6 +91,7 @@ export default function Admin(){
                     setMessage("");
                 }, 3000);
             })
+            makeURL();
         }
     }
     return(<div>

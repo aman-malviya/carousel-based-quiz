@@ -38,20 +38,12 @@ export default function Quiz() {
             img:doc.data().img
           }))
         );
-      });
+      })
   }, []);
 
   ques.sort((a,b)=>{
     return a.cat.localeCompare(b.cat);
   })
-  ques.forEach(q=>{
-    if(q.img.length){
-      firebaseApp.storage().ref().child(q.img).getDownloadURL().then(url=>{
-        q["imgURL"]=url;
-      })
-    }
-  })
-
 
   const history = useHistory();
   const token = sessionStorage.getItem("auth");
@@ -282,10 +274,10 @@ export default function Quiz() {
                         ></div>
                         <br />
                         <p>{qv.que}</p>
-                        {qv.imgURL?<div>
+                        {qv.img?<div>
                             <br />
                             <div className="d-flex justify-content-center">
-                              <div className="ques-img shadow-lg"><img src={qv.imgURL} alt="ques-img" /></div>
+                              <div className="ques-img shadow-lg"><img src={qv.img} alt="ques-img" /></div>
                             </div>
                             <br />
                             <br />

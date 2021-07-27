@@ -16,6 +16,7 @@ export default function Landing(){
     const [pwd,setPwd]=useState("");             //post
     const [rpwd,setRpwd]=useState("");     //scholar no.
     const [message, setMessage] =useState();
+    const [reg, setreg] = useState(localStorage.getItem("registered"));
 
     const handleChange=(e)=>{
         setName(e.target.value);
@@ -87,6 +88,9 @@ export default function Landing(){
                     state: state,
                     city: city,
                     password:pwd
+                }).then(()=>{
+                    localStorage.setItem("registered", true);
+                    setreg(true);
                 })
             }
         })
@@ -113,7 +117,9 @@ export default function Landing(){
             <p>VIHAAN is Quizzers' Club MANIT's opening event for a session. We organize it even before the freshers evening, exclusively for the first years of our institute.
             The purpose behind VIHAAN is to provide a platform to the newcomers to showcase their quizzing abilities and prove their mettle in quizzing.</p>
         </div>
-        {render?<div>
+        {reg?
+        <RegClosed info="You have successfully registered" />
+        :render?<div>
         <h3>Hello {name} !</h3>
         <div className="d-flex justify-content-center">
             <div>
@@ -146,7 +152,7 @@ export default function Landing(){
         <br />
         </div>
         :
-        <RegClosed />
+        <RegClosed info="Registrations Closed." />
         }
         <Brand />
     </div>
