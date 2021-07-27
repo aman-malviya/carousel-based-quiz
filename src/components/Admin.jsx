@@ -2,11 +2,11 @@ import React,{useState, useEffect} from 'react'
 import firebaseApp, { auth } from '../firebase'
 import {useHistory} from 'react-router-dom'
 import Brand from './Brand'
+import Loader from './Loader'
                 
 
 export default function Admin(){
     const history = useHistory();
-    const [slot,setSlot]=useState("");
     const [question,setQuestion] = useState("");
     const [a,setA] = useState("");
     const [b,setB] = useState("");
@@ -15,13 +15,14 @@ export default function Admin(){
     const [ans,setAns] = useState("");
     const [cat,setCat] = useState("");
     let [message, setMessage]=useState("");
+    const [uploading, setuploading] = useState(false);
 	
 	const signOut=()=>{
-	firebaseApp.auth().signOut().then(() => {
-		history.push("/admin-login");
-	}).catch((error) => {
-		console.log(error.message);
-	});
+        firebaseApp.auth().signOut().then(() => {
+            history.push("/admin-login");
+        }).catch((error) => {
+            console.log(error.message);
+        });
 	}
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
@@ -32,35 +33,53 @@ export default function Admin(){
       });
 
     const addQuestion=(event)=>{
+        const img=document.getElementById("image").files[0];
+        const timeStamp=new Date().getTime();
         event.preventDefault();
-        if(slot ==="" || question==="" || a==="" || b==="" || c==="" || d==="" || ans==="" || cat===""){
+        if(question==="" || a==="" || b==="" || c==="" || d==="" || ans==="" || cat===""){
            setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Fill out all the fields first.</p>);
             setTimeout(() => {
                    setMessage("");
             }, 2000);
         }else{
-            firebaseApp.firestore().collection(slot==='slot1'?'QuestionBank-Slot1':'QuestionBank-Slot2').add({
+            if(img){
+                var metadata={
+                contentType:img.type,
+                }
+                setuploading(true);
+                firebaseApp.storage().ref().child("images/"+timeStamp).put(img, metadata).then(snap=>{
+                    setuploading(false);
+                    setMessage(<p style={{'color':'#f1faee'}}>Successfully added to the database.</p>)   
+                    setTimeout(() => {
+                        setMessage("");
+                        window.location.reload();
+                    }, 2000);
+                })
+            }
+            firebaseApp.firestore().collection('Questions').add({
                 category: cat,
-                slot:slot,
                 question: question,
                 A: a,
                 B: b,
                 C: c,
                 D: d,
                 ans:ans,
-
-            }).then(setMessage(<p style={{'color':'#f1faee'}}>Successfully added to the database.</p>)      
-            ).catch((e)=>setMessage(<p style={{'color':'#E63946'}}>Some error has occured.</p>))
-            setTimeout(() => {
-                setMessage("");
-            }, 3000);
-            setSlot("");
-            setQuestion("");
-            setA("");
-            setB("");
-            setC("");
-            setD("");
-    }
+                img:img?"images/"+timeStamp:"",
+            }).then(()=>{
+                if(!img){
+                    setMessage(<p style={{'color':'#f1faee'}}>Successfully added to the database.</p>)   
+                    setTimeout(() => {
+                        setMessage("");
+                        window.location.reload();
+                    }, 2000);
+                }
+            }).catch((e)=>{
+                setMessage(<p style={{'color':'#E63946'}}>Some error has occured.</p>);
+                setTimeout(() => {
+                    setMessage("");
+                }, 3000);
+            })
+        }
     }
     return(<div>
 	<div style={{'display':'grid', 'gridTemplateColumns':'1fr 1fr'}}>
@@ -78,18 +97,13 @@ export default function Admin(){
                 <form>
                 <div className="d-flex justify-content-center">
                     <div>
-                        <select style={{'borderRadius':'8px 8px 0 0'}} required onClick={e=>setSlot(e.target.value)}>
-                            <option value="">Select Slot</option> 
-                            <option value="slot1">Slot 1</option>
-                            <option value="slot2">Slot 2</option>
-                        </select>
-                        <br />
                         <select required onClick={e=>setCat(e.target.value)}>
                             <option value="">Select Category</option> 
-                            <option value="Mental Ability">Mental Ability</option>
-                            <option value="General Knowledge">General Knowledge</option>
+                            <option value="Straight">Straight</option>
+                            <option value="Bonus">Bonus</option>
                         </select>
                         <textarea required value={question} onChange={event=>setQuestion(event.target.value)} type="text" placeholder="Question" />
+                        <input style={{'padding':window.innerWidth<600?'20px 10%':'20px 25%'}} type="file" id="image" />
                         <input required value ={a} onChange={(event)=>setA(event.target.value)} type="text" placeholder="Option 1" />
                         <input required value={b} onChange={(event)=>setB(event.target.value)} type="text" placeholder="Option 2" />
                         <input required value={c} onChange={(event)=>setC(event.target.value)} type="text" placeholder="Option 3" />
@@ -105,7 +119,7 @@ export default function Admin(){
                 </div>
                 <div className="d-flex justify-content-center">
                     <a href="/verification">
-                        <button onClick={addQuestion}>Push to the Database</button>
+                        <button onClick={addQuestion}>{uploading?<div>Uploading Image <Loader /></div>:<div>Push to the Database</div>}</button>
                     </a>
                 </div>
                 <div style={{'padding':'0 10px', 'textAlign':'center'}}>{message}</div>

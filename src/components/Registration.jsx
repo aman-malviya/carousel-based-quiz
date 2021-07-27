@@ -4,6 +4,7 @@ import firebaseApp from '../firebase';
 import Brand from './Brand'
 import Event from './Event'
 import RegClosed from './RegClosed'
+import {cities, states} from '../cities'
 
 export default function Landing(){
     const [name, setName]=useState("");
@@ -15,8 +16,6 @@ export default function Landing(){
     const [pwd,setPwd]=useState("");             //post
     const [rpwd,setRpwd]=useState("");     //scholar no.
     const [message, setMessage] =useState();
-
-    const history = useHistory();
 
     const handleChange=(e)=>{
         setName(e.target.value);
@@ -33,7 +32,7 @@ export default function Landing(){
         event.preventDefault();
         firebaseApp.firestore().collection("Users").where("email", "==", email).get().then((snapshot)=>{
             if(snapshot.size){
-                setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>You're already registered.</p>);
+                setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>You have already registered</p>);
                 setTimeout(() => {
                     setMessage("");
                 }, 2000);
@@ -46,7 +45,6 @@ export default function Landing(){
             }
             if(pwd !== rpwd){
                 flag=false;
-                console.log("password");
                 setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Passwords do not match.</p>);
                 setTimeout(() => {
                     setMessage("");
@@ -54,7 +52,6 @@ export default function Landing(){
                 return;
             }
             if(name==="" || college==="" || city==="" || email==="" || tel==="" || state==="" || pwd==="" || rpwd === ""){
-                console.log("empty");
                 flag=false;
                 setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Fill all the details first.</p>);
                 setTimeout(() => {
@@ -64,7 +61,6 @@ export default function Landing(){
             }
             
             if(validateEmail(email)===false){
-                console.log("email");
                 flag=false;
                 setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Invalid Email.</p>);
                 setTimeout(() => {
@@ -74,7 +70,6 @@ export default function Landing(){
             }
             
             if(tel<1000000000 || tel>999999999999){
-                console.log("phone");
                 flag=false;
                 setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Invalid Mobile Number.</p>);
                 setTimeout(() => {
@@ -84,7 +79,6 @@ export default function Landing(){
             }
     
             if(flag){
-                console.log("main kaam");
                 firebaseApp.firestore().collection("Users").doc().set({
                     name: name,
                     college: college,
@@ -105,7 +99,7 @@ export default function Landing(){
     const bypass=useLocation().search ==="?bypass";
     useEffect(()=>{
         let d=new Date().getTime();
-        let regClose= new Date(2021, 6, 14, 23, 59, 0, 0).getTime();
+        let regClose= new Date(2021, 7, 14, 23, 59, 0, 0).getTime();
 
         if(d<regClose || bypass){
             setRender(true);
@@ -127,13 +121,27 @@ export default function Landing(){
                 <input value={college} onChange={event=>setCollege(event.target.value)} type="text" placeholder="College" required />
                 <input type="email" value ={email} onChange={event=>setEmail(event.target.value)}  placeholder="Email Address" required />
                 <input value={tel} onChange={event=>setTel(event.target.value)} type="tel" placeholder="Mobile Number" required />
-                <input value={state} onChange={event=>setState(event.target.value)} type="text" placeholder="State" required />
-                <input value={city} onChange={event=>setCity(event.target.value)} type="text" placeholder="City" required />
+                <select value={state} onChange={event=>setState(event.target.value)} required>
+                    <option value="">Select a state</option>
+                    {states.map(st=>{
+                        return <option value={st}>{st}</option>
+                    })}
+                </select>
+                <br />
+                <select value={city} onChange={event=>setCity(event.target.value)} required>
+                    <option value="">Select a city</option>
+                    {cities.map(c=>{
+                        if(c.state === state){
+                            return <option value={c.name}>{c.name}</option>
+                        }
+                        return null;
+                    })}
+                </select>
                 <input value={pwd} onChange={event=>setPwd(event.target.value)} type="password" placeholder="Create Password" required />
                 <input value={rpwd} onChange={event=>setRpwd(event.target.value)} type="password" placeholder="Re-enter Password" required />
             </div>
         </div>
-        <div className="d-flex justify-content-center"><button onClick={register}>Submit</button></div>
+        <div className="d-flex justify-content-center"><button onClick={register}>Register</button></div>
         {message}
         <br />
         </div>

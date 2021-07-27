@@ -12,34 +12,16 @@ export default function TextNotStarted() {
           display: "grid",
           "grid-template-columns": "1fr 2fr",
           border: "2px solid rgba(69, 123, 157,0.7)",
-          borderBottom: "none",
           padding: "10px 20px",
-          borderRadius: "8px 8px 0 0",
+          borderRadius: "8px",
           color: "#f1faee",
         }}
       >
-        <div>Slot 1</div>
+        <div>Quiz starts</div>
         <div style={{ textAlign: "right" }}>
-          6th July
+          15th August 2021
           <br />
-          4:00 PM to 4:30 PM
-        </div>
-      </div>
-      <div
-        style={{
-          display: "grid",
-          "grid-template-columns": "1fr 2fr",
-          border: "2px solid rgba(69, 123, 157,0.7)",
-          padding: "10px 20px",
-          borderRadius: "0 0 8px 8px",
-          color: "#f1faee",
-        }}
-      >
-        <div>Slot 2</div>
-        <div style={{ textAlign: "right" }}>
-          6th July
-          <br />
-          8:00 PM to 8:30 PM
+          3:00 PM to 4:00 PM
         </div>
       </div>
       <br />

@@ -18,46 +18,32 @@ export default function Score(){
         },
     });
 
-    const sch=sessionStorage.getItem("sch");
+    const user=sessionStorage.getItem("user");
     const history =useHistory();
     window.addEventListener("popstate", e=>{
+        sessionStorage.removeItem("user");
         history.push("/");
     })
     //Score Calculation
     const [points, setPoints] =useState(0);
     useEffect(()=>{
         let score=0;
-        // db.collection("AnswerBank/"+sessionStorage.getItem("name")+"-"+sessionStorage.getItem("sch")+"/Answers").onSnapshot((snapshot)=>{
-        //     snapshot.forEach((doc)=>{
-        //             if(doc.data().userAns === ""){
-        //                 setPoints(score);
-        //             }
-        //             if(doc.data().correct ===true){
-        //                 score=score+4;
-        //                 setPoints(score);
-        //             }
-        //             if(doc.data().correct === false){
-        //                 score=score-1;
-        //                 setPoints(score);
-        //             }
-        //     })
-        // })
 
         //If user didn't answer no increment no decrement in points
-        db.collection("AnswerBank/"+sessionStorage.getItem("name")+"-"+sessionStorage.getItem("sch")+"/Answers").where('userAns','==','').onSnapshot((snapshot)=>{
+        db.collection("AnswerBank/"+user+"/Answers").where('userAns','==','').onSnapshot((snapshot)=>{
             snapshot.forEach((doc)=>{
                 setPoints(score);
             })
         })
         //If user's answer is correct, +4
-        db.collection("AnswerBank/"+sessionStorage.getItem("name")+"-"+sessionStorage.getItem("sch")+"/Answers").where('correct','==',true).onSnapshot((snapshot)=>{
+        db.collection("AnswerBank/"+user+"/Answers").where('correct','==',true).onSnapshot((snapshot)=>{
             snapshot.forEach((doc)=>{
                 score=score+4;
                 setPoints(score);
             })
         })
         //If user's answer is incorrect, -1
-        db.collection("AnswerBank/"+sessionStorage.getItem("name")+"-"+sessionStorage.getItem("sch")+"/Answers").where('correct','==',false).onSnapshot((snapshot)=>{
+        db.collection("AnswerBank/"+user+"/Answers").where('correct','==',false).onSnapshot((snapshot)=>{
             snapshot.forEach((doc)=>{
                 score=score-1;
                 setPoints(score);
@@ -66,9 +52,9 @@ export default function Score(){
     },[])
 
     //Store the points in the database
-    db.collection("scores").doc(sessionStorage.getItem("name")+"-"+sessionStorage.getItem("sch")).set({
+    db.collection("scores").doc(user).set({
         points:points,
-        name:sessionStorage.getItem("name")+"-"+sessionStorage.getItem("sch")
+        user:user
     }).then(()=>{
         setLoading(false);
     })
@@ -77,7 +63,7 @@ export default function Score(){
             <LinearProgress />
         </ThemeProvider>
         :
-        sch?<div className="d-flex justify-content-center landing-page">
+        user?<div className="d-flex justify-content-center landing-page">
           <div>
             <h1 style={{'color':'#E63946', 'fontWeight':'bolder', 'textAlign':'center','fontSize':'3rem'}}>
                 RECRUITMENTS
@@ -95,8 +81,7 @@ export default function Score(){
             </h6> 
             <div className="d-flex justify-content-center">
                 <a href="/"><button style={{'borderRadius':'8px', 'width':'250px'}} onClick={()=>{
-                    sessionStorage.removeItem("sch");
-                    sessionStorage.removeItem("name");
+                    sessionStorage.removeItem("user");
                 }}>Go to Landing Page</button></a>
             </div>
         </div>

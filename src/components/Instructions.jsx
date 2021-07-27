@@ -27,14 +27,6 @@ export default function Instructions(){
         <LinearProgress />
     </ThemeProvider>    
     :token?submitTime?<Redirect to="/quiz" />:<div className="landing-page d-flex justify-content-center">
-            {/*<Prompt
-                message={(location, action)=>{
-                    if(action==='POP'){
-                        sessionStorage.removeItem("auth");
-                        return "Are you sure you want to navigate back? You will be taken to the register window and you won't be able to take the test again.";
-                    }
-                }}
-            />*/}
             <div style={window.innerWidth>700?{'padding':'0 25%'}:{'padding':'0 8%'}} className="question">
                 <p style={{'margin':'5px 0','color':'#f1faee','paddingTop':'5%'}}>
                     Instructions-

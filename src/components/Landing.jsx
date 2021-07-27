@@ -34,12 +34,33 @@ export default function Landing(){
         }else{
             firebaseApp.firestore().collection("Users").where("email", "==", email).get().then((snap)=>{
                 if(!snap.size){
-                    setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>You have not registered for the quiz.</p>);
+                    setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>You have not registered for the quiz</p>);
                     setTimeout(() => {
                         setMessage("");
                     }, 2000);
                 }else{
-                    console.log(snap);
+                    const user = snap.docs[0].data();
+                    if(user.password !== pwd){
+                        setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Incorrect Password</p>);
+                        setTimeout(() => {
+                            setMessage("");
+                        }, 2000);
+                    }else{
+                        firebaseApp.firestore().collection("scores").where("user", "==", email).get().then(snap=>{
+                            return snap.size;
+                        }).then(size=>{
+                            if(!size){
+                                sessionStorage.setItem("auth", true);
+                                sessionStorage.setItem("user", email);
+                                history.push('/instructions')
+                            }else{
+                                setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>You have already taken the quiz once</p>);
+                                setTimeout(() => {
+                                    setMessage("");
+                                }, 2000);
+                            }
+                        })
+                    }
                 }
             })
         }
@@ -51,11 +72,9 @@ export default function Landing(){
 
     useEffect(()=>{
         let d=new Date().getTime();
-        let startSlot1= new Date(2021, 6, 6, 16, 0, 0, 0).getTime();
-        let endSlot1= new Date(2021, 6, 6, 16, 30, 0, 0).getTime();
-        let startSlot2= new Date(2021, 6, 6, 20, 0, 0, 0).getTime();
-        let endSlot2= new Date(2021, 6, 6, 20, 30, 0, 0).getTime();
-        if((bypass)){
+        let start= new Date(2021, 7, 15, 15, 0, 0, 0).getTime();
+        let end= new Date(2021, 7, 15, 16, 0, 0, 0).getTime();
+        if(bypass || (d>start && d<end)){
             setRender(true);
         }
     });
@@ -66,6 +85,7 @@ export default function Landing(){
         <div style={{'color':'#f1faee', 'padding':'2% 10% ', 'textAlign':'justify', 'textAlignLast':'center'}}>
             <p>After another year of a successful journey, its finally time to pass the baton. Quizzers’ Club MANIT, the only quizzing club of NIT Bhopal is all set to recruit new members. So, wait till the slots open, and then brainstorm over those riveting 30 questions on Mental Ability and General Knowledge.<br />All the best!</p>
         </div>
+        <br />
         {render?<div>
         <div className="d-flex justify-content-center">
             <div>
@@ -76,7 +96,9 @@ export default function Landing(){
         <div className="d-flex justify-content-center"><button onClick={register}>Submit</button></div>
         {message}
         <br />
-        <p style={{'color':'#f1faee', 'textAlign':'center'}}>If you face any issue, feel free to call <br /> Aman : +91 8269366460<br />Yash : +91 8529736944</p>
+        <br />
+        <br />
+        <p style={{'color':'#f1faee', 'textAlign':'center', 'opacity':'0.6'}}>If you face any issue, feel free to call <br /> Aman : +91 8269366460<br />Yash : +91 8529736944</p>
         </div>
         :
         <TestNotStarted />

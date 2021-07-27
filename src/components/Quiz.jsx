@@ -23,7 +23,7 @@ export default function Quiz() {
   useEffect(() => {
     firebaseApp
       .firestore()
-      .collection(collection)
+      .collection("Questions")
       .limit(30)
       .onSnapshot((snapshot) => {
         setQues(
@@ -34,7 +34,8 @@ export default function Quiz() {
             optc: doc.data().C,
             optd: doc.data().D,
             ans: doc.data().ans,
-            cat:doc.data().category
+            cat:doc.data().category,
+            img:doc.data().img
           }))
         );
       });
@@ -42,6 +43,13 @@ export default function Quiz() {
 
   ques.sort((a,b)=>{
     return a.cat.localeCompare(b.cat);
+  })
+  ques.forEach(q=>{
+    if(q.img.length){
+      firebaseApp.storage().ref().child(q.img).getDownloadURL().then(url=>{
+        q["imgURL"]=url;
+      })
+    }
   })
 
 
@@ -81,21 +89,6 @@ export default function Quiz() {
     }
   }, [numbers]);
 
-  //Selection of Collection based on time
-  let d = new Date().getTime();
-  let startSlot1= new Date(2021, 6, 6, 16, 0, 0, 0).getTime();
-  let endSlot1= new Date(2021, 6, 6, 16, 30, 0, 0).getTime();
-  let startSlot2= new Date(2021, 6, 6, 20, 0, 0, 0).getTime();
-  let endSlot2= new Date(2021, 6, 6, 20, 30, 0, 0).getTime();
-  let collection = "";
-  if (d > startSlot1 && d < endSlot1) {
-    collection = "QuestionBank-Slot1";
-  } else if (d > startSlot2 && d < endSlot2) {
-    collection = "QuestionBank-Slot2";
-  } else {
-    collection = "Questions";
-  }
-
   //Submit test function on clicking submit button
   const submitTest = () => {
     numbers.map((number) => {
@@ -107,10 +100,7 @@ export default function Quiz() {
             firebaseApp
               .firestore()
               .collection(
-                "AnswerBank/" +
-                  sessionStorage.getItem("name") +
-                  "-" +
-                  sessionStorage.getItem("sch") +
+                "AnswerBank/" +sessionStorage.getItem("user") +
                   "/Answers"
               )
               .doc("answer" + (number < 10 ? "0" + number : number))
@@ -124,9 +114,7 @@ export default function Quiz() {
               .firestore()
               .collection(
                 "AnswerBank/" +
-                  sessionStorage.getItem("name") +
-                  "-" +
-                  sessionStorage.getItem("sch") +
+                  sessionStorage.getItem("user") +
                   "/Answers"
               )
               .doc("answer" + (number < 10 ? "0" + number : number))
@@ -174,10 +162,10 @@ export default function Quiz() {
               color: "#E63946",
               fontWeight: "bolder",
               textAlign: "left",
-              fontSize: window.innerWidth>700?"1.3rem":"1rem",
+              fontSize: window.innerWidth>700?"2rem":"1.5rem",
             }}
           >
-            RECRUIT<br />MENTS
+            QCM
           </h3>
         </div>
         <div
@@ -294,7 +282,15 @@ export default function Quiz() {
                         ></div>
                         <br />
                         <p>{qv.que}</p>
-                        <br />
+                        {qv.img.length?<div>
+                            <br />
+                            <div className="d-flex justify-content-center">
+                              <div className="ques-img shadow-lg"><img src={qv.imgURL} alt="ques-img" /></div>
+                            </div>
+                            <br />
+                            <br />
+                          </div>:""
+                        }
                       </div>
                       <div className="Answer">
                         <ul
