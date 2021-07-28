@@ -27,36 +27,32 @@ export default function Instructions(){
         <LinearProgress />
     </ThemeProvider>    
     :token?submitTime?<Redirect to="/quiz" />:<div style={{'backgroundPositionY':'bottom'}} className="landing-page d-flex justify-content-center">
-            <div style={window.innerWidth>700?{'padding':'0 25%'}:{'padding':'0 8%'}} className="question">
+            <div style={window.innerWidth>700?{'padding':'0 18%'}:{'padding':'0 8%'}} className="question">
                 <p style={{'margin':'5px 0','color':'#f1faee','paddingTop':'5%'}}>
-                    Instructions-
+                    Instructions for the Quiz-
                 </p>
                 <div style={{'height':'0', 'borderTop':'1px dashed rgba(69, 123, 157,0.5)', 'marginBottom':'5px'}}>
                 </div>
                 <p style={{'fontSize':'1rem', 'color':'#f1faee'}}>
-                    1. Make sure that you have a proper internet connection for the next 20 minutes.
-                    <br />
-                    <div style={{'height':'0', 'marginBottom':'10px'}}>
-                    </div>
-                    2. Total number of questions is 30, first 15 questions are on General Knowledge and next 15 on Mental Ability.
-                    <br />
-                    <div style={{'height':'0', 'marginBottom':'10px'}}>
-                    </div>
-                    3. Total time allotted for the quiz is 15 minutes.
-                    <br />
-                    <div style={{'height':'0', 'marginBottom':'10px'}}>
-                    </div>
-                    4. Each question carries 4 marks.
-                    <br />
-                    <div style={{'height':'0', 'marginBottom':'10px'}}>
-                    </div>
-                    5. +4 for correct answer, -1 for incorrect answer. Once you answer a question, cannot unanswer it.
-                    <br />
-                    <div style={{'height':'0', 'marginBottom':'10px'}}>
-                    </div>
-                    6. Avoid reloading and navigating while attempting the quiz, you may get disqualified and your response may be lost.
+                    <ol className="instructions">
+                        <li>Read all the instructions carefully before attempting the quiz.</li>
+                        <li>Make sure that you have a proper internet connection for the next 30 minutes.</li>
+                        <li>The questions will be of Multiple Choice (MCQ) format. The total number of questions is 25 (20 straight + 5 bonus questions).</li>
+                        <li>The time remaining will be displayed on the screen.</li>
+                        <li>The participant can navigate between the questions.</li>
+                        <li>
+                            The marking scheme for the quiz is as follows-
+                            <ul>
+                                <li>Questions 1 to 20 are straight, +4 for each correct response, -1 for each incorrect response and 0 if not attempted.</li>
+                                <li>Questions 21 to 25 are bonus, +4 for each correct response, 0 for each incorrect response and 0 if not attempted.</li>
+                            </ul>
+                        </li>
+                        <li>Avoid reloading and navigating while attempting the quiz, you may get disqualified and your response may be lost.</li>
+                        <li>The score will be displayed on the screen after the completion of the quiz.</li>
+                        <li>In case of a tie, the participant taking minimum time for the quiz will be considered the winner.</li>
+                    </ol>    
                 </p>
-                <a style={{'display':'block', 'textDecoration':'none', 'marginTop':'20px'}} className="d-flex justify-content-center" href="/quiz">
+                <a style={{'textDecoration':'none', 'marginTop':'20px'}} href="/quiz">
                     <button onClick={()=>
                     sessionStorage.setItem("submitTime", new Date().getTime()+904000)
                     } style={{'borderRadius':'8px', 'width':'250px'}}>

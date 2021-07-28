@@ -114,8 +114,11 @@ export default function Landing(){
     <div className='landing-page'>
         <Event />
         <div style={{'color':'#f1faee', 'padding':'2% 10% ', 'textAlign':'justify', 'textAlignLast':'center'}}>
-            <p>VIHAAN is Quizzers' Club MANIT's opening event for a session. We organize it even before the freshers evening, exclusively for the first years of our institute.
-            The purpose behind VIHAAN is to provide a platform to the newcomers to showcase their quizzing abilities and prove their mettle in quizzing.</p>
+            <p style={{'letterSpacing':'0.5px'}}>Quizzers Club MANIT is all set to take you on an audacious journey. Let us look back in time and ponder 
+            upon every drop of blood that was shed and every person that was martyred to build us a dynamic 
+            nation. Here's to the greater triumphs and achievements that await us. Are we brave and wise enough to leverage this opportunity and accept the challenge that our insurgents 
+            left us? Take this quiz and discover the immortal lives that were lived, the endless wars that were fought 
+            and the birthrights that were salvaged to give us everything that we have today! </p>
         </div>
         {reg?
         <RegClosed info="You have successfully registered" />

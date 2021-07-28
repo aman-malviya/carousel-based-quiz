@@ -83,7 +83,12 @@ export default function Landing(){
     <div className='landing-page'>
         <Event />
         <div style={{'color':'#f1faee', 'padding':'2% 10% ', 'textAlign':'justify', 'textAlignLast':'center'}}>
-            <p>After another year of a successful journey, its finally time to pass the baton. Quizzers’ Club MANIT, the only quizzing club of NIT Bhopal is all set to recruit new members. So, wait till the slots open, and then brainstorm over those riveting 30 questions on Mental Ability and General Knowledge.<br />All the best!</p>
+            <p style={{'letterSpacing':'0.5px'}}>Quizzers Club MANIT is all set to take you on an audacious journey. Let us look back in time and ponder 
+            upon every drop of blood that was shed and every person that was martyred to build us a dynamic 
+            nation. Here's to the greater triumphs and achievements that await us. Are we brave and wise enough to leverage this opportunity and accept the challenge that our insurgents 
+            left us? Take this quiz and discover the immortal lives that were lived, the endless wars that were fought 
+            and the birthrights that were salvaged to give us everything that we have today! </p>
+            All the best for the quiz!
         </div>
         <br />
         {render?<div>
