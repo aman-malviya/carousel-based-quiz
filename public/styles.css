@@ -6,7 +6,8 @@
 body{
   background:url("./bg.png");
   background-size:cover;
-  background-position:right;
+  background-position-x:center;
+  background-position-y: bottom;
   font-family: 'Quicksand', sans-serif !important;
 }
 ::selection{
@@ -19,9 +20,10 @@ body{
   align-items: center;
 }
 .question_section {
-  background:url("./bg.png");
+  /* background:url("./bg.png");
   background-size:cover;
   background-position:right;
+  background-position-y: bottom; */
   color:#F1FAEE;
   padding: 0% 22% 5%;
   font-size: 1.1rem;
@@ -200,7 +202,8 @@ input[type="radio"]:checked ~ .option span {
   background:url("./bg.png");
   min-height:100vh;
   background-size:cover;
-  background-position:center;
+  background-position-x: center;
+  background-position-y:-250px;
   font-family: 'Quicksand', sans-serif !important;
 }
 .landing-page h3{
@@ -309,7 +312,7 @@ input[type="radio"]:checked ~ .option span {
 }
 @media(max-width:600px){
   .landing-page{
-  background-position:right;
+  background-position:center;
   }
   .landing-page input, .landing-page .score{
     width:300px;

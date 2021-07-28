@@ -1,5 +1,5 @@
 import {React, useState, useEffect} from 'react'
-import { useHistory, useLocation } from 'react-router-dom';
+import {useLocation } from 'react-router-dom';
 import firebaseApp from '../firebase';
 import Brand from './Brand'
 import Event from './Event'

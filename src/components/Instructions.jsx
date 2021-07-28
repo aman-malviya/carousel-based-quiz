@@ -26,7 +26,7 @@ export default function Instructions(){
     <ThemeProvider theme={theme}>
         <LinearProgress />
     </ThemeProvider>    
-    :token?submitTime?<Redirect to="/quiz" />:<div className="landing-page d-flex justify-content-center">
+    :token?submitTime?<Redirect to="/quiz" />:<div style={{'backgroundPositionY':'bottom'}} className="landing-page d-flex justify-content-center">
             <div style={window.innerWidth>700?{'padding':'0 25%'}:{'padding':'0 8%'}} className="question">
                 <p style={{'margin':'5px 0','color':'#f1faee','paddingTop':'5%'}}>
                     Instructions-

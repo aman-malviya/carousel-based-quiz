@@ -33,6 +33,9 @@ export default function Admin(){
     });
 
     const addQuestion=(event)=>{
+        if(uploading){
+            return;
+        }
         const img=document.getElementById("image").files[0];
         const timeStamp=new Date().getTime();
         event.preventDefault();
