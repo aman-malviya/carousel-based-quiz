@@ -44,9 +44,17 @@ export default function Landing(){
             if(size){
                 flag=false;
             }
+            if(pwd.length < 8){
+                flag=false;
+                setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Password should be atleast 8 characters long</p>);
+                setTimeout(() => {
+                    setMessage("");
+                }, 2000);
+                return;
+            }
             if(pwd !== rpwd){
                 flag=false;
-                setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Passwords do not match.</p>);
+                setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Passwords do not match</p>);
                 setTimeout(() => {
                     setMessage("");
                 }, 2000);
@@ -54,7 +62,7 @@ export default function Landing(){
             }
             if(name==="" || college==="" || city==="" || email==="" || tel==="" || state==="" || pwd==="" || rpwd === ""){
                 flag=false;
-                setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Fill all the details first.</p>);
+                setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Fill in all the details first</p>);
                 setTimeout(() => {
                        setMessage("");
                 }, 2000);
@@ -63,7 +71,7 @@ export default function Landing(){
             
             if(validateEmail(email)===false){
                 flag=false;
-                setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Invalid Email.</p>);
+                setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>Invalid Email</p>);
                 setTimeout(() => {
                        setMessage("");
                 }, 2000);

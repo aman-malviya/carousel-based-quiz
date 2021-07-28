@@ -105,7 +105,7 @@ export default function Admin(){
 	<div style={{'display':'grid', 'gridTemplateColumns':'1fr 1fr'}}>
 			<div style={{'padding':'25px 25px', 'float':'left'}} className="grid-item">
 				<h3 style={{'color':'#E63946', 'fontWeight':'bolder', 'textAlign':'left'}}>
-					RECRUITMENTS
+					QCM
                 </h3>
           </div>
 		  <div style={{'float':'right'}}>

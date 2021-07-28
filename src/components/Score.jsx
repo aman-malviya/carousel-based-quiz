@@ -66,7 +66,7 @@ export default function Score(){
         user?<div className="d-flex justify-content-center landing-page">
           <div>
             <h1 style={{'color':'#E63946', 'fontWeight':'bolder', 'textAlign':'center','fontSize':'3rem'}}>
-                RECRUITMENTS
+                INDEPENDENCE DAY QUIZ
             </h1>
             <div className="d-flex justify-content-center">
                 <img alt="trophy-img" width="150px" height="150px" src="trophy.png" />
