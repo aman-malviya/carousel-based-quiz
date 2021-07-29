@@ -5,7 +5,7 @@ export default function TextNotStarted(props) {
     <div style={{ padding: "0 10%" }}>
       <br />
       <div>
-        <h3 style={{'fontSize':'3rem'}}>{props.info}</h3>
+        <h3 style={{'fontSize':'2rem'}}>{props.info}</h3>
       </div>
       <div
         style={{
@@ -17,7 +17,7 @@ export default function TextNotStarted(props) {
           color: "#f1faee",
         }}
       >
-        <div>Quiz will take place</div>
+        <div>Quiz will take place on</div>
         <div style={{ textAlign: "right" }}>
           15th of August
           <br />

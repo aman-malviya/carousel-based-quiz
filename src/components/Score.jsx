@@ -26,35 +26,34 @@ export default function Score(){
     })
     //Score Calculation
     const [points, setPoints] =useState(0);
-    useEffect(()=>{
-        let score=0;
+    // useEffect(()=>{
+    //     let score=0;
 
-        //If user didn't answer no increment no decrement in points
-        db.collection("AnswerBank/"+user+"/Answers").where('userAns','==','').onSnapshot((snapshot)=>{
-            snapshot.forEach((doc)=>{
-                setPoints(score);
-            })
-        })
-        //If user's answer is correct, +4
-        db.collection("AnswerBank/"+user+"/Answers").where('correct','==',true).onSnapshot((snapshot)=>{
-            snapshot.forEach((doc)=>{
-                score=score+4;
-                setPoints(score);
-            })
-        })
-        //If user's answer is incorrect, -1
-        db.collection("AnswerBank/"+user+"/Answers").where('correct','==',false).onSnapshot((snapshot)=>{
-            snapshot.forEach((doc)=>{
-                score=score-1;
-                setPoints(score);
-            })
-        })
-    },[])
+    //     //If user didn't answer no increment no decrement in points
+    //     db.collection("AnswerBank/"+user+"/Answers").where('userAns','==','').onSnapshot((snapshot)=>{
+    //         snapshot.forEach((doc)=>{
+    //             setPoints(score);
+    //         })
+    //     })
+    //     //If user's answer is correct, +4
+    //     db.collection("AnswerBank/"+user+"/Answers").where('correct','==',true).onSnapshot((snapshot)=>{
+    //         snapshot.forEach((doc)=>{
+    //             score=score+4;
+    //             setPoints(score);
+    //         })
+    //     })
+    //     //If user's answer is incorrect, -1
+    //     db.collection("AnswerBank/"+user+"/Answers").where('correct','==',false).onSnapshot((snapshot)=>{
+    //         snapshot.forEach((doc)=>{
+    //             score=score-1;
+    //             setPoints(score);
+    //         })
+    //     })
+    // },[])
 
     //Store the points in the database
-    db.collection("scores").doc(user).set({
-        points:points,
-        user:user
+    db.collection("Users").doc(user).get().then((doc)=>{
+        setPoints(doc.data().score);
     }).then(()=>{
         setLoading(false);
     })
@@ -74,7 +73,7 @@ export default function Score(){
             <div style={{'border':'2px solid rgba(69, 123, 157,0.5)', 'borderRadius':'8px','height':'60px', 'width':'200px', 'margin':'auto', 'padding':'12px', 'color':'#f1faee'}}>
                 <h4 style={{'textAlign':'center'}}>{points}</h4>
             </div>
-            <h6 style={{'color':'#f1faee', 'padding':'20px 50px', 'textAlign':'center'}}>Thankyou for taking the Test.
+            <h6 style={{'color':'#f1faee', 'padding':'20px 50px', 'textAlign':'center'}}>Thankyou for taking the Quiz.
                 <br />
                 <br />
                 Team Quizzers' Club MANIT will release the leaderboard soon.<br /><br />Stay tuned.

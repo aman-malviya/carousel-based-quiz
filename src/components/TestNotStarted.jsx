@@ -5,7 +5,7 @@ export default function TextNotStarted() {
     <div style={{ padding: "0 10%" }}>
       <br />
       <div>
-        <h3>Quiz has not started yet.</h3>
+        <h3 style={{'fontSize':'2rem'}}>Quiz has not started yet.</h3>
       </div>
       <div
         style={{
@@ -17,7 +17,7 @@ export default function TextNotStarted() {
           color: "#f1faee",
         }}
       >
-        <div>Quiz starts</div>
+        <div>Slot for the Quiz</div>
         <div style={{ textAlign: "right" }}>
           15th August 2021
           <br />

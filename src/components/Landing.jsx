@@ -46,18 +46,29 @@ export default function Landing(){
                             setMessage("");
                         }, 2000);
                     }else{
-                        firebaseApp.firestore().collection("scores").where("user", "==", email).get().then(snap=>{
-                            return snap.size;
-                        }).then(size=>{
-                            if(!size){
-                                sessionStorage.setItem("auth", true);
-                                sessionStorage.setItem("user", email);
-                                history.push('/instructions')
-                            }else{
+                        firebaseApp.firestore().collection("Users").where("email", "==", email).get().then(snap=>{
+                            let testAttempted=false;
+                            snap.docs.forEach(doc=>{
+                                if(doc.data().testAttempted){
+                                    testAttempted=true;
+                                }
+                            })
+                            return testAttempted;
+                        }).then(testAttempted=>{
+                            if(testAttempted){
                                 setMessage(<p style={{'color':'#E63946', 'textAlign':'center'}}>You have already taken the quiz once</p>);
                                 setTimeout(() => {
                                     setMessage("");
                                 }, 2000);
+                                return;
+                            }else{
+                                firebaseApp.firestore().collection("Users").doc(email).update({
+                                    testAttempted:true,
+                                }).then(()=>{
+                                    sessionStorage.setItem("auth", true);
+                                    sessionStorage.setItem("user", email);
+                                    history.push('/instructions')
+                                })
                             }
                         })
                     }

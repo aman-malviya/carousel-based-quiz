@@ -88,14 +88,15 @@ export default function Landing(){
             }
     
             if(flag){
-                firebaseApp.firestore().collection("Users").doc().set({
+                firebaseApp.firestore().collection("Users").doc(email).set({
                     name: name,
                     college: college,
                     email:email,
                     phone:tel,
                     state: state,
                     city: city,
-                    password:pwd
+                    password:pwd,
+                    testAttempted:false
                 }).then(()=>{
                     localStorage.setItem("registered", true);
                     setreg(true);

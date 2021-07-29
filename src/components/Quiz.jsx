@@ -40,32 +40,33 @@ export default function Quiz() {
   //useEffect for fetching questions from the database
   let [ques, setQues] = useState([]);
   useEffect(() => {
-    firebaseApp
-      .firestore()
-      .collection("Questions")
-      .limit(25)
-      .onSnapshot((snapshot) => {
-        setQues(
-          snapshot.docs.map((doc) => ({
-            que: doc.data().question,
-            opta: doc.data().A,
-            optb: doc.data().B,
-            optc: doc.data().C,
-            optd: doc.data().D,
-            ans: doc.data().ans,
-            cat:doc.data().category,
-            img:doc.data().img
-          }))
-        );
-      })
+    firebaseApp.firestore().collection("Users").doc(sessionStorage.getItem("user")).update({
+      inTime:new Date()
+    }).then(()=>{
+      firebaseApp
+        .firestore()
+        .collection("Questions")
+        .limit(25)
+        .onSnapshot((snapshot) => {
+          setQues(
+            snapshot.docs.map((doc) => ({
+              que: doc.data().question,
+              opta: doc.data().A,
+              optb: doc.data().B,
+              optc: doc.data().C,
+              optd: doc.data().D,
+              ans: doc.data().ans,
+              cat:doc.data().category,
+              img:doc.data().img
+            }))
+          );
+        })
+    })
   }, []);
 
-  useEffect(()=>{
-    ques.sort((a,b)=>{
-      return b.cat.localeCompare(a.cat);
-    })
-    setQues(shuffle(ques));
-  },[])
+  ques.sort((a,b)=>{
+    return b.cat.localeCompare(a.cat);
+  })
 
 
   const history = useHistory();
@@ -106,12 +107,17 @@ export default function Quiz() {
 
   //Submit test function on clicking submit button
   const submitTest = () => {
+    firebaseApp.firestore().collection("Users").doc(sessionStorage.getItem("user")).update({
+      submitTime:new Date()
+    })
+    let score=0;
     numbers.map((number) => {
       for (let n = 0; n <= 3; n++) {
         const input = document.getElementsByName("answer" + number)[n];
         if (input.checked === true) {
           //Storing the user responses into the database
           if (ques[number - 1].ans === input.value) {
+            score+=4;
             firebaseApp
               .firestore()
               .collection(
@@ -123,8 +129,9 @@ export default function Quiz() {
                 actualAns: ques[number - 1].ans,
                 userAns: input.value,
                 correct: true,
-              });
+              }, {merge:true});
           } else {
+            score-=1;
             firebaseApp
               .firestore()
               .collection(
@@ -137,14 +144,18 @@ export default function Quiz() {
                 actualAns: ques[number - 1].ans,
                 userAns: input.value,
                 correct: false,
-              });
+              }, {merge:true});
           }
         }
       }
     });
-    history.push("/score");
-    sessionStorage.removeItem("auth");
-    sessionStorage.removeItem("submitTime");
+    firebaseApp.firestore().collection("Users").doc(sessionStorage.getItem("user")).update({
+      score:score
+    }).then(()=>{
+      history.push("/score");
+      sessionStorage.removeItem("auth");
+      sessionStorage.removeItem("submitTime");
+    })
   };
 
   //Loading Component
