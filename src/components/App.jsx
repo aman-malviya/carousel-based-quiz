@@ -1,5 +1,5 @@
 import React from 'react'
-import LeaderBoard from './LeaderBoard'
+import Info from './Info'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Quiz from './Quiz'
 import Landing from './Landing'
@@ -20,7 +20,7 @@ export default function App(){
                     <Route path='/register' exact><Registration /></Route>
                     <Route path='/admin-login'><AdminAuth /></Route>
                     <Route path='/admin'><Admin /></Route>
-                    <Route path="/leader-board" ><LeaderBoard /></Route>
+                    <Route path="/info" ><Info /></Route>
                     <Route path='/quiz' component={Quiz} />
                     <Route path='/instructions' component={Instructions} />
                     <Route path='/score' component={Score} />
