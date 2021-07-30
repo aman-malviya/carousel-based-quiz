@@ -29,7 +29,7 @@ export default function LeaderBoard(){
                     <div style={{'visibility':showScore?'visible':'hidden'}}>Time taken</div>
             </div>
             {points.map((score, i)=>{
-                return <div style={{'border':'2px solid rgba(69, 123, 157,0.7)','display':'grid', 'grid-template-columns':'100px 200px 100px 300px 200px 400px 150px 150px 100px', 'margin':'auto', 'textAlign':'left', 'fontSize':'0.9rem', 'color':'#eee', 'padding':'10px 20px'}}>
+                return <div style={{'border':'2px solid rgba(69, 123, 157,0.7)','display':'grid', 'grid-template-columns':'100px 200px 100px 300px 200px 400px 150px 150px 100px', 'margin':'auto', 'textAlign':'left', 'fontSize':'0.9rem', 'color':'#eee', 'padding':'10px 20px', 'borderTop':'none'}}>
                     <div>{(i+1)}</div>
                     <div>{score.name}</div>
                     <div style={{'visibility':showScore?'visible':'hidden'}}>{score.score?score.score:'NA'}</div>
