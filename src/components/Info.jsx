@@ -9,8 +9,13 @@ export default function LeaderBoard(){
             db.collection("Users").onSnapshot((snapshot)=>{
                 let scores=[];
                 snapshot.forEach((doc)=>{
-                    console.log(doc.data());
                     scores.push(doc.data());
+                })
+                scores.forEach(s=>{
+                    s.name=s.name.trim();
+                })
+                scores.sort((a,b)=>{
+                    return a.name.localeCompare(b.name);
                 })
                 setPoints(scores);
             })
