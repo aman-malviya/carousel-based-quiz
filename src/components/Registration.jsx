@@ -130,8 +130,10 @@ export default function Landing(){
             and the birthrights that were salvaged to give us everything that we have today! </p>
         </div>
         {reg?
-        <RegClosed info="You have successfully registered" />
+            <RegClosed info="You have successfully registered" />
         :render?<div>
+        <p style={{'color':'yellow', 'textAlign':'center', 'fontSize':'1.1rem'}}>!! Important: Keep the password safe with you, you'll need it on the day of quiz to enter the quiz.</p>
+        <br />
         <h3>Hello {name} !</h3>
         <div className="d-flex justify-content-center">
             <div>
