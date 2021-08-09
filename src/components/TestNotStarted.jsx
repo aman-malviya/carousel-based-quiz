@@ -17,11 +17,11 @@ export default function TextNotStarted() {
           color: "#f1faee",
         }}
       >
-        <div>Slot for the Quiz</div>
+        <div>Slot opens</div>
         <div style={{ textAlign: "right" }}>
           15th August 2021
           <br />
-          3:00 PM to 4:00 PM
+          3:00 PM
         </div>
       </div>
       <br />

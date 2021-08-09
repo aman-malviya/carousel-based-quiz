@@ -48,8 +48,7 @@ export default function Quiz() {
         .collection("Questions")
         .limit(25)
         .onSnapshot((snapshot) => {
-          setQues(
-            snapshot.docs.map((doc) => ({
+            let q=snapshot.docs.map((doc) => ({
               que: doc.data().question,
               opta: doc.data().A,
               optb: doc.data().B,
@@ -59,14 +58,15 @@ export default function Quiz() {
               cat:doc.data().category,
               img:doc.data().img
             }))
-          );
+            q=shuffle(q);
+            q.sort((a,b)=>{
+              return b.cat.localeCompare(a.cat);
+            })
+            setQues(q)
         })
     })
   }, []);
 
-  ques.sort((a,b)=>{
-    return b.cat.localeCompare(a.cat);
-  })
 
 
   const history = useHistory();

@@ -39,14 +39,9 @@ export default function Instructions(){
                         <li>Make sure that you have a proper internet connection for the next 30 minutes.</li>
                         <li>The questions will be of Multiple Choice (MCQ) format. The total number of questions is 25 (20 straight + 5 bonus questions).</li>
                         <li>The time remaining will be displayed on the screen.</li>
-                        <li>The participant can navigate between the questions.</li>
-                        <li>
-                            The marking scheme for the quiz is as follows-
-                            <ul>
-                                <li>Questions 1 to 20 are straight, +4 for each correct response, -1 for each incorrect response and 0 if not attempted.</li>
-                                <li>Questions 21 to 25 are bonus, +4 for each correct response, 0 for each incorrect response and 0 if not attempted.</li>
-                            </ul>
-                        </li>
+                        <li>You can easily navigate between the questions.</li>
+                        <li>The marking scheme for the quiz is as follows: +4 for each correct response, -1 for each incorrect response and 0 if not attempted.</li>             
+                        <li>Bonus section is towards the end of the quiz (Q.21 to Q.25). If you have read the <strong>Untold tales of Independence</strong> featured on QCM's social media handles, it will certainly help you answer this section.</li>
                         <li>Avoid reloading and navigating while attempting the quiz, you may get disqualified and your response may be lost.</li>
                         <li>The score will be displayed on the screen after the completion of the quiz.</li>
                         <li>In case of a tie, the participant taking minimum time for the quiz will be considered the winner.</li>
