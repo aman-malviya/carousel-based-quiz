@@ -20,9 +20,9 @@ export default function LeaderBoard(){
                 setPoints(scores);
             })
     },[])
-    return(<div style={{'width':'1840px','minHeight':'100vh','background':'url(./bg.png)', 'backgroundRepeat':'no-repeat', 'backgroundSize':'cover', 'backgroundPositionY':'bottom'}}>
+    return(<div style={{'width':'2040px','minHeight':'100vh','background':'url(./bg.png)', 'backgroundRepeat':'no-repeat', 'backgroundSize':'cover', 'backgroundPositionY':'bottom'}}>
         <div>
-            <div style={{'display':'grid', 'gridTemplateColumns':'100px 200px 100px 300px 200px 400px 150px 150px 100px', 'margin':'auto', 'backgroundColor':'#06b6a0','color':'#eee' , 'textAlign':'left', 'padding':'10px 20px'}}>
+            <div style={{'display':'grid', 'gridTemplateColumns':'100px 200px 100px 300px 200px 400px 150px 150px 200px 100px', 'margin':'auto', 'backgroundColor':'#06b6a0','color':'#eee' , 'textAlign':'left', 'padding':'10px 20px'}}>
                     <div>S.No.</div>
                     <div>Name</div>
                     <div style={{'visibility':showScore?'visible':'hidden'}}>Score</div>
@@ -31,10 +31,11 @@ export default function LeaderBoard(){
                     <div>College</div>
                     <div>City</div>
                     <div>State</div>
+                    <div>Test Status</div>
                     <div style={{'visibility':showScore?'visible':'hidden'}}>Time taken</div>
             </div>
             {points.map((score, i)=>{
-                return <div style={{'border':'2px solid rgba(69, 123, 157,0.7)','display':'grid', 'grid-template-columns':'100px 200px 100px 300px 200px 400px 150px 150px 100px', 'margin':'auto', 'textAlign':'left', 'fontSize':'0.9rem', 'color':'#eee', 'padding':'10px 20px', 'borderTop':'none'}}>
+                return <div style={{'border':'2px solid rgba(69, 123, 157,0.7)','display':'grid', 'grid-template-columns':'100px 200px 100px 300px 200px 400px 150px 150px 200px 100px', 'margin':'auto', 'textAlign':'left', 'fontSize':'0.9rem', 'color':'#eee', 'padding':'10px 20px', 'borderTop':'none'}}>
                     <div>{(i+1)}</div>
                     <div>{score.name}</div>
                     <div style={{'visibility':showScore?'visible':'hidden'}}>{score.score?score.score:'NA'}</div>
@@ -43,6 +44,7 @@ export default function LeaderBoard(){
                     <div>{score.college}</div>
                     <div>{score.city}</div>
                     <div>{score.state}</div>
+                    <div>{score.testAttempted?"Attempted":"Not Attempted"}</div>
                     <div style={{'visibility':showScore?'visible':'hidden'}}>{score.submitTime&&score.inTime?((score.submitTime.seconds - score.inTime.seconds)/60).toFixed(2)+" minutes":"NA"}</div>
                 </div>
             })}        
