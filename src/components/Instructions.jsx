@@ -36,9 +36,9 @@ export default function Instructions(){
                 <p style={{'fontSize':'1rem', 'color':'#f1faee'}}>
                     <ol className="instructions">
                         <li>Read all the instructions carefully before attempting the quiz.</li>
-                        <li>Make sure that you have a proper internet connection for the next 30 minutes.</li>
-                        <li>The questions will be of Multiple Choice (MCQ) format. The total number of questions is 25 (20 straight + 5 bonus questions).</li>
-                        <li>The time remaining will be displayed on the screen.</li>
+                        <li>Make sure that you have a proper internet connection for the next 20 minutes.</li>
+                        <li>The questions are of Multiple Choice (MCQ) format. The total number of questions is 25 (20 straight + 5 bonus questions).</li>
+                        <li>You have 15 minutes to complete the quiz. The time remaining will be displayed on the screen.</li>
                         <li>You can easily navigate between the questions.</li>
                         <li>The marking scheme for the quiz is as follows: +4 for each correct response, -1 for each incorrect response and 0 if not attempted.</li>             
                         <li>Bonus section is towards the end of the quiz (Q.21 to Q.25). If you have read the <strong>Untold tales of Independence</strong> featured on QCM's social media handles, it will certainly help you answer this section.</li>

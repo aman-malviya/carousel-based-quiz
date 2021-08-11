@@ -196,7 +196,7 @@ export default function Quiz() {
             </div>
             <div className="modal-footer">
               <button style={{'border':'1px solid #E63946', 'borderStyle':'inset', 'color':'#000'}} type="button" className="btn" data-dismiss="modal">Cancel</button>
-              <button style={{'backgroundColor':'#1d3557', 'color':'#FFF'}} onClick={submitTest} type="button" className="btn">Submit</button>
+              <button style={{'backgroundColor':'#1d3557', 'color':'#FFF'}} onClick={submitTest} type="button" className="btn" data-dismiss="modal">Submit</button>
             </div>
           </div>
         </div>
