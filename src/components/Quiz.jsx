@@ -181,6 +181,27 @@ export default function Quiz() {
     </ThemeProvider>
   ) : token ? (
     <div style={{ minHeight: "100vh" }}>
+      {/* Modal */}
+      <div className="modal fade bd-example-modal-sm" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div className="modal-dialog modal-dialog-centered" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLongTitle"><i style={{'color':'#E63946', 'fontSize':'1.5rem', 'transform':'translateY(2px)'}} class="fal fa-exclamation-circle mr-2"></i> Are you sure you want to submit?</h5>
+              <button type="button" className="close btn rounded-circle" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-body">
+              Completing this action will end the quiz and take you to the score window.
+            </div>
+            <div className="modal-footer">
+              <button style={{'border':'1px solid #E63946', 'borderStyle':'inset', 'color':'#000'}} type="button" className="btn" data-dismiss="modal">Cancel</button>
+              <button style={{'backgroundColor':'#1d3557', 'color':'#FFF'}} onClick={submitTest} type="button" className="btn">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Modal */}
       <div className="grid-container">
         <div style={{ padding: "25px 25px" }} className="grid-item">
           <h3
@@ -210,7 +231,7 @@ export default function Quiz() {
           />
         </div>
         <div className="grid-item">
-          <button onClick={submitTest} className="submit-btn">
+          <button data-toggle="modal" data-target=".bd-example-modal-sm" className="submit-btn">
             SUBMIT
           </button>
         </div>
