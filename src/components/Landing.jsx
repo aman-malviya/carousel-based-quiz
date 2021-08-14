@@ -79,12 +79,12 @@ export default function Landing(){
 
     //Render Form based on time
     const [render, setRender]=useState(false);
-    const bypass=useLocation().search ==="?bypass";
+    const bypass=useLocation().search ==="?itisme";
 
     useEffect(()=>{
         let d=new Date().getTime();
         let start= new Date(2021, 7, 15, 15, 0, 0, 0).getTime();
-        let end= new Date(2021, 7, 15, 16, 0, 0, 0).getTime();
+        let end= new Date(2021, 7, 15, 15, 30, 0, 0).getTime();
         if(bypass || (d>start && d<end)){
             setRender(true);
         }
