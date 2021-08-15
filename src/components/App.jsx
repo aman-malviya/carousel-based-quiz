@@ -20,7 +20,7 @@ export default function App(){
                     <Route path='/register' exact><Registration /></Route>
                     <Route path='/admin-login'><AdminAuth /></Route>
                     <Route path='/admin'><Admin /></Route>
-                    <Route path="/info" ><Info /></Route>
+                    <Route path="/all-registered" ><Info /></Route>
                     <Route path='/quiz' component={Quiz} />
                     <Route path='/instructions' component={Instructions} />
                     <Route path='/score' component={Score} />
