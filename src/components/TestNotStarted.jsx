@@ -5,7 +5,7 @@ export default function TextNotStarted() {
     <div style={{ padding: "0 10%" }}>
       <br />
       <div>
-        <h3 style={{'fontSize':'2rem'}}>Quiz has not started yet.</h3>
+        <h3 style={{'fontSize':'2rem'}}>Quiz has ended.</h3>
       </div>
       <div
         style={{
