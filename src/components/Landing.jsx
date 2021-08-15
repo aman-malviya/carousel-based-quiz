@@ -114,7 +114,7 @@ export default function Landing(){
         <br />
         <br />
         <br />
-        <p style={{'color':'#f1faee', 'textAlign':'center', 'opacity':'0.6'}}>If you face any issue, feel free to call <br /> Aman : +91 8269366460<br />Yash : +91 8529736944</p>
+        <p style={{'color':'#f1faee', 'textAlign':'center', 'opacity':'0.6'}}>If you face any issue, feel free to call <br /> Shubham : +91 9031134968<br />Ayush : +91 8103300616<br />Haritha : +91 8943223060</p>
         </div>
         :
         <TestNotStarted />
